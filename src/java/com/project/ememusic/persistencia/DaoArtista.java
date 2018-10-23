@@ -9,7 +9,6 @@ import com.project.ememusic.entidad.Artistas;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Set;
 
 /**
  *
@@ -26,33 +25,20 @@ public class DaoArtista {
             ar.setString(1, Documento);
             ar.setString(2, tdocu);
             ResultSet art = ar.executeQuery();
-            if (art.next()) {
                 while (art.next()) {
                     artista.setTipoDocumento(art.getString("TipoDocumento"));
                     artista.setNroDocumento(art.getString("NroDocumento"));
                     artista.setPrimerNombre(art.getString("PrimerNombre"));
                     artista.setSegundoNombre(art.getString("SegundoNombre"));
                     artista.setPrimerApellido(art.getString("PrimerApellido"));
-                    artista.setSegundoApellido(art.getString("SegundoApellid"));
+                    artista.setSegundoApellido(art.getString("SegundoApellido"));
                     artista.setNombreArtistico(art.getString("NombreArtistico"));
-                    artista.setEmpresa(art.getString("Emmpresa"));
+                    artista.setEmpresa(art.getString("Empresa"));
                     artista.setEstado(art.getString("Estado"));
 
                     System.out.println("Busqueda exitosa...\n");
                 }//cierra while
-            } else {
-                artista.setTipoDocumento("");
-                artista.setNroDocumento("");
-                artista.setPrimerNombre("");
-                artista.setSegundoNombre("");
-                artista.setPrimerApellido("");
-                artista.setSegundoApellido("");
-                artista.setNombreArtistico("");
-                artista.setEmpresa("");
-                artista.setEstado("");
-
-            }
-
+            
         } catch (Exception e) {
             System.out.println("Error artista no registrado...\n");
             e.getMessage();
@@ -71,21 +57,11 @@ public class DaoArtista {
 
     //insertar registro en la tabla
     //insertar registro en la tabla
-    public Artistas guardarArtista(Connection cnx) {//validar conexion
+    public Artistas guardarArtista(Connection cnx, Artistas artista) {//validar conexion
         String mensaje = "";
         try {
             PreparedStatement artist = cnx.prepareStatement(SqlArtista.insertarArtista());
-            int consecutivo = 0;
-            ResultSet resultado = null;
-            PreparedStatement instruccion = null;
-            String sql = "SELECT " + "SEQ_ID_USUARIO " + ".NEXTVAL value FROM DUAL";
-//validar
-            instruccion = cnx.prepareStatement(sql);
-            resultado = instruccion.executeQuery();
-            if (resultado.next()) {
-                consecutivo = resultado.getInt("value");
-            }
-            artist.setInt(1, consecutivo);
+            
             artist.setString(2, artista.getTipoDocumento());
             artist.setString(3, artista.getNroDocumento());
             artist.setString(4, artista.getPrimerNombre());

@@ -33,7 +33,6 @@ public class NArtista {
         String TipoDocumento = artista.getTipoDocumento();
         String NroDocumento = artista.getNroDocumento();
         String PrimerNombre = artista.getPrimerNombre();
-        String SegundoNombre = artista.getSegundoNombre();
         String PrimerApellido = artista.getPrimerApellido();
         String NombreArtistico = artista.getNombreArtistico();
         String Empresa = artista.getEmpresa();
@@ -64,7 +63,7 @@ public class NArtista {
             throw new Exception(error);
         }
         con = new Conexion().getCon();//validar
-        artista = dao.guardarArtista(con);//revisar
+        artista = dao.guardarArtista(con,artista);//revisar
         return artista;//revisar
     }//fin guardar
 

@@ -1,9 +1,12 @@
+<%@page import="com.project.ememusic.persistencia.DaoEmpresa"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.project.ememusic.persistencia.DaoTipoDocumento"%>
 <!DOCTYPE html>
 <%
     DaoTipoDocumento daoTDocu = new DaoTipoDocumento();
     ResultSet tdocu = daoTDocu.tipoDoc();
+    DaoEmpresa daoEmpre = new DaoEmpresa();
+    ResultSet empre = daoEmpre.idEmpresa();
     String mensaje = request.getAttribute("mensaje") != null
             ? (String) request.getAttribute("mensaje") : null;
 %>
@@ -136,39 +139,41 @@
                                 <!-- Reply Form -->
                                 <form name="Artista" method="Post" id="Artista"
                                       action="./MaestroArtista" autocomplete="off" class="bod"> 
-                                        <div>
-                                    <center>
+                                    <div>
+                                        <center>
                                             <select id="cboDocument" name="cbotipodocumento"class="input_field reply_form_email" type="select"  required="required" 
-                                                title="Seleccione el tipo de documento">
+                                                    title="Seleccione el tipo de documento">
+                                                <option value="0" disabled selected="true">Seleccione</option>
                                                 <%while (tdocu.next()) {%>
                                                 <option value="<%= tdocu.getString(1)%>"><%=tdocu.getString(2)%></option>      
                                                 <% }%></select>
-                                            <input id="nroDocument" name="txtnumdocumento" class="input_field reply_form_name" type="text" placeholder="Número de Documento *" required="required" data-error="Name is required.">
+                                            <input id="nroDocument" name="txtnumdocumento" onkeyup = "this.value=this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Número de Documento *" required="required" data-error="Name is required.">
                                             <br>
-                                            <input id="firstName" name="txtprimernombre" class="input_field reply_form_email" type="text" placeholder="Primer Nombre *" required="required" data-error="Valid Primer Nombre is required.">
-                                            <input id="secondName" name="txtsegundonombre" class="input_field reply_form_name" type="text" placeholder="Segundo Nombre"><br>
-                                            <input id="firstLastname" name="txtprimerapellido"class="input_field reply_form_email" type="text" placeholder="Primer Apellido *" required="required" data-error="Valid Primer Apellido is required.">
-                                            <input id="secondLastname" name="txtsegundopellido" class="input_field reply_form_name" type="text" placeholder="Segundo Apellido" required="" data-error="Name is required."><br>
-                                            <input id="stageName" name="txtnombreartistico" class="input_field reply_form_email" type="text" placeholder="Nombre Artistico *" required="required" data-error="Valid Nombre Artistico is required.">
-                                            <select id="company " nem="cboempresa" class="input_field reply_form_name" type="select" placeholder="Empresa *" required="required" data-error="Valid company is required.">
-                                                <option>Seleccione la empresa</option></select><br>
-                                            </center>
-                                            <div class="reply_form_email" name="optestado" aria-hidden="true">Estado</div>
-                                            <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="S">Si</label>
-                                            <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="N">No</label>
+                                            <input id="firstName" name="txtprimernombre" onkeyup = "this.value=this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Primer Nombre *" required="required" data-error="Valid Primer Nombre is required.">
+                                            <input id="secondName" name="txtsegundonombre" onkeyup = "this.value=this.value.toUpperCase()"class="input_field reply_form_name" type="text" placeholder="Segundo Nombre"><br>
+                                            <input id="firstLastname" name="txtprimerapellido" onkeyup = "this.value=this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Primer Apellido *" required="required" data-error="Valid Primer Apellido is required.">
+                                            <input id="secondLastname" name="txtsegundopellido" onkeyup = "this.value=this.value.toUpperCase()"class="input_field reply_form_name" type="text" placeholder="Segundo Apellido" required="" data-error="Name is required."><br>
+                                            <input id="stageName" name="txtnombreartistico" onkeyup = "this.value=this.value.toUpperCase()"class="input_field reply_form_email" type="text" placeholder="Nombre Artistico *" required="required" data-error="Valid Nombre Artistico is required.">
+                                            <select id="company " name="cboempresa" class="input_field reply_form_name" type="select" placeholder="Empresa *" 
+                                                    title="Seleccione el tipo de documento">
+                                                <option value="0" disabled selected="true">Seleccione</option>
+                                                <%while (empre.next()) {%>
+                                                <option value="<%= empre.getString(1)%>"><%=empre.getString(2)%></option>      
+                                                <% }%></select>
+                                        </center>
+                                        <div class="reply_form_email" name="optestado" aria-hidden="true">Estado</div>
+                                        <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="S">Si</label>
+                                        <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="N">No</label>
 
-                                        </div>
+                                    </div>
 
-                                        <div class="Reply">
-                                            <button id="save" type="submit" class="btn bg-info" name="action" value="Guardar">Guardar</button>
-                                            <button id="edit" type="submit" class="btn bg-info"  name="action" value="Modificar">Modificar</button>
-                                            <button id="exit" type="button" class="btn bg-info" name="action" value="Cancelar"><a href="index.html">Cancelar</a></button>
-                                            <button id="search" type="button" class="btn bg-info" name="action" value="Buscar">Buscar</a></button>
+                                    <div class="Reply">
+                                        <button id="save" type="submit" class="btn bg-info" name="action" value="Guardar">Guardar</button>
+                                        <button id="edit" type="submit" class="btn bg-info"  name="action" value="Modificar">Modificar</button>
+                                        <button id="exit" type="button" class="btn bg-info" name="action" value="Cancelar"><a href="index.html">Cancelar</a></button>
+                                        <button id="search" type="button" class="btn bg-info" name="action" value="Buscar">Buscar</a></button>
 
-                                        </div>
-
-                                        </tr>
-                                        </table>
+                                    </div>
 
                                 </form>
 

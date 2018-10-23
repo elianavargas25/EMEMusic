@@ -58,7 +58,7 @@ public class MaestroArtista extends HttpServlet {
             String SegundoApellido = request.getParameter("txtsegundopellido");
             String NombreArtistico = request.getParameter("txtnombreartistico");
             String Empresa = request.getParameter("cboempresa");
-            String Estado = request.getParameter("optestado");//validar
+            String Estado = request.getParameter("optionStateS");//validar
 
             String mensaje = "";
             String modulo = "Artista.jsp"; // validar con la vista
@@ -67,7 +67,7 @@ public class MaestroArtista extends HttpServlet {
                 try {
                     //verifica si existe el dato
                     artista = negocio.buscarArtista(NroDocumento, TipoDocumento);
-                    if (artista.getNroDocumento().equals(TipoDocumento) && artista.getTipoDocumento().equals(TipoDocumento)) {
+                    if (artista.getNroDocumento().equals(NroDocumento) && artista.getTipoDocumento().equals(TipoDocumento)) {
                         mensaje = "El Artista que desea registrar, ya se encuentra en sistema";
                     } else {
                         try {
