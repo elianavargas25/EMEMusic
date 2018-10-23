@@ -1,0 +1,190 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.project.ememusic.servlet;
+
+import com.project.ememusic.entidad.Artistas;
+import com.project.ememusic.negocio.NArtista;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ *
+ * @author eliana.vargas
+ */
+@WebServlet(name = "MaestroArtista", urlPatterns = {"/MaestroArtista"})
+public class MaestroArtista extends HttpServlet {
+
+    Artistas artista = new Artistas();
+    NArtista negocio = new NArtista();
+
+    public void limpiar() {
+        artista.setTipoDocumento("");
+        artista.setNroDocumento("");
+        artista.setPrimerNombre("");
+        artista.setSegundoNombre("");
+        artista.setPrimerApellido("");
+        artista.setSegundoApellido("");
+        artista.setNombreArtistico("");
+        artista.setEmpresa("");
+        artista.setEstado("");
+    }//limpiar
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            String TipoDocumento = request.getParameter("cbotipodocumento");
+            String NroDocumento = request.getParameter("txtnumdocumento");
+            String PrimerNombre = request.getParameter("txtprimernombre");
+            String SegundoNombre = request.getParameter("txtsegundonombre");
+            String PrimerApellido = request.getParameter("txtprimerapellido");
+            String SegundoApellido = request.getParameter("txtsegundopellido");
+            String NombreArtistico = request.getParameter("txtnombreartistico");
+            String Empresa = request.getParameter("cboempresa");
+            String Estado = request.getParameter("optestado");//validar
+
+            String mensaje = "";
+            String modulo = "Artista.jsp"; // validar con la vista
+
+            if ("Guardar".equals(request.getParameter("action"))) {
+                try {
+                    //verifica si existe el dato
+                    artista = negocio.buscarArtista(NroDocumento, TipoDocumento);
+                    if (artista.getNroDocumento().equals(TipoDocumento) && artista.getTipoDocumento().equals(TipoDocumento)) {
+                        mensaje = "El Artista que desea registrar, ya se encuentra en sistema";
+                    } else {
+                        try {
+                            artista.setTipoDocumento(TipoDocumento);
+                            artista.setNroDocumento(NroDocumento);
+                            artista.setPrimerNombre(PrimerNombre);
+                            artista.setSegundoNombre(SegundoNombre);
+                            artista.setPrimerApellido(PrimerApellido);
+                            artista.setSegundoApellido(SegundoApellido);
+                            artista.setNombreArtistico(NombreArtistico);
+                            artista.setEmpresa(Empresa);
+                            artista.setEstado(Estado);
+
+                            //se guarda los datos en la tabla
+                            negocio.guardarArtista(artista);
+                            mensaje = "El artista se registró correctamente";
+                            limpiar();
+                        } catch (Exception e2) {
+                            mensaje = "Error en el registro de artista, favor verificar";
+                            limpiar();
+                        }
+                    }
+                } catch (Exception e1) {
+                    mensaje = "El artista ya se encuentra registrado en la base de datos";
+                    limpiar();
+                }
+            }//fin guardar
+
+            //modificar
+            if ("Modificar".equals(request.getParameter("action"))) {
+                int idTDocu = Integer.parseInt(TipoDocumento);
+                try {
+                    //vereficamos que el registró no exista en la tabla 
+                    artista = negocio.buscarArtista(NroDocumento, TipoDocumento);
+                    if (artista.getNroDocumento().equals(NroDocumento) && artista.getTipoDocumento().equals(TipoDocumento)) {
+                        mensaje = "El artistaque desea registrar, ya se encuentra en sistema";
+                    } else {
+                        try {
+                            artista.setTipoDocumento(artista.getTipoDocumento());//validar
+
+                            //guardamos los datos en la tabla
+                            negocio.actualizarArtista(artista);
+                            mensaje = "El artista se ha actualizado correctamente";
+                            limpiar();
+
+                        } catch (Exception e2) {
+                            mensaje = "Error al actualizar datos del artista" + NroDocumento + "";
+                            limpiar();
+                        }
+                    }
+                } catch (Exception e1) {
+                    mensaje = "El artista no se encuentra registrado en la base de datos - verificar";
+                    limpiar();
+                }
+            }//fin modificar
+            if ("limpiar".equals(request.getParameter("action"))) {
+                limpiar();
+            }//fin linpiar
+
+            if ("Consultar".equals(request.getParameter("action"))) {
+                int idTDocu = Integer.parseInt(TipoDocumento);
+                try {
+                    artista = negocio.buscarArtista(NroDocumento, TipoDocumento);
+                    if (artista.getNroDocumento().equals(NroDocumento) && artista.getTipoDocumento().equals(TipoDocumento)) {
+//si encuentra el dato cargamos los datos en el setAttribute
+                        request.setAttribute("datos", artista);
+
+                    } else {
+                        mensaje = "El artista: " + idTDocu + "" + NroDocumento + " no se encuentra registrado ";
+                        request.setAttribute("datos", null);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } //cierra buscar
+            request.setAttribute("mensaje", mensaje);
+            request.getRequestDispatcher(modulo).forward(request, response);
+
+        }
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+}
