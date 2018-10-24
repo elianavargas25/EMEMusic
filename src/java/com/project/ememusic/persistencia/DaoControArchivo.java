@@ -9,6 +9,6 @@ package com.project.ememusic.persistencia;
  *
  * @author eliana.vargas
  */
-public class DaoControArchivol {
+public class DaoControArchivo {
     
 }

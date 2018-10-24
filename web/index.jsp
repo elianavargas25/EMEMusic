@@ -33,12 +33,12 @@
                 <!-- Navigation -->
                 <nav class="main_nav justify-self-end text-right">
                     <ul>
-                        <li class="menu_mm"><a href="index.html">Home</a></li>
-                        <li class="menu_mm active"><a href="Artista.html">Registro de Artistas</a></li>
-                        <li class="menu_mm"><a href="Empresa.html">Registro de Empresas</a></li>
-                        <li class="menu_mm"><a href="CargarVentas.html">Cargar Ventas</a></li>
-                        <li class="menu_mm"><a href="Informes.html">Informes</a></li>
-                        <li class="menu_mm"><a href="Administracion.html">Administración</a></li>
+                        <li class="menu_mm"><a href="index.jsp">Home</a></li>
+                        <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
+                        <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
+                        <li class="menu_mm"><a href="CargarVentas.jsp">Cargar Ventas</a></li>
+                        <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
+                        <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
                     </ul>
 
                     <!-- Search -->

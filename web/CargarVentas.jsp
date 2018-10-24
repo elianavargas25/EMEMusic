@@ -139,9 +139,9 @@
                         <div class="col">
                             <div align="center" class="portfolio_categories button-group filters-button-group">
                                 <ul>
-                                    <button class="portfolio_category active is-checked" data-filter="*">  Seleccionar Archivo  </button>
-                                    <button class="portfolio_category" data-filter=".graphic_design">  Cargar Archivo  </button>
-                                    <button class="portfolio_category" data-filter=".branding">  Cancelar</button> 
+                                    <button id="SeleccionarArchivo" class="portfolio_category active is-checked" data-filter="*">  Seleccionar Archivo  </button>
+                                    <button id="CargarArchivo" class="portfolio_category" data-filter=".graphic_design">  Cargar Archivo  </button>
+                                    <button id="Cancelar" class="portfolio_category" data-filter=".branding">  Cancelar</button> 
                                 </ul>
 
                             </div>
@@ -181,8 +181,8 @@
                                             <!--%}%-->
                                             </tbody>
                                         </table>
-                                        <!--%} else {%><h1>No hay datos que mostrar</h1>
-                                        <%}%--->
+                                        <!--%} else {%><h1>No hay datos que mostrar</h1-->
+                                        <!--%}%--->
                                     </div>
                                 </div>
                             </div>
@@ -222,7 +222,7 @@
                                                     <td >15</td>
                                                     <td >100%</td>
                                                     <td >0</td>
-                                                    <td ><button type="submit" class="btn" name="action"
+                                                    <td ><button id="Guardar" type="submit" class="btn" name="action"
                                                                  value="Guardar">Ver log</button></td>
 
                                                 </tr>
@@ -230,7 +230,7 @@
                                             </tbody>
                                         </table>
                                         <!--%} else {%><h1>No hay datos que mostrar</h1>
-                                        <%}%--->
+                                        <!--%}%-->
                                     </div>
                                 </div>
                             </div>
