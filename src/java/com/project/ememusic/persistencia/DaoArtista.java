@@ -57,10 +57,10 @@ public class DaoArtista {
 
     //insertar registro en la tabla
     //insertar registro en la tabla
-    public Artistas guardarArtista(Connection cnx, Artistas artista) {//validar conexion
+    public Artistas guardarArtista(Connection con, Artistas artista) {//validar conexion
         String mensaje = "";
         try {
-            PreparedStatement artist = cnx.prepareStatement(SqlArtista.insertarArtista());
+            PreparedStatement artist = con.prepareStatement(SqlArtista.insertarArtista());
             
             artist.setString(2, artista.getTipoDocumento());
             artist.setString(3, artista.getNroDocumento());
@@ -83,7 +83,7 @@ public class DaoArtista {
             e.printStackTrace();
         } finally {
             try {
-                cnx.close();
+                con.close();
             } catch (Exception e) {
             }
         }//cierra finally
