@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.project.ememusic.entidad;
+package com.project.ememusic.persistencia;
 
 /**
  *
  * @author eliana.vargas
  */
-public class Usuario {
+public class DaoControArchivo {
     
 }

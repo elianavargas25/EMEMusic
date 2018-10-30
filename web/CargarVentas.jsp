@@ -28,12 +28,12 @@
                 <!-- Navigation -->
                 <nav class="main_nav justify-self-end text-right">
                     <ul>
-                        <li class="menu_mm"><a href="index.html">Home</a></li>
-                        <li class="menu_mm active"><a href="Artista.html">Registro de Artistas</a></li>
-                        <li class="menu_mm"><a href="Empresa.html">Registro de Empresas</a></li>
-                        <li class="menu_mm"><a href="CargarVentas.html">Cargar Ventas</a></li>
-                        <li class="menu_mm"><a href="Informes.html">Informes</a></li>
-                        <li class="menu_mm"><a href="Administracion.html">Administración</a></li>
+                        <li class="menu_mm"><a href="index.jsp">Home</a></li>
+                        <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
+                        <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
+                        <li class="menu_mm"><a href="CargarVentas.jsp">Cargar Ventas</a></li>
+                        <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
+                        <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
                     </ul>
 
                     <!-- Search -->
@@ -96,12 +96,12 @@
                 <div class="menu menu_mm text-right">
                     <div class="menu_close"><i class="far fa-times-circle trans_200"></i></div>
                     <ul class="menu_mm">
-                        <li class="menu_mm"><a href="index.html">Home</a></li>
-                        <li class="menu_mm"><a href="about.html">Registrar Artistas</a></li>
-                        <li class="menu_mm"><a href="services.html">Registrar Empresas</a></li>
-                        <li class="menu_mm active"><a href="portfolio.html">Cargar Ventas</a></li>
-                        <li class="menu_mm"><a href="blog.html">Informes</a></li>
-                        <li class="menu_mm"><a href="contact.html">Contact</a></li>
+                        <li class="menu_mm"><a href="index.jsp">Home</a></li>
+                        <li class="menu_mm"><a href="about.jsp">Registrar Artistas</a></li>
+                        <li class="menu_mm"><a href="services.jsp">Registrar Empresas</a></li>
+                        <li class="menu_mm active"><a href="portfolio.jsp">Cargar Ventas</a></li>
+                        <li class="menu_mm"><a href="blog.jsp">Informes</a></li>
+                        <li class="menu_mm"><a href="contact.jsp">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -139,9 +139,9 @@
                         <div class="col">
                             <div align="center" class="portfolio_categories button-group filters-button-group">
                                 <ul>
-                                    <button class="portfolio_category active is-checked" data-filter="*">  Seleccionar Archivo  </button>
-                                    <button class="portfolio_category" data-filter=".graphic_design">  Cargar Archivo  </button>
-                                    <button class="portfolio_category" data-filter=".branding">  Cancelar</button> 
+                                    <button id="SeleccionarArchivo" class="portfolio_category active is-checked" data-filter="*">  Seleccionar Archivo  </button>
+                                    <button id="CargarArchivo" class="portfolio_category" data-filter=".graphic_design">  Cargar Archivo  </button>
+                                    <button id="Cancelar" class="portfolio_category" data-filter=".branding">  Cancelar</button> 
                                 </ul>
 
                             </div>
@@ -181,8 +181,8 @@
                                             <!--%}%-->
                                             </tbody>
                                         </table>
-                                        <!--%} else {%><h1>No hay datos que mostrar</h1>
-                                        <%}%--->
+                                        <!--%} else {%><h1>No hay datos que mostrar</h1-->
+                                        <!--%}%--->
                                     </div>
                                 </div>
                             </div>
@@ -222,7 +222,7 @@
                                                     <td >15</td>
                                                     <td >100%</td>
                                                     <td >0</td>
-                                                    <td ><button type="submit" class="btn" name="action"
+                                                    <td ><button id="Guardar" type="submit" class="btn" name="action"
                                                                  value="Guardar">Ver log</button></td>
 
                                                 </tr>
@@ -230,7 +230,7 @@
                                             </tbody>
                                         </table>
                                         <!--%} else {%><h1>No hay datos que mostrar</h1>
-                                        <%}%--->
+                                        <!--%}%-->
                                     </div>
                                 </div>
                             </div>

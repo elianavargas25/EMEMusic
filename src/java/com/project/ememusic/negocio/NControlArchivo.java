@@ -9,6 +9,6 @@ package com.project.ememusic.negocio;
  *
  * @author eliana.vargas
  */
-public class NPremio {
+public class NControlArchivo {
     
 }
