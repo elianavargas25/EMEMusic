@@ -53,7 +53,7 @@ public class DaoLogAuditoria {
     public LogAuditoria guardarArtista(Connection con, LogAuditoria auditoria) {//validar conexion
         String mensaje = "";
         try {
-            PreparedStatement audito = con.prepareStatement(SqlLogAuditoria.insertAuditoria);
+            PreparedStatement audito = con.prepareStatement(SqlLogAuditoria.insertAuditoria());
             int index = 1;
             audito.setString(index++, auditoria.getIdUsuario());
             audito.setString(index++, auditoria.getTipoAccion());

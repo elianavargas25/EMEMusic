@@ -11,7 +11,7 @@ package com.project.ememusic.persistencia;
  */
 class SqlLogAuditoria {
 
-    public static String insertAuditoria(String[] args) {
+    public static String insertAuditoria() {
         return null;
     }
 
