@@ -74,17 +74,16 @@ public class DaoArtista {
         String mensaje = "";
         try {
             PreparedStatement artist = con.prepareStatement(SqlArtista.insertarArtista());
-
-            artist.setString(1, artista.getIdArtista());
-            artist.setString(2, artista.getTipoDocumento());
-            artist.setString(3, artista.getNroDocumento());
-            artist.setString(4, artista.getPrimerNombre());
-            artist.setString(5, artista.getSegundoNombre());
-            artist.setString(6, artista.getPrimerApellido());
-            artist.setString(7, artista.getSegundoApellido());
-            artist.setString(8, artista.getNombreArtistico());
-            artist.setString(9, artista.getEmpresa());
-            artist.setString(10, artista.getEstado());
+            int index = 1;
+            artist.setString(index++, artista.getTipoDocumento());
+            artist.setString(index++, artista.getNroDocumento());
+            artist.setString(index++, artista.getPrimerNombre());
+            artist.setString(index++, artista.getSegundoNombre());
+            artist.setString(index++, artista.getPrimerApellido());
+            artist.setString(index++, artista.getSegundoApellido());
+            artist.setString(index++, artista.getNombreArtistico());
+            artist.setString(index++, artista.getEmpresa());
+            artist.setString(index++, artista.getEstado());
             int result = artist.executeUpdate();
             System.out.println("Registro de Artista exitoso...\n");
             if (artist.getUpdateCount() > 0) {
@@ -108,27 +107,17 @@ public class DaoArtista {
     public Artistas actualizarArtista(Connection con, Artistas artista) {
         String mensaje = "";
         try {
-            PreparedStatement artist = con.prepareStatement(SqlArtista.insertarArtista());
-            int consecutivo = 0;
-            ResultSet resultado = null;
-            PreparedStatement instruccion = null;
-            String sql = "SELECT " + "SEQ_ID_USUARIO " + ".NEXTVAL value FROM DUAL";
-//validar
-            instruccion = con.prepareStatement(sql);
-            resultado = instruccion.executeQuery();
-            if (resultado.next()) {
-                consecutivo = resultado.getInt("value");
-            }
-            artist.setInt(1, consecutivo);
-            artist.setString(2, artista.getTipoDocumento());
-            artist.setString(3, artista.getNroDocumento());
-            artist.setString(4, artista.getPrimerNombre());
-            artist.setString(5, artista.getSegundoNombre());
-            artist.setString(6, artista.getPrimerApellido());
-            artist.setString(7, artista.getSegundoApellido());
-            artist.setString(8, artista.getNombreArtistico());
-            artist.setString(9, artista.getEmpresa());
-            artist.setString(10, artista.getEstado());
+            PreparedStatement artist = con.prepareStatement(SqlArtista.actualizarArtista());
+             int index = 1;
+            artist.setString(index++, artista.getTipoDocumento());
+            artist.setString(index++, artista.getNroDocumento());
+            artist.setString(index++, artista.getPrimerNombre());
+            artist.setString(index++, artista.getSegundoNombre());
+            artist.setString(index++, artista.getPrimerApellido());
+            artist.setString(index++, artista.getSegundoApellido());
+            artist.setString(index++, artista.getNombreArtistico());
+            artist.setString(index++, artista.getEmpresa());
+            artist.setString(index++, artista.getEstado());
             int result = artist.executeUpdate();
             System.out.println("Registro de Artista exitoso...\n");
             if (artist.getUpdateCount() > 0) {

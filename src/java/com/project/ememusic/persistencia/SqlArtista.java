@@ -44,9 +44,16 @@ public class SqlArtista {
 
     public static String insertarArtista() {
         return "INSERT INTO `artistas`"
-                + " (`ID_ARTISTAS`, `ID_TIPO_DOCUMENTO`, `NRO_DOCUMENTO`, `PRIMER_NOMBRE`, "
+                + " ( `ID_TIPO_DOCUMENTO`, `NRO_DOCUMENTO`, `PRIMER_NOMBRE`, "
                 + "`SEGUNDO_NOMBRE`, `PRIMER_APELLIDO`, `SEGUNDO_APELLIDO`, `NOMBRE_ARTISTICO`, `ID_EMPRESA`, `ESTADO`)"
-                + "values (?,?,?,?,?,?,?,?,?,?)" ;
+                + "values (?,?,?,?,?,?,?,?,?)" ;
+    }
+    //Actualizar (GUARDAR) UN REGISTRO EN LA TABLA
+    public static String actualizarArtista() {
+        return "INSERT INTO `artistas`"
+                + " ( `ID_TIPO_DOCUMENTO`, `NRO_DOCUMENTO`, `PRIMER_NOMBRE`, "
+                + "`SEGUNDO_NOMBRE`, `PRIMER_APELLIDO`, `SEGUNDO_APELLIDO`, `NOMBRE_ARTISTICO`, `ID_EMPRESA`, `ESTADO`)"
+                + "values (?,?,?,?,?,?,?,?,?)" ;
     }
 
 }

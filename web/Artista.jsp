@@ -161,7 +161,7 @@
                                                 <option value="<%= empre.getString(1)%>"><%=empre.getString(2)%></option>      
                                                 <% }%></select>
                                         </center>
-                                        <div class="reply_form_email" name="optestado" aria-hidden="true">Estado</div>
+                                        <div class="reply_form_email" name="optestado" aria-hidden="true">Activo</div>
                                         <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="S">Si</label>
                                         <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="N">No</label>
 
