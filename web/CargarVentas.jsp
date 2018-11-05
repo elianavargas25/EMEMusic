@@ -139,7 +139,7 @@
                         <div class="col">
                             <div align="center" class="portfolio_categories button-group filters-button-group">
                                 <ul>
-                                    <button id="SeleccionarArchivo" class="portfolio_category active is-checked" data-filter="*">  Seleccionar Archivo  </button>
+                                    <input type="file" name="adjunto" accept=".xls" multiple>
                                     <button id="CargarArchivo" class="portfolio_category" data-filter=".graphic_design">  Cargar Archivo  </button>
                                     <button id="Cancelar" class="portfolio_category" data-filter=".branding">  Cancelar</button> 
                                 </ul>
