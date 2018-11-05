@@ -231,7 +231,7 @@
                                             </tbody>
                                         </table>
                                         <!--%} else {%><h1>No hay datos que mostrar</h1>
-                                                <%}%--->
+                                                <!%}%--->
                                     </div>
                                 </div>
                             </div>

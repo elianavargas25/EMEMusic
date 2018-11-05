@@ -123,7 +123,7 @@ public class MaestroArtista extends HttpServlet {
                     limpiar();
                 }
             }//fin modificar
-            if ("limpiar".equals(request.getParameter("action"))) {
+            if ("Cancelar".equals(request.getParameter("action"))) {
                 limpiar();
             }//fin linpiar
 

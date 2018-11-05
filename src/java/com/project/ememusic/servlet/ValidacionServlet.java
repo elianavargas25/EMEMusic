@@ -46,13 +46,16 @@ public class ValidacionServlet extends HttpServlet {
         try {
             usu = negocio.validarIngreso(user, password);
             if (usu.getNombre().equals(user) && usu.getClave().equals(password)) {
+                String id_usu = usu.getIdUsuario();
                 //Compruebo el estado del usuario al ingresar al sistema (activo o inactivo)
                 if (usu.getEstado().equals("S")) {
                     //Compruebo el perfil del usuario que se esta logueando.
+
                     String perfil = usu.getPerfil();
                     if (perfil.equals("Administrador")) {
                         men = "Bienvenido al Sistema";
                         request.setAttribute("mensajeError", men);
+                        id_usu = usu.getIdUsuario();
                         user = usu.getNombre();
                         perfil = usu.getPerfil();
                         request.getSession(true).setAttribute("usuario", usu);
@@ -61,6 +64,7 @@ public class ValidacionServlet extends HttpServlet {
                     } else if (perfil.equals("Operario")) {
                         men = "Bienvenido al Sistema";
                         request.setAttribute("mensajeError", men);
+                        id_usu = usu.getIdUsuario();
                         user = usu.getNombre();
                         perfil = usu.getPerfil();
                         request.getSession(true).setAttribute("usuario", usu);

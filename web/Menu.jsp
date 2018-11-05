@@ -1,14 +1,16 @@
 <%@page import="com.project.ememusic.entidad.Usuarios"%>
 <%@page import= "java.util.*" session="true"%>
 
-<%String perfil = "";
+<%
+    String id_usu ="";
+    String perfil = "";
     String nombre = "";
     Usuarios tec = new Usuarios();
     if (session.getAttribute("usuario") != null) {
         tec = (Usuarios) session.getAttribute("usuario");
+        id_usu = tec.getIdUsuario();
         nombre = (String) (tec.getNombre());
         perfil = tec.getPerfil();
-
     }
 %>
 <!DOCTYPE html>
@@ -55,7 +57,7 @@
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
                         <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
                         <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
-                        <a href="index.jsp">Cerrar sesión</a></button>
+                        <a href="index.jsp">Cerrar sesión</a>
                     </ul>   
                 </nav>
                 <%} else {%>
@@ -70,7 +72,6 @@
                         
                     </ul>   
                 </nav>
-
                     <%}%>
 
                 <!-- Search -->
