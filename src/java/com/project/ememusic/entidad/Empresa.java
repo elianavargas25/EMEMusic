@@ -10,6 +10,7 @@ package com.project.ememusic.entidad;
  * @author Estefania
  */
 public class Empresa {
+
     String IdEmpresa,TipoDocumento,NroDcumento,Nombre,PagoOperacion,Estado;
 
     public String getId_empresa() {
