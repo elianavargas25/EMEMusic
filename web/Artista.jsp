@@ -1,14 +1,40 @@
+<%@page import="com.project.ememusic.entidad.Usuarios"%>
 <%@page import="com.project.ememusic.persistencia.DaoEmpresa"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.project.ememusic.persistencia.DaoTipoDocumento"%>
+<%@page import= "java.util.*" session="true"%>
+
 <!DOCTYPE html>
 <%
+    String id_usu = "";
+    String perfil = "";
+    String nombre = "";
+    Usuarios tec = new Usuarios();
+    if (session.getAttribute("usuario") != null) {
+        tec = (Usuarios) session.getAttribute("usuario");
+        id_usu = tec.getIdUsuario();
+        nombre = (String) (tec.getNombre());
+        perfil = tec.getPerfil();
+    }
     DaoTipoDocumento daoTDocu = new DaoTipoDocumento();
     ResultSet tdocu = daoTDocu.tipoDoc();
     DaoEmpresa daoEmpre = new DaoEmpresa();
     ResultSet empre = daoEmpre.idEmpresa();
+    String id_usuario = request.getParameter("");
+    String tipoDocumento = request.getParameter("");
+    String nroDocumento = request.getParameter("");
+    String primerNombre = request.getParameter("");
+    String segundoNombre = request.getParameter("");
+    String primerApellido = request.getParameter("");
+    String segundoApellido = request.getParameter("");
+    String nombreArtistico = request.getParameter("");
+    String empresa = request.getParameter("");
+    String Activo = request.getParameter("");
+    
     String mensaje = request.getAttribute("mensaje") != null
             ? (String) request.getAttribute("mensaje") : null;
+    
+
 %>
 
 <html lang="es">
@@ -50,33 +76,50 @@
                 </div>
 
                 <!-- Navigation -->
+                <%if (perfil.equals("Administrador")) {%> 
                 <nav class="main_nav justify-self-end text-right">
                     <ul>
-                        <li class="menu_mm"><a href="index.jsp">Home</a></li>
                         <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
                         <li class="menu_mm"><a href="CargarVentas.jsp">Cargar Ventas</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
                         <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
-                    </ul>
+                        <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
+                        <a href="index.jsp">Cerrar sesión</a>
+                    </ul>   
+                </nav>
+                <%} else {%>
+                <nav class="main_nav justify-self-end text-right">
+                    <ul>
+                        <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
+                        <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
+                        <li class="menu_mm"><a href="CargarVentas.jsp">Cargar Ventas</a></li>
+                        <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
+                        <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
+                        <a href="index.jsp">Cerrar sesión</a>
 
-                    <!-- Search -->
-                    <div class="search">
-                        <div class="search_content d-flex flex-column align-items-center justify-content-center">
-                            <div class="search_button d-flex flex-column align-items-center justify-content-center">
-                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                     width="18px" height="18px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+                    </ul>   
+                </nav>
+
+                <%}%>
+
+                <!-- Search -->
+                <div class="search">
+                    <div class="search_content d-flex flex-column align-items-center justify-content-center">
+                        <div class="search_button d-flex flex-column align-items-center justify-content-center">
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 width="18px" height="18px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
 
 
-                                </svg>
-                            </div>
-
-                            <form id="search_form" class="search_form bez_1">
-                                <input type="search" class="search_input bez_1">
-                            </form>
-
+                            </svg>
                         </div>
+
+                        <form id="search_form" class="search_form bez_1">
+                            <input type="search" class="search_input bez_1">
+                        </form>
+
                     </div>
+                </div>
                 </nav>
 
                 <!-- Hamburger -->
@@ -147,13 +190,13 @@
                                                 <%while (tdocu.next()) {%>
                                                 <option value="<%= tdocu.getString(1)%>"><%=tdocu.getString(2)%></option>      
                                                 <% }%></select>
-                                            <input id="nroDocument" name="txtnumdocumento" onkeyup = "this.value=this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Número de Documento *" required="required" data-error="Name is required.">
+                                            <input id="nroDocument" name="txtnumdocumento" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Número de Documento *" required="required" data-error="Name is required.">
                                             <br>
-                                            <input id="firstName" name="txtprimernombre" onkeyup = "this.value=this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Primer Nombre *" required="required" data-error="Valid Primer Nombre is required.">
-                                            <input id="secondName" name="txtsegundonombre" onkeyup = "this.value=this.value.toUpperCase()"class="input_field reply_form_name" type="text" placeholder="Segundo Nombre"><br>
-                                            <input id="firstLastname" name="txtprimerapellido" onkeyup = "this.value=this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Primer Apellido *" required="required" data-error="Valid Primer Apellido is required.">
-                                            <input id="secondLastname" name="txtsegundopellido" onkeyup = "this.value=this.value.toUpperCase()"class="input_field reply_form_name" type="text" placeholder="Segundo Apellido" required="" data-error="Name is required."><br>
-                                            <input id="stageName" name="txtnombreartistico" onkeyup = "this.value=this.value.toUpperCase()"class="input_field reply_form_email" type="text" placeholder="Nombre Artistico *" required="required" data-error="Valid Nombre Artistico is required.">
+                                            <input id="firstName" name="txtprimernombre" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Primer Nombre *" required="required" data-error="Valid Primer Nombre is required.">
+                                            <input id="secondName" name="txtsegundonombre" onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_name" type="text" placeholder="Segundo Nombre"><br>
+                                            <input id="firstLastname" name="txtprimerapellido" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Primer Apellido *" required="required" data-error="Valid Primer Apellido is required.">
+                                            <input id="secondLastname" name="txtsegundopellido" onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_name" type="text" placeholder="Segundo Apellido" required="" data-error="Name is required."><br>
+                                            <input id="stageName" name="txtnombreartistico" onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_email" type="text" placeholder="Nombre Artistico *" required="required" data-error="Valid Nombre Artistico is required.">
                                             <select id="company " name="cboempresa" class="input_field reply_form_name" type="select" placeholder="Empresa *" 
                                                     title="Seleccione el tipo de documento">
                                                 <option value="0" disabled selected="true">Seleccione</option>
@@ -161,7 +204,7 @@
                                                 <option value="<%= empre.getString(1)%>"><%=empre.getString(2)%></option>      
                                                 <% }%></select>
                                         </center>
-                                        <div class="reply_form_email" name="optestado" aria-hidden="true">Estado</div>
+                                        <div class="reply_form_email" name="optestado" aria-hidden="true">Activo</div>
                                         <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="S">Si</label>
                                         <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="N">No</label>
 
@@ -169,9 +212,12 @@
 
                                     <div class="Reply">
                                         <button id="save" type="submit" class="btn bg-info" name="action" value="Guardar">Guardar</button>
+                                        <%if (perfil.equals("Administrador")) {%> 
                                         <button id="edit" type="submit" class="btn bg-info"  name="action" value="Modificar">Modificar</button>
-                                        <button id="exit" type="button" class="btn bg-info" name="action" value="Cancelar"><a href="index.jsp">Cancelar</a></button>
+                                        <%}%>
                                         <button id="search" type="button" class="btn bg-info" name="action" value="Buscar">Buscar</a></button>
+                                        <button id="exit" type="button" class="btn bg-info" name="action" value="Cancelar">Cancelar</a></button>
+                                        
 
                                     </div>
 

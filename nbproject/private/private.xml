@@ -3,7 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/eliana.vargas/Desktop/EMEMusic/web/Artista.jsp</file>
+            <file>file:/C:/Users/max/Desktop/todo%20lo%20de%20la%20pantalla/music/EMEMusic/src/java/com/project/ememusic/servlet/MaestroParametros.java</file>
+            <file>file:/C:/Users/max/Desktop/todo%20lo%20de%20la%20pantalla/music/EMEMusic/web/Menu.jsp</file>
+            <file>file:/C:/Users/max/Desktop/todo%20lo%20de%20la%20pantalla/music/EMEMusic/src/java/com/project/ememusic/entidad/Parametros.java</file>
+            <file>file:/C:/Users/max/Desktop/todo%20lo%20de%20la%20pantalla/music/EMEMusic/src/java/com/project/ememusic/servlet/ValidacionServlet.java</file>
+            <file>file:/C:/Users/max/Desktop/todo%20lo%20de%20la%20pantalla/music/EMEMusic/src/java/com/project/ememusic/negocio/NParametros.java</file>
+            <file>file:/C:/Users/max/Desktop/todo%20lo%20de%20la%20pantalla/music/EMEMusic/web/index.jsp</file>
+            <file>file:/C:/Users/max/Desktop/todo%20lo%20de%20la%20pantalla/music/EMEMusic/web/Parametros.jsp</file>
+            <file>file:/C:/Users/max/Desktop/todo%20lo%20de%20la%20pantalla/music/EMEMusic/src/java/com/project/ememusic/persistencia/DaoLogAuditoria.java</file>
+            <file>file:/C:/Users/max/Desktop/todo%20lo%20de%20la%20pantalla/music/EMEMusic/src/java/com/project/ememusic/persistencia/SqlLogAuditoria.java</file>
         </group>
     </open-files>
 </project-private>

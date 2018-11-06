@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>RanGO - Contact</title>
+        <title>EmeMusic - Contact</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="RanGO Project">
@@ -23,7 +23,7 @@
 
                 <!-- Logo -->
                 <div class="logo mr-auto">
-                    <a href="#">Ran<span>go</span></a>
+                    <a href="#">EME<span>Music</span></a>
                 </div>
 
                 <!-- Navigation -->
@@ -115,7 +115,7 @@
                 </div>
 
                 <div class="home_title">
-                    <h2>Contact</h2>
+                    <h2>Usuarios</h2>
                     <div class="next_section_scroll">
                         <div class="next_section nav_links" data-scroll-to=".contact">
                             <i class="fas fa-chevron-down trans_200"></i>
