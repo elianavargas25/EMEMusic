@@ -29,10 +29,10 @@ public class DaoEmpresa {
     }
     
 
-    public Empresa buscarEmpresa(Connection cxn, String Id_Empresa) {
+    public Empresa buscarEmpresa(Connection cxn, String NroDocumento) {
 
         try {
-            PreparedStatement em = cxn.prepareStatement(SqlEmpresa.getEmpresa(Id_Empresa));
+            PreparedStatement em = cxn.prepareStatement(SqlEmpresa.getEmpresa(NroDocumento));
             ResultSet ur = em.executeQuery();
 
             while (ur.next()) {
@@ -56,7 +56,7 @@ public class DaoEmpresa {
 
         }//cierra finally
 
-        if (!emp.getId_empresa().equals(Id_Empresa)) {
+        if (!emp.getNroDcumento().equals(NroDocumento)) {
             System.out.println("La empresa no se encuentra regitrada en nuestra la base de datos");
         }
         return emp;

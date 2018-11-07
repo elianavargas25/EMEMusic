@@ -98,7 +98,6 @@ public class MaestroArtista extends HttpServlet {
 
             //modificar
             if ("Modificar".equals(request.getParameter("action"))) {
-                int idTDocu = Integer.parseInt(TipoDocumento);
                 try {
                     //vereficamos que el registró no exista en la tabla 
                     artista = negocio.buscarArtista(NroDocumento, TipoDocumento);
@@ -128,7 +127,6 @@ public class MaestroArtista extends HttpServlet {
             }//fin linpiar
 
             if ("Consultar".equals(request.getParameter("action"))) {
-                int idTDocu = Integer.parseInt(TipoDocumento);
                 try {
                     artista = negocio.buscarArtista(NroDocumento, TipoDocumento);
                     if (artista.getNroDocumento().equals(NroDocumento) && artista.getTipoDocumento().equals(TipoDocumento)) {
@@ -136,7 +134,7 @@ public class MaestroArtista extends HttpServlet {
                         request.setAttribute("datos", artista);
 
                     } else {
-                        mensaje = "El artista: " + idTDocu + "" + NroDocumento + " no se encuentra registrado ";
+                        mensaje = "El artista: " + TipoDocumento + "" + NroDocumento + " no se encuentra registrado ";
                         request.setAttribute("datos", null);
                     }
                 } catch (Exception e) {
