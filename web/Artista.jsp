@@ -1,3 +1,4 @@
+<%@page import="com.project.ememusic.entidad.Artistas"%>
 <%@page import="com.project.ememusic.entidad.Usuarios"%>
 <%@page import="com.project.ememusic.persistencia.DaoEmpresa"%>
 <%@page import="java.sql.ResultSet"%>
@@ -20,21 +21,32 @@
     ResultSet tdocu = daoTDocu.tipoDoc();
     DaoEmpresa daoEmpre = new DaoEmpresa();
     ResultSet empre = daoEmpre.idEmpresa();
-    String id_usuario = request.getParameter("");
-    String tipoDocumento = request.getParameter("");
-    String nroDocumento = request.getParameter("");
-    String primerNombre = request.getParameter("");
-    String segundoNombre = request.getParameter("");
-    String primerApellido = request.getParameter("");
-    String segundoApellido = request.getParameter("");
-    String nombreArtistico = request.getParameter("");
-    String empresa = request.getParameter("");
-    String Activo = request.getParameter("");
-    
+    String idArtista = request.getParameter("idArtista");
+    String tipoDocumento = request.getParameter("TipoDocumento");
+    String nroDocumento = request.getParameter("NroDocumento");
+    String primerNombre = request.getParameter("PrimerNombre");
+    String segundoNombre = request.getParameter("SegundoNombre");
+    String primerApellido = request.getParameter("PrimerApellido");
+    String segundoApellido = request.getParameter("SegundoApellido");
+    String nombreArtistico = request.getParameter("NombreArtistico");
+    String empresa = request.getParameter("Empresa");
+    String Activo = request.getParameter("Estado");
+    Artistas artista =request.getAttribute("datos") != null ?
+            (Artistas) request.getAttribute("datos") : null;
+            if(artista != null){
+                idArtista = artista.getIdArtista();
+                tipoDocumento = artista.getTipoDocumento();
+                nroDocumento = artista.getNroDocumento();
+                primerNombre = artista.getPrimerNombre();
+                segundoNombre = artista.getSegundoNombre();
+                primerApellido = artista.getPrimerApellido();
+                segundoApellido = artista.getSegundoApellido();
+                nombreArtistico = artista.getNombreArtistico();
+                empresa = artista.getEmpresa();
+                Activo = artista.getEstado();
+            }
     String mensaje = request.getAttribute("mensaje") != null
             ? (String) request.getAttribute("mensaje") : null;
-    
-
 %>
 
 <html lang="es">
