@@ -11,7 +11,7 @@ package com.project.ememusic.entidad;
  */
 public class Empresa {
 
-    String IdEmpresa,TipoDocumento,NroDcumento,Nombre,PagoOperacion,Estado;
+    String IdEmpresa,TipoDocumento,NroDocumento,Nombre,PagoOperacion,Estado;
 
     public String getId_empresa() {
         return IdEmpresa;
@@ -29,12 +29,12 @@ public class Empresa {
         this.TipoDocumento = TipoDocumento;
     }
 
-    public String getNroDcumento() {
-        return NroDcumento;
+    public String getNroDocumento() {
+        return NroDocumento;
     }
 
-    public void setNroDcumento(String NroDcumento) {
-        this.NroDcumento = NroDcumento;
+    public void setNroDcumento(String NroDocumento) {
+        this.NroDocumento = NroDocumento;
     }
 
     public String getNombre() {

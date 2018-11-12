@@ -1,4 +1,22 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.project.ememusic.persistencia.DaoTipoDocumento"%>
+<%@page import="com.project.ememusic.entidad.Usuarios"%>
 <!DOCTYPE html>
+<%String id_usu = "";
+    String perfil = "";
+    String nombre = "";
+    Usuarios tec = new Usuarios();
+    if (session.getAttribute("usuario") != null) {
+        tec = (Usuarios) session.getAttribute("usuario");
+        id_usu = tec.getIdUsuario();
+        nombre = (String) (tec.getNombre());
+        perfil = tec.getPerfil();
+    }
+    DaoTipoDocumento daoTDocu = new DaoTipoDocumento();
+    ResultSet tdocu = daoTDocu.tipoDoc();
+    String mensaje = request.getAttribute("mensaje") != null
+            ? (String) request.getAttribute("mensaje") : null;
+%>
 <html lang="en">
     <head>
         <title>EME MUSIC</title>
@@ -37,15 +55,32 @@
                 </div>
 
                 <!-- Navigation -->
+                <%if (perfil.equals("Administrador")) {%> 
                 <nav class="main_nav justify-self-end text-right">
                     <ul>
-                        <li class="menu_mm"><a href="index.jsp">Home</a></li>
                         <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
                         <li class="menu_mm"><a href="CargarVentas.jsp">Cargar Ventas</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                        <li class="menu_mm"><a href="Administracion.jsp">AdministraciÃ³n</a></li>
-                    </ul>
+                        <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
+                        <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
+                        <a href="index.jsp">Cerrar sesión</a>
+                    </ul>   
+                </nav>
+                <%} else {%>
+                <nav class="main_nav justify-self-end text-right">
+                    <ul>
+                        <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
+                        <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
+                        <li class="menu_mm"><a href="CargarVentas.jsp">Cargar Ventas</a></li>
+                        <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
+                        <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
+                        <a href="index.jsp">Cerrar sesión</a>
+
+                    </ul>   
+                </nav>
+
+                <%}%>
 
                     <!-- Search -->
                     <div class="search">
@@ -112,7 +147,7 @@
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
                         <li class="menu_mm"><a href="CargarVentas.jsp">Cargar Ventas</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                        <li class="menu_mm"><a href="Administracion.jsp">AdministraciÃ³n</a></li>
+                        <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
                     </ul>
                 </div>
             </div>
@@ -135,7 +170,7 @@
                 </div>
 
             </div>
-
+            <center>  <h4><%=mensaje != null ? mensaje : ""%></h4><br> </center>
 
             <div class="row contact_row">
                 <div  class="content-box-gray">
@@ -145,23 +180,28 @@
 
 
                             <div class="reply_form_container">
-                                <form id="reply_form" action="post">
+                               <form name="Empresa" method="Post" id="Empresa"
+                                      action="./MaestroEmpresa" autocomplete="off" class="bod"> 
                                     <div>
-                                        <select id="cboDocument" class="input_field reply_form_email" type="select" placeholder="Tipo de Documento *" required="required" data-error="Valid Tipo de Documento is required.">
-                                            <option>Seleccione su tipo de documento</option></select>
-
-                                        <input id="Document" class="input_field reply_form_name" type="text" placeholder="NÃºmero de Documento *" required="required" data-error="Name is required.">
+                                        <select id="cboDocument" name="cbotipodocumento" class="input_field reply_form_email" type="select" placeholder="Tipo de Documento *" required="required" data-error="Valid Tipo de Documento is required.">
+                                            <option>Seleccione su tipo de documento</option>
+                                        <%while (tdocu.next()) {%>
+                                                <option value="<%= tdocu.getString(1)%>"><%=tdocu.getString(2)%></option>      
+                                                <% }%></select>
+                                        <input id="Document" name="txtnrodocumento" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Número de Documento *" required="required" data-error="Name is required.">
                                     </div>
                                     <div>
-                                        <input id="Name" class="input_field reply_form_email" type="email" placeholder="Nombre *" required="required" data-error="Valid Primer Nombre is required.">
-                                        <input id="PagoPorOperacion" class="input_field reply_form_name" type="text" placeholder="Pago por OperaciÃ³n *" required="required" data-error="Name is required."><br>
-                                        <div class="reply_form_email" aria-hidden="true">Estado</div>
+                                        <input id="Name" name="txtnombre" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Nombre *" required="required" data-error="Valid Primer Nombre is required.">
+                                        <input id="PagoPorOperacion" name="txtpagooperacion" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Pago por Operación *" required="required" data-error="Name is required."><br>
+                                        <div class="reply_form_email" name="txtestadoS" aria-hidden="true">Activo</div>
                                         <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="S">Si</label>
                                         <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="N">No</label>
                                     </div>
                                     <div class="Reply">
                                         <button id="save" type="submit" class="btn bg-info" name="action" value="Guardar">Guardar</button>
+                                        <%if (perfil.equals("Administrador")) {%> 
                                         <button id="edit" type="submit" class="btn bg-info"  name="action" value="Modificar">Modificar</button>
+                                        <%}%>
                                         <button id="exit" type="button" class="btn bg-info" name="action" value="Cancelar"><a href="index.jsp">Cancelar</a></button>
                                         <button id="search" type="button" class="btn bg-info" name="action" value="Buscar">Buscar</a></button>
 
