@@ -21,33 +21,78 @@
     ResultSet tdocu = daoTDocu.tipoDoc();
     DaoEmpresa daoEmpre = new DaoEmpresa();
     ResultSet empre = daoEmpre.idEmpresa();
-    String idArtista = request.getParameter("idArtista");
-    String tipoDocumento = request.getParameter("TipoDocumento");
-    String nroDocumento = request.getParameter("NroDocumento");
-    String primerNombre = request.getParameter("PrimerNombre");
-    String segundoNombre = request.getParameter("SegundoNombre");
-    String primerApellido = request.getParameter("PrimerApellido");
-    String segundoApellido = request.getParameter("SegundoApellido");
-    String nombreArtistico = request.getParameter("NombreArtistico");
-    String empresa = request.getParameter("Empresa");
-    String Activo = request.getParameter("Estado");
-    Artistas artista =request.getAttribute("datos") != null ?
-            (Artistas) request.getAttribute("datos") : null;
-            if(artista != null){
-                idArtista = artista.getIdArtista();
-                tipoDocumento = artista.getTipoDocumento();
-                nroDocumento = artista.getNroDocumento();
-                primerNombre = artista.getPrimerNombre();
-                segundoNombre = artista.getSegundoNombre();
-                primerApellido = artista.getPrimerApellido();
-                segundoApellido = artista.getSegundoApellido();
-                nombreArtistico = artista.getNombreArtistico();
-                empresa = artista.getEmpresa();
-                Activo = artista.getEstado();
-            }
+    String idArtista;
+    String TipoDocumento = request.getParameter("cbotipodocumento");
+    String NroDocumento = request.getParameter("txtnumdocumento");
+    String PrimerNombre = request.getParameter("txtprimernombre");
+    String SegundoNombre = request.getParameter("txtsegundonombre");
+    String PrimerApellido = request.getParameter("txtprimerapellido");
+    String SegundoApellido = request.getParameter("txtsegundopellido");
+    String NombreArtistico = request.getParameter("txtnombreartistico");
+    String Empresa = request.getParameter("cboempresa");
+    String Estado = request.getParameter("optionStateS");//validar
+
+    Artistas artista = request.getAttribute("datos") != null
+            ? (Artistas) request.getAttribute("datos") : null;
+
+    if (artista != null) {
+        idArtista = artista.getIdArtista();
+        TipoDocumento = artista.getTipoDocumento();
+        NroDocumento = artista.getNroDocumento();
+        PrimerNombre = artista.getPrimerNombre();
+        SegundoNombre = artista.getSegundoNombre();
+        PrimerApellido = artista.getPrimerApellido();
+        SegundoApellido = artista.getSegundoApellido();
+        NombreArtistico = artista.getNombreArtistico();
+        Empresa = artista.getEmpresa();
+        Estado = artista.getEstado();
+    }
     String mensaje = request.getAttribute("mensaje") != null
             ? (String) request.getAttribute("mensaje") : null;
 %>
+
+<script>
+    function soloLetras(e) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toString();
+        letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ";//Se define todo el abecedario que se quiere que se muestre.
+        especiales = [8, 37, 39, 46, 6]; //Es la validación del KeyCodes, que teclas recibe el campo de texto.
+
+        tecla_especial = false
+        for (var i in especiales) {
+            if (key == especiales[i]) {
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+            alert('Tecla no aceptada');
+            return false;
+        }
+    }
+
+    function soloNumeros(e) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toString();
+        letras = "0123456789";//Se define todo el abecedario que se quiere que se muestre.
+        especiales = [8, 37, 39, 46, 6]; //Es la validación del KeyCodes, que teclas recibe el campo de texto.
+
+        tecla_especial = false
+        for (var i in especiales) {
+            if (key == especiales[i]) {
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+            alert('Tecla no aceptada');
+            return false;
+        }
+    }
+
+</script>
 
 <html lang="es">
     <head>
@@ -166,6 +211,7 @@
 
                 <div class="home_title">
                     <h2>Registro de Artistas</h2>
+                    <center>  <h4><%=mensaje != null ? mensaje : ""%></h4><br> </center>
                     <div class="next_section_scroll">
                         <div class="next_section nav_links" data-scroll-to=".icon_boxes">
                             <i class="fas fa-chevron-down trans_200"></i>
@@ -178,7 +224,7 @@
 
 
             <br>
-            <center>  <h4><%=mensaje != null ? mensaje : ""%></h4><br> </center>
+            
 
             <div class="row contact_row">
                 <div class="content-box-gray">
@@ -193,30 +239,31 @@
 
                                 <!-- Reply Form -->
                                 <form name="Artista" method="Post" id="Artista"
-                                      action="./MaestroArtista" autocomplete="off" class="bod"> 
+                                      action="./MaestroArtista" autocomplete="off" class="bod">
+                                   
                                     <div>
                                         <center>
-                                            <select id="cboDocument" name="cbotipodocumento"class="input_field reply_form_email" type="select"  required="required" 
+                                            <select id="cboDocument" name="cbotipodocumento" value="<%=TipoDocumento != null ? TipoDocumento : ""%>" class="input_field reply_form_email" type="select"  required="required" 
                                                     title="Seleccione el tipo de documento">
                                                 <option value="0" disabled selected="true">Seleccione</option>
                                                 <%while (tdocu.next()) {%>
                                                 <option value="<%= tdocu.getString(1)%>"><%=tdocu.getString(2)%></option>      
                                                 <% }%></select>
-                                            <input id="nroDocument" name="txtnumdocumento" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Número de Documento *" required="required" data-error="Name is required.">
+                                                <input id="nroDocument" name="txtnumdocumento" value="<%=NroDocumento != null ? NroDocumento : "" %>" class="input_field reply_form_name" type="text" placeholder="Número de Documento *" onkeypress="return soloNumeros(event)" maxlength="15" min="3" required="required" data-error="Name is required.">
                                             <br>
-                                            <input id="firstName" name="txtprimernombre" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Primer Nombre *" required="required" data-error="Valid Primer Nombre is required.">
-                                            <input id="secondName" name="txtsegundonombre" onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_name" type="text" placeholder="Segundo Nombre"><br>
-                                            <input id="firstLastname" name="txtprimerapellido" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Primer Apellido *" required="required" data-error="Valid Primer Apellido is required.">
-                                            <input id="secondLastname" name="txtsegundopellido" onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_name" type="text" placeholder="Segundo Apellido" required="" data-error="Name is required."><br>
-                                            <input id="stageName" name="txtnombreartistico" onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_email" type="text" placeholder="Nombre Artistico *" required="required" data-error="Valid Nombre Artistico is required.">
-                                            <select id="company " name="cboempresa" class="input_field reply_form_name" type="select" placeholder="Empresa *" 
+                                            <input id="firstName"  name="txtprimernombre" value="<%=PrimerNombre != null ? PrimerNombre : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Primer Nombre *"  required="required" data-error="Valid Primer Nombre is required." onkeypress="return soloLetras()(event)" maxlength="15" min="3">
+                                            <input id="secondName" name="txtsegundonombre" value="<%=SegundoNombre != null ? SegundoNombre : ""%>"onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_name"  maxlength="15" min="3" type="text" placeholder="Segundo Nombre" onkeypress="return soloLetras(event)"><br>
+                                            <input id="firstLastname" name="txtprimerapellido" value="<%=PrimerApellido != null ? PrimerApellido : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" onkeypress="return soloLetras(event)" maxlength="15" min="3" type="text" placeholder="Primer Apellido *" required="required" data-error="Valid Primer Apellido is required.">
+                                            <input id="secondLastname" name="txtsegundopellido" value="<%=SegundoApellido != null ? SegundoApellido : ""%>" onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_name" onkeypress="return soloLetras(event)" maxlength="15" min="3" type="text" placeholder="Segundo Apellido" data-error="Name is required."><br>
+                                            <input id="stageName" name="txtnombreartistico" value="<%=NombreArtistico != null ? NombreArtistico : ""%>" onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_email" type="text" placeholder="Nombre Artistico *" required="required" data-error="Valid Nombre Artistico is required.">
+                                            <select id="company " name="cboempresa" value="<%=Empresa != null ? Empresa : ""%>"class="input_field reply_form_name" type="select" placeholder="Empresa *" 
                                                     title="Seleccione el tipo de documento">
                                                 <option value="0" disabled selected="true">Seleccione</option>
                                                 <%while (empre.next()) {%>
                                                 <option value="<%= empre.getString(1)%>"><%=empre.getString(2)%></option>      
                                                 <% }%></select>
                                         </center>
-                                        <div class="reply_form_email" name="optestado" aria-hidden="true">Activo</div>
+                                        <div class="reply_form_email" value="<%=Estado != null ? Estado : ""%>" name="optestado" aria-hidden="true">Activo</div>
                                         <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="S">Si</label>
                                         <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="N">No</label>
 
@@ -225,11 +272,11 @@
                                     <div class="Reply">
                                         <button id="save" type="submit" class="btn bg-info" name="action" value="Guardar">Guardar</button>
                                         <%if (perfil.equals("Administrador")) {%> 
-                                        <button id="edit" type="submit" class="btn bg-info"  name="action" value="Modificar">Modificar</button>
+                                        <button id="edit" type="submit" class="btn bg-info"  name="action" value="modificar">Modificar</button>
                                         <%}%>
-                                        <button id="search" type="button" class="btn bg-info" name="action" value="Buscar">Buscar</a></button>
-                                        <button id="exit" type="button" class="btn bg-info" name="action" value="Cancelar">Cancelar</a></button>
-                                        
+                                        <button id="search" type="submit" class="btn bg-info" name="action" value="Buscar">Buscar</a></button>
+                                        <button id="exit" type="submit" class="btn bg-info" name="action" value="Cancelar">Cancelar</a></button>
+
 
                                     </div>
 

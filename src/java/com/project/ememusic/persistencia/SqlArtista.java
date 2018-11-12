@@ -10,16 +10,7 @@ package com.project.ememusic.persistencia;
  * @author Mileidy
  */
 public class SqlArtista {
-
-    public static String getArtista() {
-        return "SELECT\n"
-                + "art.ID_TIPO_DOCUMENTO \n"
-                + "FROM\n"
-                + "artista art\n"
-                + "INNER JOIN TIPO_DOCUMENTO td ON"
-                + "art.ID_TIPO_DOCUMENTO = td.ID_TIPO_DOCUMENTO \n"
-                + "WHERE art.NRO_DOCUMENTO =? and td.ID_TIPO_DOCUMENTO=?";
-    }
+    
 //BUSCA REGISTRO EN LA TABLA
 
     public static String getArtista(String documento) {
@@ -50,10 +41,10 @@ public class SqlArtista {
     }
     //Actualizar (GUARDAR) UN REGISTRO EN LA TABLA
     public static String actualizarArtista() {
-        return "INSERT INTO `artistas`"
-                + " ( `ID_TIPO_DOCUMENTO`, `NRO_DOCUMENTO`, `PRIMER_NOMBRE`, "
-                + "`SEGUNDO_NOMBRE`, `PRIMER_APELLIDO`, `SEGUNDO_APELLIDO`, `NOMBRE_ARTISTICO`, `ID_EMPRESA`, `ESTADO`)"
-                + "values (?,?,?,?,?,?,?,?,?)" ;
+         return "UPDATE `artistas` art SET `PRIMER_NOMBRE` = ?, `SEGUNDO_NOMBRE` = ?, "
+                 + "`PRIMER_APELLIDO`=?, `SEGUNDO_APELLIDO`=?, `NOMBRE_ARTISTICO`=?, `ID_EMPRESA`=?, `ESTADO`=? "
+                 + " WHERE `art`.`ID_ARTISTAS` = ?;";
+                
     }
 
 }

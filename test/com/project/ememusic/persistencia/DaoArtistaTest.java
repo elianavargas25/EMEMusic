@@ -82,7 +82,7 @@ public class DaoArtistaTest {
         Artistas artista = null;
         DaoArtista instance = new DaoArtista();
         Artistas expResult = null;
-        Artistas result = instance.actualizarArtista(con, artista);
+        Artistas result = instance.actualizarArtistas(con, artista);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
        // fail("The test case is a prototype.");
