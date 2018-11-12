@@ -28,6 +28,10 @@ public class NArtista {
         con = new Conexion().getCon();// validar conexion
         return dao.buscarArtista(con, docu, tdocu);
     }//fin buscar
+    public Artistas buscarArtistas(String docu, String tdocu) {
+        con = new Conexion().getCon();// validar conexion
+        return dao.buscarArtistas(con, docu, tdocu);
+    }//fin buscar
 
     public Artistas guardarArtista(Artistas artista) throws Exception {
         String TipoDocumento = artista.getTipoDocumento();
@@ -68,9 +72,8 @@ public class NArtista {
     }//fin guardar
 
     //Actualizar
-    public Artistas actualizarArtista(Artistas art) throws Exception {
-        String TipoDocumento = art.getTipoDocumento();
-        String NroDocumento = art.getNroDocumento();
+    public Artistas actualizarArtistas(Artistas art) throws Exception {
+        
         String PrimerNombre = art.getPrimerNombre();
         String SegundoNombre = art.getSegundoNombre();
         String PrimerApellido = art.getPrimerApellido();
@@ -79,12 +82,7 @@ public class NArtista {
         String Estado = art.getEstado();
         String error = "";
         con = new Conexion().getCon();//validar
-        if ("".equals(TipoDocumento) || TipoDocumento == null) {
-            error += "<br> Por favor ingrese el tipo de documento";
-        }
-        if ("".equals(NroDocumento) || NroDocumento == null) {
-            error += "<br> Por favor ingrese número de dcumento";
-        }
+        
         if ("".equals(PrimerNombre) || PrimerNombre == null) {
             error += "<br>Por favor infrese el primer nombre";
         }
@@ -103,7 +101,7 @@ public class NArtista {
         if (!"".equals(error)) {
             throw new Exception(error);
         }
-        art = dao.actualizarArtista(con, art);
+        art = dao.actualizarArtistas(con, art);
         return art;
     }// Fin actualizar
 

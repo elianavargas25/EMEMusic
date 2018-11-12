@@ -62,7 +62,7 @@ public class MaestroArtista extends HttpServlet {
         String mensaje = "";
         String modulo = "Artista.jsp"; // validar con la vista
 
-        request.setAttribute("mensaje", null);
+        //request.setAttribute("mensaje", null);
         request.setAttribute("modulo", null);
         request.setAttribute("datos", null);
 
@@ -99,11 +99,51 @@ public class MaestroArtista extends HttpServlet {
             }
         }//fin guardar
 
+         if("modificar".equals(request.getParameter("action"))){
+                  try {
+                //vereificamos que el registro no exista en la tabla   
+                    artista= negocio.buscarArtista(NroDocumento, TipoDocumento);
+                    if (artista.getNroDocumento().equals(NroDocumento) && artista.getTipoDocumento().equals(TipoDocumento)){
+                    mensaje="El Artista no se  encuentra registrado";
+                    }else{
+                        try {
+                         artista.setPrimerNombre(PrimerNombre);
+                         artista.setSegundoNombre(SegundoNombre);
+                         artista.setPrimerApellido(PrimerApellido);
+                         artista.setSegundoApellido(SegundoApellido);
+                         artista.setNombreArtistico(NombreArtistico);
+                         artista.setEmpresa(Empresa);
+                         artista.setEstado(Estado);
+                         //guardamos los datos en la tabla
+                         negocio.actualizarArtistas(artista);
+                        mensaje= "El Artista fue actualizado correctamente";
+                         limpiar();
+
+                        } catch (Exception e2) {
+                        mensaje="Error al actualizar el Artista";
+                         limpiar();
+                        }
+
+                    }
+                       } catch (Exception e1) {
+                        mensaje="El Artista no esta registrado";
+                         limpiar();
+                       }
+        } //cierra modificar
+        
+        
+        
+        
+        
+        
+        
+        
+        
         //modificar
-        if ("Modificar".equals(request.getParameter("action"))) {
+        if ("Actualizar".equals(request.getParameter("action"))) {
             try {
                 //vereficamos que el registró no exista en la tabla 
-                artista = negocio.buscarArtista(NroDocumento, TipoDocumento);
+                artista = negocio.buscarArtistas(NroDocumento, TipoDocumento);
                 if (artista.getNroDocumento().equals(NroDocumento) && artista.getTipoDocumento().equals(TipoDocumento)) {
                     mensaje = "El artistaque desea registrar, ya se encuentra en sistema";
                 } else {
@@ -111,12 +151,12 @@ public class MaestroArtista extends HttpServlet {
                         artista.setTipoDocumento(artista.getTipoDocumento());//validar
 
                         //guardamos los datos en la tabla
-                        negocio.actualizarArtista(artista);
+                        negocio.actualizarArtistas(artista);
                         mensaje = "El artista se ha actualizado correctamente";
                         limpiar();
 
                     } catch (Exception e2) {
-                        mensaje = "Error al actualizar datos del artista" + NroDocumento + "";
+                        mensaje = "Error al actualizar datos del artista " + NroDocumento + "";
                         limpiar();
                     }
                 }
@@ -131,7 +171,7 @@ public class MaestroArtista extends HttpServlet {
 
         if ("Buscar".equals(request.getParameter("action"))) {
             try {
-                artista = negocio.buscarArtista(NroDocumento, TipoDocumento);
+                artista = negocio.buscarArtistas(NroDocumento, TipoDocumento);
                 if (artista.getNroDocumento().equals(NroDocumento) && artista.getTipoDocumento().equals(TipoDocumento)) {
 //si encuentra el dato cargamos los datos en el setAttribute
                     request.setAttribute("datos", artista);
