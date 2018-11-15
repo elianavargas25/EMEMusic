@@ -174,9 +174,9 @@
 
                                             <!--%for (EntIncidente usu : listaIncidente) {%-->
                                             <tr>
-                                            <div align="center" aria-hidden="true">Fecha Carga</div> <div align="center" aria-hidden="true">15/02/2018</div></td>
-
-
+                                           <td> <div align="center" aria-hidden="true">Fecha Carga</div> <div align="center" aria-hidden="true">15/02/2018</div></td>
+                                           <td>"</td>
+                                           <td>"</td>
                                             </tr>
                                             <!--%}%-->
                                             </tbody>
@@ -207,8 +207,8 @@
                                         <table  border="0" id="tabla" class="table">
                                             <tbody class="table-responsive">
                                                 <tr class="active">
-                                                    <td><div class="reply_form_label" aria-hidden="true">Archivo</div></td>
-                                                    <td ><div class="reply_form_label" aria-hidden="true">Nro registros</div></td>
+                                                    <th><div class="reply_form_label" aria-hidden="true">Archivo</div></th>
+                                                    <th><div class="reply_form_label" aria-hidden="true">Nro registros</div></th>
                                                     <td ><div class="reply_form_label" aria-hidden="true">Nro cargados</div></td>
                                                     <td ><div class="reply_form_label" aria-hidden="true">Porcentaje</div></td>
                                                     <td ><div class="reply_form_label" aria-hidden="true">Cantidad errores</div></td>
