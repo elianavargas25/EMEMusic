@@ -224,13 +224,9 @@
 
 
             <br>
-<<<<<<< HEAD
-            <center>  <h4><%=mensaje != null ? mensaje : ""%></h4><br> </center>
-            
-=======
-            
 
->>>>>>> 56df17fa8d74dc952bb78afba2bb4b2479914695
+            <center>  <h4><%=mensaje != null ? mensaje : ""%></h4><br> </center>
+
             <div class="row contact_row">
                 <div class="content-box-gray">
                     <div class="col-lg-8">
