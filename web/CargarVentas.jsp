@@ -129,115 +129,118 @@
 
 
             <br>
+            <form  name="CargaVentas" method="Post" id="CargaVentas"
+                   action="./MaestroCarga" autocomplete="off" class="bod">
 
-            <div class="content-box-blue">
-                <br>
+                <div class="content-box-blue">
+                    <br>
 
-                <div class="container">
-                    <div class="row">
+                    <div class="container">
+                        <div class="row">
 
-                        <div class="col">
-                            <div align="center" class="portfolio_categories button-group filters-button-group">
-                                <ul>
-                                    <input type="file" name="adjunto" accept=".xls" multiple>
-                                    <button id="CargarArchivo" class="portfolio_category" data-filter=".graphic_design">  Cargar Archivo  </button>
-                                    <button id="Cancelar" class="portfolio_category" data-filter=".branding">  Cancelar</button> 
-                                </ul>
+                            <div class="col">
+                                <div align="center" class="portfolio_categories button-group filters-button-group">
+                                    <ul>
+                                        <input type="file" name="adjunto" accept=".xls">
+                                        <input type="submit" value="Cargar archivo">
+                                        <button id="Cancelar" class="portfolio_category" data-filter=".branding">  Cancelar</button> 
+                                    </ul>
+
+                                </div>
 
                             </div>
 
                         </div>
-
                     </div>
+
+
                 </div>
-
-
-            </div>
-            <!-- Tabla del detalle de la carga del archivo, fecha y usuario-->
-            <br>
-            <div  class="content-box-gray">
+                <!-- Tabla del detalle de la carga del archivo, fecha y usuario-->
                 <br>
-                <div class="container">
-                    <div class="row">
-                        <section>
-                            <div class="container">
-                                <br>
-                                <!-- Wrapper for slides -->
+                <div  class="content-box-gray">
+                    <br>
+                    <div class="container">
+                        <div class="row">
+                            <section>
+                                <div class="container">
+                                    <br>
+                                    <!-- Wrapper for slides -->
 
-                                <div class="table container">
-                                    <div   class="col">
-                                        <!--%if (listaIncidente != null) {%-->
-                                        <table align="center" border="0" id="tabla" class="table">
-                                            <tbody class="table-responsive">
+                                    <div class="table container">
+                                        <div   class="col">
+                                            <!--%if (listaIncidente != null) {%-->
+                                            <table align="center" border="0" id="tabla" class="table">
+                                                <tbody class="table-responsive">
 
-                                            <div align="center" aria-hidden="true">Datos generales</div>
+                                                <div align="center" aria-hidden="true">Datos generales</div>
 
-                                            <!--%for (EntIncidente usu : listaIncidente) {%-->
-                                            <tr>
-                                           <td> <div align="center" aria-hidden="true">Fecha Carga</div> <div align="center" aria-hidden="true">15/02/2018</div></td>
-                                           <td>"</td>
-                                           <td>"</td>
-                                            </tr>
-                                            <!--%}%-->
-                                            </tbody>
-                                        </table>
-                                        <!--%} else {%><h1>No hay datos que mostrar</h1-->
-                                        <!--%}%--->
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </div>	
-            </div>	
-            <br>
-            <!-- Tabla del detalle de la carga del archivo-->
-            <div class="content-box-gray">
-                <br>
-                <div class="container">
-                    <div class="row">
-                        <section>
-                            <div class="container">
-                                <br>
-                                <!-- Wrapper for slides -->
-
-                                <div class="table container">
-                                    <div class="col">
-                                        <!--%if (listaIncidente != null) {%-->
-                                        <table  border="0" id="tabla" class="table">
-                                            <tbody class="table-responsive">
-                                                <tr class="active">
-                                                    <th><div class="reply_form_label" aria-hidden="true">Archivo</div></th>
-                                                    <th><div class="reply_form_label" aria-hidden="true">Nro registros</div></th>
-                                                    <td ><div class="reply_form_label" aria-hidden="true">Nro cargados</div></td>
-                                                    <td ><div class="reply_form_label" aria-hidden="true">Porcentaje</div></td>
-                                                    <td ><div class="reply_form_label" aria-hidden="true">Cantidad errores</div></td>
-                                                    <td ><div class="reply_form_label" aria-hidden="true">Acciones</div></td>
-
-                                                </tr> 
                                                 <!--%for (EntIncidente usu : listaIncidente) {%-->
                                                 <tr>
-                                                    <td >Ventasmes.xls</td>
-                                                    <td >15</td>
-                                                    <td >15</td>
-                                                    <td >100%</td>
-                                                    <td >0</td>
-                                                    <td ><button id="Guardar" type="submit" class="btn" name="action"
-                                                                 value="Guardar">Ver log</button></td>
-
+                                                    <td> <div align="center" aria-hidden="true">Fecha Carga</div> <div align="center" aria-hidden="true">15/02/2018</div></td>
+                                                    <td>"</td>
+                                                    <td>"</td>
                                                 </tr>
                                                 <!--%}%-->
-                                            </tbody>
-                                        </table>
-                                        <!--%} else {%><h1>No hay datos que mostrar</h1>
-                                        <!--%}%-->
+                                                </tbody>
+                                            </table>
+                                            <!--%} else {%><h1>No hay datos que mostrar</h1-->
+                                            <!--%}%--->
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </section>
-                    </div>
+                            </section>
+                        </div>
+                    </div>	
                 </div>	
-            </div>
+                <br>
+                <!-- Tabla del detalle de la carga del archivo-->
+                <div class="content-box-gray">
+                    <br>
+                    <div class="container">
+                        <div class="row">
+                            <section>
+                                <div class="container">
+                                    <br>
+                                    <!-- Wrapper for slides -->
+
+                                    <div class="table container">
+                                        <div class="col">
+                                            <!--%if (listaIncidente != null) {%-->
+                                            <table  border="0" id="tabla" class="table">
+                                                <tbody class="table-responsive">
+                                                    <tr class="active">
+                                                        <th><div class="reply_form_label" aria-hidden="true">Archivo</div></th>
+                                                        <th><div class="reply_form_label" aria-hidden="true">Nro registros</div></th>
+                                                        <th ><div class="reply_form_label" aria-hidden="true">Nro cargados</div></th>
+                                                        <th ><div class="reply_form_label" aria-hidden="true">Porcentaje</div></th>
+                                                        <th ><div class="reply_form_label" aria-hidden="true">Cantidad errores</div></th>
+                                                        <th ><div class="reply_form_label" aria-hidden="true">Acciones</div></th>
+
+                                                    </tr> 
+                                                    <!--%for (EntIncidente usu : listaIncidente) {%-->
+                                                    <tr>
+                                                        <td >Ventasmes.xls</td>
+                                                        <td >15</td>
+                                                        <td >15</td>
+                                                        <td >100%</td>
+                                                        <td >0</td>
+                                                        <td ><button id="Guardar" type="submit" class="btn" name="action"
+                                                                     value="Guardar">Ver log</button></td>
+
+                                                    </tr>
+                                                    <!--%}%-->
+                                                </tbody>
+                                            </table>
+                                            <!--%} else {%><h1>No hay datos que mostrar</h1>
+                                            <!--%}%-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>	
+                </div>
+            </form>
         </div>	
 
 
