@@ -1,4 +1,21 @@
+
 <!DOCTYPE html>
+
+<%@page import="com.project.ememusic.entidad.Usuarios"%>
+<%@page import= "java.util.*" session="true"%>
+<%
+    String id_usu = "";
+    String perfil = "";
+    String nombre = "";
+    Usuarios tec = new Usuarios();
+    if (session.getAttribute("usuario") != null) {
+        tec = (Usuarios) session.getAttribute("usuario");
+        id_usu = tec.getIdUsuario();
+        nombre = (String) (tec.getNombre());
+        perfil = tec.getPerfil();
+    }
+%>
+
 <html lang="en">
     <head>
         <title>EME MUSIC - Informes</title>
@@ -28,15 +45,29 @@
                 </div>
 
                 <!-- Navigation -->
+                <%if (perfil.equals("Administrador")) {%> 
                 <nav class="main_nav justify-self-end text-right">
                     <ul>
-                        <li class="menu_mm"><a href="index.jsp">Home</a></li>
                         <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
                         <li class="menu_mm"><a href="CargarVentas.jsp">Cargar Ventas</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                        <li class="menu_mm"><a href="Administracion.jsp">AdministraciÃ³n</a></li>
-                    </ul>
+                        <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
+                        <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
+                        <a href="index.jsp">Cerrar sesión</a>
+                    </ul>   
+                </nav>
+                <%} else {%>
+                <nav class="main_nav justify-self-end text-right">
+                    <ul>
+                        <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
+                        <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
+                        <li class="menu_mm"><a href="CargarVentas.jsp">Cargar Ventas</a></li>
+                        <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
+                        <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
+                        <a href="index.jsp">Cerrar sesión</a>
+
+                    </ul> 
 
                     <!-- Search -->
                     <div class="search">
