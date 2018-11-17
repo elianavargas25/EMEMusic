@@ -16,8 +16,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.FileItemFactory;
 import org.apache.tomcat.util.http.fileupload.RequestContext;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
@@ -39,7 +39,7 @@ public class MaestroCarga extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    String saveFile = "C://Users//max//Desktop//ArchivosCarga";
+    String saveFile = "ArchivosCarga";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -70,14 +70,13 @@ public class MaestroCarga extends HttpServlet {
                 }
             }
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
         } finally {
             out.close();
         }
     }
 
-    private File
-            checkExist(String fileName) {
+    private File checkExist(String fileName) {
         File f = new File(saveFile + "/" + fileName);
 
         if (f.exists()) {
