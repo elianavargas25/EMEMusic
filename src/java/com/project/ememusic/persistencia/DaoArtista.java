@@ -6,9 +6,13 @@
 package com.project.ememusic.persistencia;
 
 import com.project.ememusic.entidad.Artistas;
+import com.project.ememusic.utilidades.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,6 +21,21 @@ import java.sql.ResultSet;
 public class DaoArtista {
 
     Artistas artista = new Artistas();
+    
+ 
+
+    public ResultSet idArtista() {
+        Conexion db = new Conexion();
+        PreparedStatement stTD;
+        try {
+            stTD = db.getConexion().prepareStatement("SELECT  ID_ARTISTA,NOMBRE_ARTISTICO FROM ARTISTAS;");
+            ResultSet result = stTD.executeQuery();
+            return result;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoTipoDocumento.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 
     public Artistas buscarArtista(Connection con, String Documento, String tdocu) {//validar conexion
         try {
