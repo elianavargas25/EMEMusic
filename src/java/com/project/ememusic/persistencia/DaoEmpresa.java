@@ -22,7 +22,7 @@ public class DaoEmpresa {
         Conexion db = new Conexion();
         PreparedStatement stTD;
         try {
-            stTD = db.getConexion().prepareStatement("SELECT  ID_EMPRESA,NOMBRE FROM EMPRESA;");
+            stTD = db.getConexion().prepareStatement("SELECT  ID_EMPRESA,NOMBRE FROM EMPRESA");
             ResultSet result = stTD.executeQuery();
             return result;
         } catch (SQLException ex) {

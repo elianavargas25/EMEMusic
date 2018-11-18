@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.project.ememusic.persistencia.DaoArtista"%>
 <%@page import="com.project.ememusic.entidad.Usuarios"%>
 <%@page import="com.project.ememusic.persistencia.DaoEmpresa"%>
@@ -16,9 +17,13 @@
         nombre = (String) (tec.getNombre());
         perfil = tec.getPerfil();
     }
+    Date fecha = new Date();
+    SimpleDateFormat format = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss");
+    String fechaActual = format.format(fecha);
     DaoEmpresa daoEmpre = new DaoEmpresa();
     ResultSet empre = daoEmpre.idEmpresa();
-   
+    DaoArtista daoArtis = new DaoArtista();
+    ResultSet artis = daoArtis.idArtista();
     String mensaje = request.getAttribute("mensaje") != null
             ? (String) request.getAttribute("mensaje") : null;
 %>
@@ -215,33 +220,32 @@
                                     <div>
                                         <center>
                                             <select id="company " name="cboempresa" class="input_field reply_form_name" type="select" placeholder="Empresa *" 
-                                                    title="Seleccione el tipo de documento">
+                                                    title="Seleccione la empresa">
                                                 <option value="0" disabled selected="true">Seleccione</option>
                                                 <%while (empre.next()) {%>
                                                 <option value="<%= empre.getString(1)%>"><%=empre.getString(2)%></option>      
                                                 <% }%></select>
-                                                
-                                            <input id="firstName"  name="txtprimernombre"  onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Primer Nombre *"  required="required" data-error="Valid Primer Nombre is required." onkeypress="return soloLetras()(event)" maxlength="15" min="3">
-                                            <input id="secondName" name="txtsegundonombre" onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_name"  maxlength="15" min="3" type="text" placeholder="Segundo Nombre" onkeypress="return soloLetras(event)"><br>
-                                            <input id="firstLastname" name="txtprimerapellido"  onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" onkeypress="return soloLetras(event)" maxlength="15" min="3" type="text" placeholder="Primer Apellido *" required="required" data-error="Valid Primer Apellido is required.">
-                                            <input id="secondLastname" name="txtsegundopellido"  onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_name" onkeypress="return soloLetras(event)" maxlength="15" min="3" type="text" placeholder="Segundo Apellido" data-error="Name is required."><br>
-                                            <input id="stageName" name="txtnombreartistico" onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_email" type="text" placeholder="Nombre Artistico *" required="required" data-error="Valid Nombre Artistico is required.">
+
+                                            <select id="company " name="cboartista" class="input_field reply_form_label" type="select" placeholder="Artista *" 
+                                                    title="Seleccione el Artista">
+                                                <option value="0" disabled selected="true">Seleccione</option>
+                                                <%while (artis.next()) {%>
+                                                <option value="<%= artis.getString(1)%>"><%=artis.getString(2)%></option>      
+                                                <% }%></select>
+
+                                           <input id="stageName" name="txtreproduccion" value="" onkeyup = "this.value = this.value.toUpperCase()
+                                                  "class="input_field reply_form_name" type="text" placeholder="Cantidada de reproducciones *" required="required" data-error="">
+                                            
+                                            <input name="txtfecharegistro" type="text" readonly="readonly" class="input_field reply_form_label" 
+                                                   value="<%=fechaActual%>"
+                                                   maxlength="15" tabindex="2">
 
                                         </center>
-                                        <div class="reply_form_email" name="optestado" aria-hidden="true">Activo</div>
-                                        <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="S">Si</label>
-                                        <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="N">No</label>
 
                                     </div>
 
                                     <div class="Reply">
                                         <button id="save" type="submit" class="btn bg-info" name="action" value="Guardar">Guardar</button>
-                                        <%if (perfil.equals("Administrador")) {%> 
-                                        <button id="edit" type="submit" class="btn bg-info"  name="action" value="modificar">Modificar</button>
-                                        <%}%>
-                                        <button id="search" type="submit" class="btn bg-info" name="action" value="Buscar">Buscar</a></button>
-                                        <button id="exit" type="submit" class="btn bg-info" name="action" value="Cancelar">Cancelar</a></button>
-
 
                                     </div>
 

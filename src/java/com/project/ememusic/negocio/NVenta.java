@@ -9,6 +9,7 @@ import com.project.ememusic.entidad.Ventas;;
 import java.sql.Connection;
 import com.project.ememusic.persistencia.DaoVenta;
 import com.project.ememusic.utilidades.Conexion;
+import java.util.Date;
 
 /**
  *
@@ -30,18 +31,17 @@ public class NVenta {
     public Ventas guardarVenta(Ventas venta) throws Exception {
         String IdArtista = venta.getIdArtista();
         String IdEmpresa = venta.getIdEmpresa();
-        String IdVenta = venta.getIdVentas();
-        String Reproduccion = venta.getReproduccion();
+        
+        Double Reproduccion = venta.getReproduccion();
         String error = "";
         if ("".equals(IdArtista) || IdArtista == null) {
             error += "<br> Por favor ingrese el Nombre del Artista";
         }
         if ("".equals(IdEmpresa) || IdEmpresa == null) {
             error += "<br> Por favor ingrese la Empresa";
-        }
-        if ("".equals(IdVenta) || IdVenta == null) {
-            error += "<br>Por favor ingrese la venta";
-        }
+        } 
+        
+        
         if ("".equals(Reproduccion) || Reproduccion == null) {
             error += "<br> Por favor ingrese la cantidad de reproducciones";
         }

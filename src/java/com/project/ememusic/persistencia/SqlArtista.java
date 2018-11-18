@@ -43,7 +43,7 @@ public class SqlArtista {
     public static String actualizarArtista() {
          return "UPDATE `artistas` art SET `PRIMER_NOMBRE` = ?, `SEGUNDO_NOMBRE` = ?, "
                  + "`PRIMER_APELLIDO`=?, `SEGUNDO_APELLIDO`=?, `NOMBRE_ARTISTICO`=?, `ID_EMPRESA`=?, `ESTADO`=? "
-                 + " WHERE `art`.`ID_ARTISTAS` = ?;";
+                 + " WHERE `art`.`ID_ARTISTAS` = ?";
                 
     }
 
