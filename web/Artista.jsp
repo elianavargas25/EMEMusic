@@ -197,7 +197,7 @@
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Emresas</a></li>
                         <li class="menu_mm"><a href="CargarVentas.jsp">Cargar Ventas</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                        <li class="menu_mm"><a href="Administracion.jsp">AdministraciÃ³n</a></li>
+                        <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
                     </ul>
                 </div>
             </div>
