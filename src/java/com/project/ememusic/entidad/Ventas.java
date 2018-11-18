@@ -5,12 +5,17 @@
  */
 package com.project.ememusic.entidad;
 
+import java.util.Date;
+
+
 /**
  *
  * @author Mileidy
  */
 public class Ventas {
-    String idArtista,idEmpresa,idVentas,reproduccion;
+    String idArtista,idEmpresa;
+    Double reproduccion;
+    Date fecha;
 
     public String getIdArtista() {
         return idArtista;
@@ -28,22 +33,24 @@ public class Ventas {
         this.idEmpresa = idEmpresa;
     }
 
-    public String getIdVentas() {
-        return idVentas;
-    }
-
-    public void setIdVentas(String idVentas) {
-        this.idVentas = idVentas;
-    }
-
-    public String getReproduccion() {
+    public Double getReproduccion() {
         return reproduccion;
     }
 
-    public void setReproduccion(String reproduccion) {
+    public void setReproduccion(Double reproduccion) {
         this.reproduccion = reproduccion;
     }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
     
+    
+
     
     
 }

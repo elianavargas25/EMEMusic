@@ -28,8 +28,7 @@ public class MaestroVentas extends HttpServlet {
     public void limpiar() {
         venta.setIdArtista("");
         venta.setIdEmpresa("");
-        venta.setIdVentas("");
-        venta.setReproduccion("");
+        venta.setReproduccion(0.0);
         
     }//limpiar
 
@@ -45,11 +44,10 @@ public class MaestroVentas extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String idArtista = request.getParameter("cboidArtista");
-        String idEmpresa = request.getParameter("cboidEmpresa");
-        String idVenta = request.getParameter("cboidVenta");
+        String idArtista = request.getParameter("cboartista");
+        String idEmpresa = request.getParameter("cboempresa");
         String reproduccion = request.getParameter("txtreproduccion");
-        
+        double cantidad = Double.parseDouble(reproduccion);
         String mensaje = "";
         String modulo = "RegistrarVentas.jsp"; // validar con la vista
 
@@ -62,10 +60,8 @@ public class MaestroVentas extends HttpServlet {
                     try {
                         venta.setIdArtista(idArtista);
                         venta.setIdEmpresa(idEmpresa);
-                        venta.setIdVentas(idVenta);
-                        venta.setReproduccion(reproduccion);
+                        venta.setReproduccion(cantidad);
                         
-
                         //se guarda los datos en la tabla
                         negocio.guardarVenta(venta);
                         mensaje = "El informe de las ventas se registró correctamente";
@@ -74,13 +70,11 @@ public class MaestroVentas extends HttpServlet {
                         mensaje = "Error en el registro de informe de ventas, favor verificar";
                         limpiar();
                     }
-                }
+                }//fin guardar
+        request.setAttribute("mensaje", mensaje);
+        request.getRequestDispatcher(modulo).forward(request, response);
             
-        }//fin guardar
-
-        
-        
-    
+        }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -34,10 +34,9 @@ public class SqlVenta {
 //INSERTAR (GUARDAR) UN REGISTRO EN LA TABLA
 
     public static String insertarVenta() {
-        return "INSERT INTO `artistas`"
-                + " ( `ID_TIPO_DOCUMENTO`, `NRO_DOCUMENTO`, `PRIMER_NOMBRE`, "
-                + "`SEGUNDO_NOMBRE`, `PRIMER_APELLIDO`, `SEGUNDO_APELLIDO`, `NOMBRE_ARTISTICO`, `ID_EMPRESA`, `ESTADO`)"
-                + "values (?,?,?,?,?,?,?,?,?)" ;
+        return "INSERT INTO `ventas`"
+                 +" `ID_EMPRESA`, `ID_ARTISTAS`, `REPRODUCCION`, `FECHA_REGISTRO`"
+                + "values (?,?,?,?)" ;
     }
     
 

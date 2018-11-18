@@ -28,7 +28,7 @@ public class DaoArtista {
         Conexion db = new Conexion();
         PreparedStatement stTD;
         try {
-            stTD = db.getConexion().prepareStatement("SELECT  ID_ARTISTA,NOMBRE_ARTISTICO FROM ARTISTAS;");
+            stTD = db.getConexion().prepareStatement("SELECT  ID_ARTISTAS,NOMBRE_ARTISTICO FROM ARTISTAS");
             ResultSet result = stTD.executeQuery();
             return result;
         } catch (SQLException ex) {

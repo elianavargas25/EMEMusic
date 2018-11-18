@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-<<<<<<< HEAD
-=======
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/eliana.vargas/Desktop/EMEMusic/web/Artista.jsp</file>
-            <file>file:/C:/Users/eliana.vargas/Desktop/EMEMusic/src/java/com/project/ememusic/servlet/ValidacionServlet.java</file>
-            <file>file:/C:/Users/eliana.vargas/Desktop/EMEMusic/src/java/com/project/ememusic/utilidades/Conexion.java</file>
-            <file>file:/C:/Users/eliana.vargas/Desktop/EMEMusic/src/java/com/project/ememusic/persistencia/DaoTipoDocumento.java</file>
-            <file>file:/C:/Users/eliana.vargas/Desktop/EMEMusic/src/java/com/project/ememusic/servlet/MaestroArtista.java</file>
-            <file>file:/C:/Users/eliana.vargas/Desktop/EMEMusic/web/loguin.jsp</file>
-            <file>file:/C:/Users/eliana.vargas/Desktop/EMEMusic/web/CargarVentas.jsp</file>
+            <file>file:/C:/Users/Mileidy/Desktop/EMEMusic/EMEMusic/src/java/com/project/ememusic/negocio/NVenta.java</file>
+            <file>file:/C:/Users/Mileidy/Desktop/EMEMusic/EMEMusic/src/java/com/project/ememusic/servlet/MaestroVentas.java</file>
+            <file>file:/C:/Users/Mileidy/Desktop/EMEMusic/EMEMusic/src/java/com/project/ememusic/entidad/Ventas.java</file>
+            <file>file:/C:/Users/Mileidy/Desktop/EMEMusic/EMEMusic/src/java/com/project/ememusic/persistencia/SqlVenta.java</file>
+            <file>file:/C:/Users/Mileidy/Desktop/EMEMusic/EMEMusic/src/java/com/project/ememusic/persistencia/DaoVenta.java</file>
+            <file>file:/C:/Users/Mileidy/Desktop/EMEMusic/EMEMusic/web/Artista.jsp</file>
+            <file>file:/C:/Users/Mileidy/Desktop/EMEMusic/EMEMusic/web/RegistrarVentas.jsp</file>
         </group>
     </open-files>
->>>>>>> 496f42c5034751d05aaf96920f7bcefc33cd4df1
 </project-private>
