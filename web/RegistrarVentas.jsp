@@ -1,8 +1,7 @@
-<%@page import="com.project.ememusic.entidad.Artistas"%>
+<%@page import="com.project.ememusic.persistencia.DaoArtista"%>
 <%@page import="com.project.ememusic.entidad.Usuarios"%>
 <%@page import="com.project.ememusic.persistencia.DaoEmpresa"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="com.project.ememusic.persistencia.DaoTipoDocumento"%>
 <%@page import= "java.util.*" session="true"%>
 
 <!DOCTYPE html>
@@ -19,7 +18,7 @@
     }
     DaoEmpresa daoEmpre = new DaoEmpresa();
     ResultSet empre = daoEmpre.idEmpresa();
-
+   
     String mensaje = request.getAttribute("mensaje") != null
             ? (String) request.getAttribute("mensaje") : null;
 %>
@@ -111,7 +110,7 @@
                     <ul>
                         <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
-                        <li class="menu_mm"><a href="CargarVentas.jsp">Registrar Ventas</a></li>
+                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Registrar Ventas</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
                         <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
                         <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
@@ -123,7 +122,7 @@
                     <ul>
                         <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
-                        <li class="menu_mm"><a href="CargarVentas.jsp">Registrar Ventas</a></li>
+                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Registrar Ventas</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
                         <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
                         <a href="index.jsp">Cerrar sesión</a>
@@ -168,7 +167,7 @@
                         <li class="menu_mm"><a href="index.jsp">Home</a></li>
                         <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Emresas</a></li>
-                        <li class="menu_mm"><a href="CargarVentas.jsp">Registro Ventas</a></li>
+                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Registro Ventas</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
                         <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
                     </ul>
@@ -221,6 +220,7 @@
                                                 <%while (empre.next()) {%>
                                                 <option value="<%= empre.getString(1)%>"><%=empre.getString(2)%></option>      
                                                 <% }%></select>
+                                                
                                             <input id="firstName"  name="txtprimernombre"  onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Primer Nombre *"  required="required" data-error="Valid Primer Nombre is required." onkeypress="return soloLetras()(event)" maxlength="15" min="3">
                                             <input id="secondName" name="txtsegundonombre" onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_name"  maxlength="15" min="3" type="text" placeholder="Segundo Nombre" onkeypress="return soloLetras(event)"><br>
                                             <input id="firstLastname" name="txtprimerapellido"  onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" onkeypress="return soloLetras(event)" maxlength="15" min="3" type="text" placeholder="Primer Apellido *" required="required" data-error="Valid Primer Apellido is required.">
