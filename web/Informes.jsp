@@ -176,7 +176,7 @@
                                             <!-- Sidebar Search -->
                                             <form id="sidebar_search_form" class="sidebar_search_form bez_1" aling="center">
                                                 <select id="sidebar_search_input" type="select" class="sidebar_search_input" >
-                                                    <option></option></select>
+                                                    <option value="1" disabled selected="true">Seleccione</option></select>
                                                 <button id="sidebar_search_button" type="submit" class="sidebar_search_button trans_300" value="Submit">
                                                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                          width="18px" height="18px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
