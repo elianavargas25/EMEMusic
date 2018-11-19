@@ -5,6 +5,7 @@
  */
 package com.project.ememusic.servlet;
 
+import com.project.ememusic.entidad.Informes;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "MaestroInformes", urlPatterns = {"/MaestroInformes"})
 public class MaestroInformes extends HttpServlet {
+    Informes info = new Informes();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,10 +35,17 @@ public class MaestroInformes extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try  {
-            
-        }catch(Exception e ) {
+        String filtro = request.getParameter("filtro");
+        String fechaDesde = request.getParameter("txtDateFrom");
+        String fechahasta = request.getParameter("txtDateTo");
+        String mensaje = "";
+        String modulo = "Informes.jsp"; 
+        request.setAttribute("mensaje", null);
+        request.setAttribute("modulo", null);
+        request.setAttribute("datos", null);
         
+        if ("Buscar".equals(request.getParameter("action"))) {
+            
         }
     }
 

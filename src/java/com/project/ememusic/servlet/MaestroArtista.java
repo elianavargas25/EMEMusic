@@ -131,14 +131,6 @@ public class MaestroArtista extends HttpServlet {
                        }
         } //cierra modificar
         
-        
-        
-        
-        
-        
-        
-        
-        
         //modificar
         if ("Actualizar".equals(request.getParameter("action"))) {
             try {

@@ -12,8 +12,8 @@ import java.util.Date;
  * @author max
  */
 public class Informes {
-    String idInformes, nombreInforme, rutaInforme;
-    Date fechaInforme;
+    String idInformes,nombreInforme, rutaInformes;
+    Date fechaIngreso;
 
     public String getIdInformes() {
         return idInformes;
@@ -31,20 +31,20 @@ public class Informes {
         this.nombreInforme = nombreInforme;
     }
 
-    public String getRutaInforme() {
-        return rutaInforme;
+    public String getRutaInformes() {
+        return rutaInformes;
     }
 
-    public void setRutaInforme(String rutaInforme) {
-        this.rutaInforme = rutaInforme;
+    public void setRutaInformes(String rutaInformes) {
+        this.rutaInformes = rutaInformes;
     }
 
-    public Date getFechaInforme() {
-        return fechaInforme;
+    public Date getFechaIngreso() {
+        return fechaIngreso;
     }
 
-    public void setFechaInforme(Date fechaInforme) {
-        this.fechaInforme = fechaInforme;
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
     }
     
 }

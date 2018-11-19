@@ -187,10 +187,10 @@
                                                     </select>
                                                     <br>
                                                     <label><b>Fecha Desde</b></label>
-                                                    <input id="dateFrom" type="date" class="search_input date">
+                                                    <input id="dateFrom" name="txtDateFrom"   type="date" class="search_input date">
                                                     <br>
                                                     <label><b>Fecha Hasta</b></label>
-                                                    <input id="dateTo" type="date" class="search_input date">
+                                                    <input id="dateTo" name="txtDateTo" type="date" class="search_input date">
                                                 </div>
                                                 <div>
                                                     <br>
