@@ -220,27 +220,28 @@
                                     <div>
                                         <center>
                                             <select id="company " name="cboempresa" class="input_field reply_form_name" type="select" placeholder="Empresa *" 
-                                                    title="Seleccione la empresa">
+                                                    title="Seleccione la empresa" required="required">
                                                 <option value="0" disabled selected="true">Seleccione</option>
                                                 <%while (empre.next()) {%>
                                                 <option value="<%= empre.getString(1)%>"><%=empre.getString(2)%></option>      
                                                 <% }%></select>
 
                                             <select id="company " name="cboartista" class="input_field reply_form_label" type="select" placeholder="Artista *" 
-                                                    title="Seleccione el Artista">
+                                                    title="Seleccione el Artista" required="required">
                                                 <option value="0" disabled selected="true">Seleccione</option>
                                                 <%while (artis.next()) {%>
                                                 <option value="<%= artis.getString(1)%>"><%=artis.getString(2)%></option>      
                                                 <% }%></select>
 
-                                           <input id="stageName" name="txtreproduccion" value="" onkeyup = "this.value = this.value.toUpperCase()
-                                                  "class="input_field reply_form_name" type="text" placeholder="Cantidada de reproducciones *" required="required" data-error="">
+                                           <input id="stageName" name="txtreproduccion" value="" onkeyup = "this.value = this.value.toUpperCase() 
+                                                  "class="input_field reply_form_name"  onkeypress="return soloNumeros(event)" type="text" placeholder="Cantidada de reproducciones *" required="required" data-error="">
                                             
                                             <input name="txtfecharegistro" type="text" readonly="readonly" class="input_field reply_form_label" 
                                                    value="<%=fechaActual%>"
                                                    maxlength="15" tabindex="2">
 
-                                        </center>
+                                        </center> 
+                                                   
 
                                     </div>
 

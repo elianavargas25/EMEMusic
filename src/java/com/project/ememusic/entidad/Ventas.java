@@ -13,8 +13,13 @@ import java.util.Date;
  * @author Mileidy
  */
 public class Ventas {
+<<<<<<< HEAD
     String idArtista,idEmpresa;
     Double reproduccion, TotalGanado;
+=======
+    String idArtista,idEmpresa,reproduccion;
+    
+>>>>>>> 1edb7b83f99f5935fd8e4c04bd6d3ccd41dce3dd
     Date fecha;
 
     public String getIdArtista() {
@@ -33,11 +38,11 @@ public class Ventas {
         this.idEmpresa = idEmpresa;
     }
 
-    public Double getReproduccion() {
+    public String getReproduccion() {
         return reproduccion;
     }
 
-    public void setReproduccion(Double reproduccion) {
+    public void setReproduccion(String reproduccion) {
         this.reproduccion = reproduccion;
     }
 
