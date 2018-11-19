@@ -13,13 +13,9 @@ import java.util.Date;
  * @author Mileidy
  */
 public class Ventas {
-<<<<<<< HEAD
-    String idArtista,idEmpresa;
-    Double reproduccion, TotalGanado;
-=======
+
     String idArtista,idEmpresa,reproduccion;
-    
->>>>>>> 1edb7b83f99f5935fd8e4c04bd6d3ccd41dce3dd
+    Double  TotalGanado;
     Date fecha;
 
     public String getIdArtista() {

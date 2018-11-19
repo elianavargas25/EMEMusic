@@ -26,7 +26,7 @@ public class DaoInforme {
             while (respuesta.next()) {
                 Ventas ven = new Ventas();
                 ven.setIdEmpresa(respuesta.getString(1));
-                ven.setReproduccion(respuesta.getDouble(2));
+                ven.setReproduccion(respuesta.getString(2));
                 ven.setTotalGanado(respuesta.getDouble(3));
                 result.add(ven);
             }//fin while
@@ -50,7 +50,7 @@ public class DaoInforme {
                 Ventas ven = new Ventas();
                 ven.setIdEmpresa(respuesta.getString(1));
                 ven.setIdArtista(respuesta.getString(2));
-                ven.setReproduccion(respuesta.getDouble(3));
+                ven.setReproduccion(respuesta.getString(3));
                 ven.setTotalGanado(respuesta.getDouble(4));
                 result.add(ven);
             }//fin while
