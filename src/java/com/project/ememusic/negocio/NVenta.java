@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -31,8 +32,7 @@ public class NVenta {
     public Ventas guardarVenta(Ventas venta) throws Exception {
         String IdArtista = venta.getIdArtista();
         String IdEmpresa = venta.getIdEmpresa();
-        
-        Double Reproduccion = venta.getReproduccion();
+        String Reproduccion = venta.getReproduccion();
         String error = "";
         if ("".equals(IdArtista) || IdArtista == null) {
             error += "<br> Por favor ingrese el Nombre del Artista";

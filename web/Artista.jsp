@@ -250,7 +250,7 @@
                                                 <%while (tdocu.next()) {%>
                                                 <option value="<%= tdocu.getString(1)%>"><%=tdocu.getString(2)%></option>      
                                                 <% }%></select>
-                                                <input id="nroDocument" name="txtnumdocumento" value="<%=NroDocumento != null ? NroDocumento : "" %>" class="input_field reply_form_name" type="text" placeholder="Número de Documento *" onkeypress="return soloNumeros(event)" maxlength="15" min="3" required="required" data-error="Name is required.">
+                                                <input id="nroDocument" name="txtnumdocumento" value="<%=NroDocumento != null ? NroDocumento : "" %>" class="input_field reply_form_name" type="text" placeholder="Número de Documento *"   maxlength="15" min="3" required="required" data-error="Name is required.">
                                             <br>
                                             <input id="firstName"  name="txtprimernombre" value="<%=PrimerNombre != null ? PrimerNombre : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Primer Nombre *"  required="required" data-error="Valid Primer Nombre is required." onkeypress="return soloLetras()(event)" maxlength="15" min="3">
                                             <input id="secondName" name="txtsegundonombre" value="<%=SegundoNombre != null ? SegundoNombre : ""%>"onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_name"  maxlength="15" min="3" type="text" placeholder="Segundo Nombre" onkeypress="return soloLetras(event)"><br>

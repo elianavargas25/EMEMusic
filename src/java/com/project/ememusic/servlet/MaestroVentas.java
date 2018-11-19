@@ -28,7 +28,7 @@ public class MaestroVentas extends HttpServlet {
     public void limpiar() {
         venta.setIdArtista("");
         venta.setIdEmpresa("");
-        venta.setReproduccion(0.0);
+        venta.setReproduccion("");
         
     }//limpiar
 
@@ -47,7 +47,7 @@ public class MaestroVentas extends HttpServlet {
         String idArtista = request.getParameter("cboartista");
         String idEmpresa = request.getParameter("cboempresa");
         String reproduccion = request.getParameter("txtreproduccion");
-        double cantidad = Double.parseDouble(reproduccion);
+        
         String mensaje = "";
         String modulo = "RegistrarVentas.jsp"; // validar con la vista
 
@@ -60,7 +60,7 @@ public class MaestroVentas extends HttpServlet {
                     try {
                         venta.setIdArtista(idArtista);
                         venta.setIdEmpresa(idEmpresa);
-                        venta.setReproduccion(cantidad);
+                        venta.setReproduccion(reproduccion);
                         
                         //se guarda los datos en la tabla
                         negocio.guardarVenta(venta);
