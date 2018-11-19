@@ -5,11 +5,11 @@
  */
 package com.project.ememusic.negocio;
 
-import com.project.ememusic.entidad.Informes;
-import com.project.ememusic.entidad.Ventas;
+import com.project.ememusic.entidad.InfoInformes;
 import com.project.ememusic.persistencia.DaoInforme;
 import com.project.ememusic.utilidades.Conexion;
 import java.sql.Connection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,9 +19,9 @@ import java.util.List;
 public class NInformes {
     
     DaoInforme dao;
-    public List<Ventas> listarIncidente(Ventas venta) {
+    public List<InfoInformes> listarIncidente(Date fecha) {
         Connection con;
         con = new Conexion().getConexion();
-        return dao.VentasporMes(con, venta);
+        return dao.VentasporMes(con, fecha);
     }//fin public lista
 }
