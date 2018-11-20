@@ -9,7 +9,7 @@ import com.project.ememusic.entidad.InfoInformes;
 import com.project.ememusic.persistencia.DaoInforme;
 import com.project.ememusic.utilidades.Conexion;
 import java.sql.Connection;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -19,9 +19,15 @@ import java.util.List;
 public class NInformes {
     
     DaoInforme dao;
-    public List<InfoInformes> listarIncidente(Date fecha) {
+    public List<InfoInformes> listarporEmpre(Date fechaDesde, Date fechaHasta) {
         Connection con;
         con = new Conexion().getConexion();
-        return dao.VentasporMes(con, fecha);
+        return dao.VentasporMes(con, fechaDesde, fechaHasta);
+    }//fin public lista
+    
+    public List<InfoInformes> listarporArtis(Date fechaDesde, Date fechaHasta) {
+        Connection con;
+        con = new Conexion().getConexion();
+        return dao.VentasporArtista(con, fechaDesde, fechaHasta);
     }//fin public lista
 }

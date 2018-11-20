@@ -14,8 +14,7 @@ import java.util.Date;
  */
 public class Ventas {
 
-    String idArtista,idEmpresa,reproduccion;
-    Double  TotalGanado;
+    String idArtista,idEmpresa,reproduccion,TotalGanado;
     Date fecha;
 
     public String getIdArtista() {
@@ -50,12 +49,13 @@ public class Ventas {
         this.fecha = fecha;
     }
 
-    public Double getTotalGanado() {
+    public String getTotalGanado() {
         return TotalGanado;
     }
 
-    public void setTotalGanado(Double TotalGanado) {
+    public void setTotalGanado(String TotalGanado) {
         this.TotalGanado = TotalGanado;
     }
+
    
 }

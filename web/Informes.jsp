@@ -1,8 +1,12 @@
+<%@page import="com.project.ememusic.entidad.InfoInformes"%>
 <%@page import="com.project.ememusic.entidad.Usuarios"%>
 <%@page import= "java.util.*" session="true"%>
 
 <!DOCTYPE html>
-<%String id_usu = "";
+<%  List<InfoInformes> listaInforme = request.getAttribute("lista")
+            != null ? (List<InfoInformes>) request.getAttribute("lista") : null;%>
+<%
+    String id_usu = "";
     String perfil = "";
     String nombre = "";
     Usuarios tec = new Usuarios();
@@ -12,6 +16,11 @@
         nombre = (String) (tec.getNombre());
         perfil = tec.getPerfil();
     }
+    int filtro = 0;
+    if (request.getParameter("Filtro") != null) {
+        filtro = Integer.parseInt(request.getParameter("Filtro"));
+    }
+    
     String mensaje = request.getAttribute("mensaje") != null
             ? (String) request.getAttribute("mensaje") : null;
 %>
@@ -179,7 +188,7 @@
 
                                                 <!-- Sidebar Search -->
                                                 <div>
-                                                    <select id="Filtro" type="text" class="sidebar_search_input" align="Center">
+                                                    <select id="Filtro" name="Filtro" type="text" class="sidebar_search_input" align="Center">
                                                         <option value="0" >Seleccione</option>
                                                         <option value="1" >Dinero ganado por artista</option>
                                                         <option value="2" >Artistas con premio</option>
@@ -206,11 +215,37 @@
                         </div>
                     </div>
                 </div>
-                <br>	
-                
+                <br>
+                 <div class="table container">
+                     <%if(filtro==1){%>
+                            <%if (listaInforme != null) {%>
+                            <table border="0" id="tabla" class="table">
+                                <tbody class="table-responsive">
+                                    <tr class="active" >
+                                        <td >Tipo documento</td>
+                                        <td >Numero documento</td>
+                                        <td >Nombre usuario</td>
+                                        <td >Email</td>
+                                        <td >Dependencia</td>
+                                        <td >Ubicación</td>
+                                        <td >Teléfono</td>
+                                    </tr> 
+                                    <%for (InfoInformes info : listaInforme) {%>
+                                    <tr>
+                                        <td ><%=info.getArtista()%></td>
+                                        <td ><%=info.getEmpresa()%></td>
+                                        <td ><%=info.getVenta()%></td>
+                                        
+                                    </tr>
+                                    <%}%>
+                                </tbody>
+                            </table>
+                            <%}%>
+                            <%}%>
+                        </div>
+                </form>
                 </div>	
                 <br>
-            </form>
         </div>
 
         <script src="js/jquery-3.2.1.min.js"></script>

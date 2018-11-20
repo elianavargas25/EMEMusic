@@ -9,6 +9,10 @@ import com.project.ememusic.entidad.InfoInformes;
 import com.project.ememusic.negocio.NInformes;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "MaestroInformes", urlPatterns = {"/MaestroInformes"})
 public class MaestroInformes extends HttpServlet {
+
     InfoInformes info = new InfoInformes();
     NInformes ninfo = new NInformes();
 
@@ -37,25 +42,60 @@ public class MaestroInformes extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String filtro = request.getParameter("filtro");
+        String filtro = request.getParameter("Filtro");
         String fechaDesde = request.getParameter("txtDateFrom");
-        String fechahasta = request.getParameter("txtDateTo");
+        String fechaHasta = request.getParameter("txtDateTo");
+        Date fechaFrom = Date.valueOf(fechaDesde);
+        Date fechaTo = Date.valueOf(fechaHasta);
         String mensaje = "";
-        String modulo = "Informes.jsp"; 
+        String modulo = "Informes.jsp";
         request.setAttribute("mensaje", null);
         request.setAttribute("modulo", null);
-        request.setAttribute("datos", null);
-        
+        request.setAttribute("lista", null);
+        request.setAttribute("filtro", null);
+
         if ("Buscar".equals(request.getParameter("action"))) {
-            if(filtro.equals("1")){
-            
-            }else if(filtro.equals("2")){
-            }else if (filtro.equals("3")) {
-                
-            }else {
-                mensaje = "Debe seleccionar una opción de la lista";
+            switch (filtro) {
+                case "1":
+                    try {
+                        List<InfoInformes> lista = ninfo.listarporArtis(fechaFrom, fechaTo);
+                        request.setAttribute("lista", lista);
+                        request.setAttribute("filtro", filtro);
+                        break;
+                    } catch (Exception e) {
+                        Logger.getLogger(MaestroInformes.class.getName())
+                                .log(Level.SEVERE, null, e);
+                        mensaje += "" + e.getMessage();
+                    }
+                case "2":
+                    try {
+                        List<InfoInformes> lista = ninfo.listarporEmpre(fechaFrom, fechaTo);
+                        request.setAttribute("lista", lista);
+                        request.setAttribute("filtro", filtro);
+                        break;
+                    } catch (Exception e) {
+                        Logger.getLogger(MaestroInformes.class.getName())
+                                .log(Level.SEVERE, null, e);
+                        mensaje += "" + e.getMessage();
+                    }
+                case "3":
+                    try {
+                        List<InfoInformes> lista = ninfo.listarporEmpre(fechaFrom, fechaTo);
+                        request.setAttribute("lista", lista);
+                        request.setAttribute("filtro", filtro);
+                        break;
+                    } catch (Exception e) {
+                        Logger.getLogger(MaestroInformes.class.getName())
+                                .log(Level.SEVERE, null, e);
+                        mensaje += "" + e.getMessage();
+                    }
+                default:
+                    mensaje = "Debe seleccionar una opción de la lista";
+                    break;
             }
         }
+        request.setAttribute("mensaje", mensaje);
+        request.getRequestDispatcher(modulo).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

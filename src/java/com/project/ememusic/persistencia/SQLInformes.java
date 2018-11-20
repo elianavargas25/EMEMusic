@@ -24,18 +24,20 @@ public class SQLInformes {
                 + "	where ve.fecha_registro between ? and ?\n"
                 + "    GROUP BY ve.nombre";
     }
+
     public static String ListArtis() {
-        return "SELECT \n"
-                + "	ve.nombre,\n"
+        return "SSELECT \n"
+                + "	ve.NOMBRE_ARTISTICO as nombreArtista,\n"
+                + "	ve.nombre as nombreEmpresa,\n"
                 + "	sum(ve.REPRODUCCION) as cantReprod,\n"
                 + "	sum(ve.REPRODUCCION * ve.PAGO_OPERACION) as Ventastotal\n"
-                + "	FROM (select emp.nombre, \n"
+                + "	FROM (select emp.nombre, art.NOMBRE_ARTISTICO,\n"
                 + "	ven.REPRODUCCION , emp.pago_operacion, ven.FECHA_REGISTRO\n"
                 + "	from music.ventas ven \n"
                 + "	inner join music.artistas art on art.ID_ARTISTAS = ven.ID_ARTISTAS\n"
                 + "	inner join music.empresa emp on emp.ID_EMPRESA = art.ID_EMPRESA) ve\n"
-                + "	where ve.fecha_registro between ? and ?\n"
-                + "    GROUP BY ve.nombre";
+                + "	where ve.fecha_registro between '2018-11-18' and '2018-11-19'\n"
+                + "	GROUP BY ve.NOMBRE_ARTISTICO";
     }
-    
+
 }
