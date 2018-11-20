@@ -33,8 +33,8 @@ public class SqlEmpresa {
     }
 //INSERTAR (GUARDAR) UN REGISTRO EN LA TABLA
     public static String insertarEmpresa() {
-        return "INSERT INTO `empresa` (`ID_TIPO_DOCUMENTO`, `NRO_DOCUMENTO`, `NOMBRE`, `PAGO_OPERACION`) "
-                + "VALUES (?,?,?,?)";
+        return "INSERT INTO `empresa` (`ID_TIPO_DOCUMENTO`, `NRO_DOCUMENTO`, `NOMBRE`, `PAGO_OPERACION`, `ID_ESTADO`) "
+                + "VALUES (?,?,?,?,?)";
     }
 
     //ACTUALIZAR UN REGISTRO EN LA TABLA

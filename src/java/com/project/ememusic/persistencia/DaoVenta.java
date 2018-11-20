@@ -25,7 +25,6 @@ public class DaoVenta {
         try {
             PreparedStatement ven = con.prepareStatement(SqlVenta.insertarVenta());
             int index = 1;
-            ven.setString(index++, venta.getIdEmpresa());
             ven.setString(index++, venta.getIdArtista());
             ven.setString(index++, venta.getReproduccion());
             ven.setDate(index++, new java.sql.Date(new java.util.Date().getTime()));

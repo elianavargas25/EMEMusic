@@ -1,3 +1,4 @@
+<%@page import="com.project.ememusic.entidad.Empresa"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.project.ememusic.persistencia.DaoTipoDocumento"%>
 <%@page import="com.project.ememusic.entidad.Usuarios"%>
@@ -11,6 +12,23 @@
         id_usu = tec.getIdUsuario();
         nombre = (String) (tec.getNombre());
         perfil = tec.getPerfil();
+    }
+    String idArtista;
+    String TipoDocumento = request.getParameter("cbotipodocumento");
+    String NroDocumento = request.getParameter("txtnrodocumento");
+    String nombreEmpresa = request.getParameter("txtnombre");
+    String pagoOperacion = request.getParameter("txtpagooperacion");
+    String Estado = request.getParameter("optionStateS");//validar
+    Empresa artista = request.getAttribute("datos") != null
+            ? (Empresa) request.getAttribute("datos") : null;
+
+    if (artista != null) {
+        idArtista = artista.getId_empresa();
+        TipoDocumento = artista.getTipoDocumento();
+        NroDocumento = artista.getNroDocumento();
+        nombreEmpresa = artista.getNombre();
+        pagoOperacion = artista.getPagoOperacion();
+        Estado = artista.getEstado();
     }
     DaoTipoDocumento daoTDocu = new DaoTipoDocumento();
     ResultSet tdocu = daoTDocu.tipoDoc();
@@ -161,6 +179,7 @@
 
                 <div class="home_title">
                     <h2>Registro de Empresas</h2>
+                     <center>  <h4><%=mensaje != null ? mensaje : ""%></h4><br> </center>
                     <div class="next_section_scroll">
                         <div class="next_section nav_links" data-scroll-to=".service_boxes">
                             <i class="fas fa-chevron-down trans_200"></i>
@@ -170,8 +189,7 @@
                 </div>
 
             </div>
-            <center>  <h4><%=mensaje != null ? mensaje : ""%></h4><br> </center>
-
+           
             <div class="row contact_row">
                 <div  class="content-box-gray">
                     <div class="col-lg-8">
@@ -183,17 +201,17 @@
                                <form name="Empresa" method="Post" id="Empresa"
                                       action="./MaestroEmpresa" autocomplete="off" class="bod"> 
                                     <div>
-                                        <select id="cboDocument" name="cbotipodocumento" class="input_field reply_form_email" type="select" placeholder="Tipo de Documento *" required="required" data-error="Valid Tipo de Documento is required.">
+                                        <select id="cboDocument" name="cbotipodocumento" value="<%=TipoDocumento != null ? TipoDocumento : ""%>" class="input_field reply_form_email" type="select" placeholder="Tipo de Documento *" required="required" data-error="Valid Tipo de Documento is required.">
                                             <option>Seleccione su tipo de documento</option>
                                         <%while (tdocu.next()) {%>
                                                 <option value="<%= tdocu.getString(1)%>"><%=tdocu.getString(2)%></option>      
                                                 <% }%></select>
-                                        <input id="Document" name="txtnrodocumento" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Número de Documento *" required="required" data-error="Name is required.">
+                                        <input id="Document" name="txtnrodocumento" value="<%=NroDocumento != null ? NroDocumento : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Número de Documento *" required="required" data-error="Name is required.">
                                     </div>
                                     <div>
-                                        <input id="Name" name="txtnombre" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Nombre *" required="required" data-error="Valid Primer Nombre is required.">
-                                        <input id="PagoPorOperacion" name="txtpagooperacion" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Pago por Operación *" required="required" data-error="Name is required."><br>
-                                        <div class="reply_form_email" name="txtestadoS" aria-hidden="true">Activo</div>
+                                        <input id="Name" name="txtnombre" value="<%=nombreEmpresa != null ? nombreEmpresa : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Nombre *" required="required" data-error="Valid Primer Nombre is required.">
+                                        <input id="PagoPorOperacion" name="txtpagooperacion" value="<%=pagoOperacion != null ? pagoOperacion : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Pago por Operación *" required="required" data-error="Name is required."><br>
+                                        <div class="reply_form_email" name="txtestadoS" value="<%=Estado != null ? Estado : ""%>"  aria-hidden="true">Activo</div>
                                         <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="S">Si</label>
                                         <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="N">No</label>
                                     </div>
@@ -202,8 +220,9 @@
                                         <%if (perfil.equals("Administrador")) {%> 
                                         <button id="edit" type="submit" class="btn bg-info"  name="action" value="Modificar">Modificar</button>
                                         <%}%>
-                                        <button id="exit" type="button" class="btn bg-info" name="action" value="Cancelar"><a href="index.jsp">Cancelar</a></button>
-                                        <button id="search" type="button" class="btn bg-info" name="action" value="Buscar">Buscar</a></button>
+                                        <button id="search" type="submit" class="btn bg-info" name="action" value="Buscar">Buscar</a></button>
+                                        <button id="exit" type="submit" class="btn bg-info" name="action" value="Cancelar">Cancelar</button>
+                                        
 
                                     </div>
 

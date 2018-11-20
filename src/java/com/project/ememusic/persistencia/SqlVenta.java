@@ -18,8 +18,8 @@ public class SqlVenta {
 
     public static String insertarVenta() {
         return "INSERT INTO `ventas`"
-                 +"`ID_EMPRESA`, `ID_ARTISTAS`, `REPRODUCCION`, `FECHA_REGISTRO`"
-                + " values (?,?,?,?)" ;
+                 +"(`ID_ARTISTAS`, `REPRODUCCION`, `FECHA_REGISTRO`)"
+                + " values (?,?,?)" ;
     }
     
 

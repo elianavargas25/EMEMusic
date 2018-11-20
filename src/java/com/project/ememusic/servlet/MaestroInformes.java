@@ -60,7 +60,7 @@ public class MaestroInformes extends HttpServlet {
                     try {
                         List<InfoInformes> lista = ninfo.listarporArtis(fechaFrom, fechaTo);
                         request.setAttribute("lista", lista);
-                        request.setAttribute("filtro", filtro);
+                        //request.setAttribute("filtro", filtro);
                         break;
                     } catch (Exception e) {
                         Logger.getLogger(MaestroInformes.class.getName())
@@ -71,7 +71,7 @@ public class MaestroInformes extends HttpServlet {
                     try {
                         List<InfoInformes> lista = ninfo.listarporEmpre(fechaFrom, fechaTo);
                         request.setAttribute("lista", lista);
-                        request.setAttribute("filtro", filtro);
+                        //request.setAttribute("filtro", filtro);
                         break;
                     } catch (Exception e) {
                         Logger.getLogger(MaestroInformes.class.getName())
@@ -82,7 +82,7 @@ public class MaestroInformes extends HttpServlet {
                     try {
                         List<InfoInformes> lista = ninfo.listarporEmpre(fechaFrom, fechaTo);
                         request.setAttribute("lista", lista);
-                        request.setAttribute("filtro", filtro);
+                        //request.setAttribute("filtro", filtro);
                         break;
                     } catch (Exception e) {
                         Logger.getLogger(MaestroInformes.class.getName())
@@ -96,7 +96,7 @@ public class MaestroInformes extends HttpServlet {
         }
         request.setAttribute("mensaje", mensaje);
         request.getRequestDispatcher(modulo).forward(request, response);
-    }
+        }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

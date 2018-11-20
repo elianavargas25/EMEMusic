@@ -34,19 +34,27 @@ public class DaoEmpresa {
     public Empresa buscarEmpresa(Connection cxn, String NroDocumento, String TipoDocu) {
         try {
             PreparedStatement em = cxn.prepareStatement(SqlEmpresa.getEmpresa(NroDocumento));
-            ResultSet ur = em.executeQuery();
             em.setString(1, NroDocumento);
             em.setString(2, TipoDocu);
-
-            while (ur.next()) {
-                emp.setId_empresa(ur.getString(1));
-                emp.setTipoDocumento(ur.getString(2));
-                emp.setNroDcumento(ur.getString(3));
-                emp.setNombre(ur.getString(4));
-                emp.setPago_operacion(ur.getString(5));
-                emp.setEstado(ur.getString(6));
-                System.out.println("Busqueda exitosa...\n");
-            }//cierra while
+            ResultSet ur = em.executeQuery();
+            if (ur.next()) {
+                while (ur.next()) {
+                    emp.setId_empresa(ur.getString("ID_EMPRESA"));
+                    emp.setTipoDocumento(ur.getString("DESCRIPCION"));
+                    emp.setNroDcumento(ur.getString("NRO_DOCUMENTO"));
+                    emp.setNombre(ur.getString("NOMBRE"));
+                    emp.setPago_operacion(ur.getString("PAGO_OPERACION"));
+                    emp.setEstado(ur.getString("ID_ESTADO"));
+                    System.out.println("Busqueda exitosa...\n");
+                }//cierra while
+            } else {
+                emp.setId_empresa("");
+                emp.setTipoDocumento("");
+                emp.setNroDcumento("");
+                emp.setNombre("");
+                emp.setPago_operacion("");
+                emp.setEstado("");
+            }
         } catch (Exception e) {
             System.out.println("Empresa no registrada...\n");
             e.getMessage();
@@ -62,8 +70,42 @@ public class DaoEmpresa {
         }
         return emp;
     }
+    
+     public Empresa buscarEmpresas(Connection cxn, String NroDocumento, String TipoDocu) {
+        try {
+            PreparedStatement em = cxn.prepareStatement(SqlEmpresa.getEmpresa(NroDocumento));
+            em.setString(1, NroDocumento);
+            em.setString(2, TipoDocu);
+            ResultSet ur = em.executeQuery();
+            
+                while (ur.next()) {
+                    emp.setId_empresa(ur.getString("ID_EMPRESA"));
+                    emp.setTipoDocumento(ur.getString("ID_TIPO_DOCUMENTO"));
+                    emp.setNroDcumento(ur.getString("NRO_DOCUMENTO"));
+                    emp.setNombre(ur.getString("NOMBRE"));
+                    emp.setPago_operacion(ur.getString("PAGO_OPERACION"));
+                    emp.setEstado(ur.getString("ID_ESTADO"));
+                    System.out.println("Busqueda exitosa...\n");
+                }//cierra while
+            
+        } catch (Exception e) {
+            System.out.println("Empresa no registrada...\n");
+            e.getMessage();
+        } finally {
+            try {
 
+                cxn.close();
+            } catch (Exception e) {
+            }
+        }//cierra finally
+        if (!emp.getNroDocumento().equals(NroDocumento) && !emp.getTipoDocumento().equals(TipoDocu)) {
+            System.out.println("La empresa no se encuentra regitrada en nuestra la base de datos");
+        }
+        return emp;
+    }
+    
     //insertar registro en la tabla
+
     public Empresa guardarEmpresa(Connection cxn, Empresa emp) {
         String mensaje = "";
         try {

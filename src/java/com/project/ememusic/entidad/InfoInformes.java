@@ -18,6 +18,9 @@ public class InfoInformes {
     Date fechaDesde, fechaHasta;
 
     public Empresa getEmpresa() {
+        if(empresa == null){
+            empresa = new Empresa();
+        }
         return empresa;
     }
 
@@ -26,6 +29,9 @@ public class InfoInformes {
     }
 
     public Artistas getArtista() {
+        if(artista == null){
+            artista = new Artistas();
+        }
         return artista;
     }
 
@@ -34,6 +40,9 @@ public class InfoInformes {
     }
 
     public Ventas getVenta() {
+        if(venta == null){
+            venta = new Ventas();
+        }
         return venta;
     }
 

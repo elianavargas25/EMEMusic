@@ -28,6 +28,11 @@ public class NEmpresa {
         con = new Conexion().getCon();// validar conexion
         return dao.buscarEmpresa(con, NroDocumento, TipoDoc);
     }//fin buscar
+    
+    public Empresa buscarEmpresas( String NroDocumento, String TipoDoc) {
+        con = new Conexion().getCon();// validar conexion
+        return dao.buscarEmpresas(con, NroDocumento, TipoDoc);
+    }//fin buscar
 
     public Empresa guardarEmpresa(Empresa empresa) throws Exception {
         String TipoDocumento = empresa.getTipoDocumento();

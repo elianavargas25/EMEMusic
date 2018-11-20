@@ -26,7 +26,7 @@ public class SQLInformes {
     }
 
     public static String ListArtis() {
-        return "SSELECT \n"
+        return "SELECT \n"
                 + "	ve.NOMBRE_ARTISTICO as nombreArtista,\n"
                 + "	ve.nombre as nombreEmpresa,\n"
                 + "	sum(ve.REPRODUCCION) as cantReprod,\n"

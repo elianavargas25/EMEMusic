@@ -19,14 +19,17 @@ import java.util.List;
 public class NInformes {
     
     DaoInforme dao;
+    Connection con;
+     public NInformes() {
+        dao = new DaoInforme();
+    }
+    
     public List<InfoInformes> listarporEmpre(Date fechaDesde, Date fechaHasta) {
-        Connection con;
         con = new Conexion().getConexion();
         return dao.VentasporMes(con, fechaDesde, fechaHasta);
     }//fin public lista
     
     public List<InfoInformes> listarporArtis(Date fechaDesde, Date fechaHasta) {
-        Connection con;
         con = new Conexion().getConexion();
         return dao.VentasporArtista(con, fechaDesde, fechaHasta);
     }//fin public lista

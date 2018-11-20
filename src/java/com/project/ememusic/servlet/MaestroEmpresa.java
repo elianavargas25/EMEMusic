@@ -45,7 +45,7 @@ public class MaestroEmpresa extends HttpServlet {
         String NroDocumento = request.getParameter("txtnrodocumento");
         String Nombre = request.getParameter("txtnombre");
         String PagoOperacion = request.getParameter("txtpagooperacion");
-        String Estado = request.getParameter("txtestadoS");
+        String Estado = request.getParameter("optionStateS");
         String mensaje = "";
         String modulo = "Empresa.jsp"; 
         request.setAttribute("mensaje", null);
@@ -57,7 +57,7 @@ public class MaestroEmpresa extends HttpServlet {
                 //verifica si existe el dato
                 empresa = negocio.buscarEmpresa(NroDocumento, TipoDocumento);
                 if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento)){
-                    mensaje = "La empresa que desea registrar, ya se encuentra en sistema";
+                    mensaje = "La empresa que desea registrar, ya se encuentra en sistema ";
                 } else {
                     try {
                         empresa.setTipoDocumento(TipoDocumento);
@@ -107,20 +107,18 @@ public class MaestroEmpresa extends HttpServlet {
                 limpiar();
             }
         }//fin modificar
-        if ("limpiar".equals(request.getParameter("action"))) {
+        if ("Cancelar".equals(request.getParameter("action"))) {
             limpiar();
         }//fin linpiar
 
-        if ("Consultar".equals(request.getParameter("action"))) {
-            
+        if ("Buscar".equals(request.getParameter("action"))) {
             try {
-                empresa = negocio.buscarEmpresa(NroDocumento, TipoDocumento);
+                empresa = negocio.buscarEmpresas(NroDocumento, TipoDocumento);
                 if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento)){
-//si encuentra el dato cargamos los datos en el setAttribute
+                    //si encuentra el dato cargamos los datos en el setAttribute
                     request.setAttribute("datos", empresa);
-
                 } else {
-                    mensaje = "La empresa: " + NroDocumento + "" + NroDocumento + " no se encuentra registrado ";
+                    mensaje = "La empresa: " + empresa.getTipoDocumento() + " " + NroDocumento + " no se encuentra registrado ";
                     request.setAttribute("datos", null);
                 }
             } catch (Exception e) {

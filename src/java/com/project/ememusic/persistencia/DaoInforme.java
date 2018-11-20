@@ -49,6 +49,8 @@ public class DaoInforme {
         List<InfoInformes> result = new ArrayList<>();
         try {
             PreparedStatement lista = con.prepareStatement(SQLInformes.ListArtis());
+            lista.setDate(1, fechaDesde);
+            lista.setDate(2, fechaHasta);
             ResultSet respuesta = lista.executeQuery();
             while (respuesta.next()) {
                 InfoInformes ven = new InfoInformes();
