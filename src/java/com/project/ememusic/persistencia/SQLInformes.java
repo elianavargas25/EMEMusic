@@ -36,7 +36,7 @@ public class SQLInformes {
                 + "	from music.ventas ven \n"
                 + "	inner join music.artistas art on art.ID_ARTISTAS = ven.ID_ARTISTAS\n"
                 + "	inner join music.empresa emp on emp.ID_EMPRESA = art.ID_EMPRESA) ve\n"
-                + "	where ve.fecha_registro between '2018-11-18' and '2018-11-19'\n"
+                + "	where ve.fecha_registro between ? and ?\n"
                 + "	GROUP BY ve.NOMBRE_ARTISTICO";
     }
 
