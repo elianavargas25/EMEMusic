@@ -5,7 +5,8 @@
  */
 package com.project.ememusic.servlet;
 
-import com.project.ememusic.entidad.Informes;
+import com.project.ememusic.entidad.InfoInformes;
+import com.project.ememusic.negocio.NInformes;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,7 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "MaestroInformes", urlPatterns = {"/MaestroInformes"})
 public class MaestroInformes extends HttpServlet {
-    Informes info = new Informes();
+    InfoInformes info = new InfoInformes();
+    NInformes ninfo = new NInformes();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,7 +47,14 @@ public class MaestroInformes extends HttpServlet {
         request.setAttribute("datos", null);
         
         if ("Buscar".equals(request.getParameter("action"))) {
+            if(filtro.equals("1")){
             
+            }else if(filtro.equals("2")){
+            }else if (filtro.equals("3")) {
+                
+            }else {
+                mensaje = "Debe seleccionar una opción de la lista";
+            }
         }
     }
 
