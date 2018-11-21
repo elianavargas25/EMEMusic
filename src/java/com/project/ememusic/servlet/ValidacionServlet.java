@@ -79,7 +79,7 @@ public class ValidacionServlet extends HttpServlet {
             } else {
                 men = "Usuario y/o Contraseña incorrectos";
                 request.setAttribute("mensajeError", men);
-                request.getRequestDispatcher("/login.jsp").forward(request, response);
+                request.getRequestDispatcher("/loguin.jsp").forward(request, response);
             }
         } catch (Exception e) {
         }

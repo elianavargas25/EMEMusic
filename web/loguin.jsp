@@ -5,7 +5,8 @@
     /*vamos a entregar la respuesta del servlet en la pagina JSP
    * página JSP
      */
-    String mensajeError = (String) request.getAttribute("mensajeError");
+    String mensajeError = request.getAttribute("men") != null
+            ? (String) request.getAttribute("men") : null;
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="styles/loguin.css">

@@ -1,8 +1,8 @@
-<%@page import="com.project.ememusic.entidad.Artistas"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.project.ememusic.persistencia.DaoArtista"%>
 <%@page import="com.project.ememusic.entidad.Usuarios"%>
 <%@page import="com.project.ememusic.persistencia.DaoEmpresa"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="com.project.ememusic.persistencia.DaoTipoDocumento"%>
 <%@page import= "java.util.*" session="true"%>
 
 <!DOCTYPE html>
@@ -17,36 +17,13 @@
         nombre = (String) (tec.getNombre());
         perfil = tec.getPerfil();
     }
-    DaoTipoDocumento daoTDocu = new DaoTipoDocumento();
-    ResultSet tdocu = daoTDocu.tipoDoc();
+    Date fecha = new Date();
+    SimpleDateFormat format = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss");
+    String fechaActual = format.format(fecha);
     DaoEmpresa daoEmpre = new DaoEmpresa();
     ResultSet empre = daoEmpre.idEmpresa();
-    String idArtista;
-    String TipoDocumento = request.getParameter("cbotipodocumento");
-    String NroDocumento = request.getParameter("txtnumdocumento");
-    String PrimerNombre = request.getParameter("txtprimernombre");
-    String SegundoNombre = request.getParameter("txtsegundonombre");
-    String PrimerApellido = request.getParameter("txtprimerapellido");
-    String SegundoApellido = request.getParameter("txtsegundopellido");
-    String NombreArtistico = request.getParameter("txtnombreartistico");
-    String Empresa = request.getParameter("cboempresa");
-    String Estado = request.getParameter("optionStateS");//validar
-
-    Artistas artista = request.getAttribute("datos") != null
-            ? (Artistas) request.getAttribute("datos") : null;
-
-    if (artista != null) {
-        idArtista = artista.getIdArtista();
-        TipoDocumento = artista.getTipoDocumento();
-        NroDocumento = artista.getNroDocumento();
-        PrimerNombre = artista.getPrimerNombre();
-        SegundoNombre = artista.getSegundoNombre();
-        PrimerApellido = artista.getPrimerApellido();
-        SegundoApellido = artista.getSegundoApellido();
-        NombreArtistico = artista.getNombreArtistico();
-        Empresa = artista.getEmpresa();
-        Estado = artista.getEstado();
-    }
+    DaoArtista daoArtis = new DaoArtista();
+    ResultSet artis = daoArtis.idArtista();
     String mensaje = request.getAttribute("mensaje") != null
             ? (String) request.getAttribute("mensaje") : null;
 %>
@@ -138,7 +115,7 @@
                     <ul>
                         <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
-                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Cargar Ventas</a></li>
+                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Registrar Ventas</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
                         <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
                         <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
@@ -150,7 +127,7 @@
                     <ul>
                         <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
-                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Cargar Ventas</a></li>
+                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Registrar Ventas</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
                         <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
                         <a href="index.jsp">Cerrar sesión</a>
@@ -195,7 +172,7 @@
                         <li class="menu_mm"><a href="index.jsp">Home</a></li>
                         <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Emresas</a></li>
-                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Cargar Ventas</a></li>
+                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Registro Ventas</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
                         <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
                     </ul>
@@ -210,7 +187,7 @@
                 </div>
 
                 <div class="home_title">
-                    <h2>Registro de Artistas</h2>
+                    <h2>Registro de Ventas</h2>
                     <center>  <h4><%=mensaje != null ? mensaje : ""%></h4><br> </center>
                     <div class="next_section_scroll">
                         <div class="next_section nav_links" data-scroll-to=".icon_boxes">
@@ -225,8 +202,6 @@
 
             <br>
 
-            <center>  <h4><%=mensaje != null ? mensaje : ""%></h4><br> </center>
-
             <div class="row contact_row">
                 <div class="content-box-gray">
                     <div class="col-lg-8">
@@ -239,45 +214,39 @@
                             <div class="reply_form">
 
                                 <!-- Reply Form -->
-                                <form name="Artista" method="Post" id="Artista"
-                                      action="./MaestroArtista" autocomplete="off" class="bod">
-                                   
+                                <form name="Ventas" method="Post" id="Ventas"
+                                      action="./MaestroVentas" autocomplete="off" class="bod">
+
                                     <div>
                                         <center>
-                                            <select id="cboDocument" name="cbotipodocumento" value="<%=TipoDocumento != null ? TipoDocumento : ""%>" class="input_field reply_form_email" type="select"  required="required" 
-                                                    title="Seleccione el tipo de documento">
-                                                <option value="0" disabled selected="true">Seleccione</option>
-                                                <%while (tdocu.next()) {%>
-                                                <option value="<%= tdocu.getString(1)%>"><%=tdocu.getString(2)%></option>      
-                                                <% }%></select>
-                                                <input id="nroDocument" name="txtnumdocumento" value="<%=NroDocumento != null ? NroDocumento : "" %>" class="input_field reply_form_name" type="text" placeholder="Número de Documento *"   maxlength="15" min="3" required="required" data-error="Name is required.">
-                                            <br>
-                                            <input id="firstName"  name="txtprimernombre" value="<%=PrimerNombre != null ? PrimerNombre : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Primer Nombre *"  required="required" data-error="Valid Primer Nombre is required." onkeypress="return soloLetras()(event)" maxlength="15" min="3">
-                                            <input id="secondName" name="txtsegundonombre" value="<%=SegundoNombre != null ? SegundoNombre : ""%>"onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_name"  maxlength="15" min="3" type="text" placeholder="Segundo Nombre" onkeypress="return soloLetras(event)"><br>
-                                            <input id="firstLastname" name="txtprimerapellido" value="<%=PrimerApellido != null ? PrimerApellido : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" onkeypress="return soloLetras(event)" maxlength="15" min="3" type="text" placeholder="Primer Apellido *" required="required" data-error="Valid Primer Apellido is required.">
-                                            <input id="secondLastname" name="txtsegundopellido" value="<%=SegundoApellido != null ? SegundoApellido : ""%>" onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_name" onkeypress="return soloLetras(event)" maxlength="15" min="3" type="text" placeholder="Segundo Apellido" data-error="Name is required."><br>
-                                            <input id="stageName" name="txtnombreartistico" value="<%=NombreArtistico != null ? NombreArtistico : ""%>" onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_email" type="text" placeholder="Nombre Artistico *" required="required" data-error="Valid Nombre Artistico is required.">
-                                            <select id="company " name="cboempresa" value="<%=Empresa != null ? Empresa : ""%>"class="input_field reply_form_name" type="select" placeholder="Empresa *" 
-                                                    title="Seleccione el tipo de documento">
+                                            <select id="company " name="cboempresa" class="input_field reply_form_name" type="select" placeholder="Empresa *" 
+                                                    title="Seleccione la empresa" required="required">
                                                 <option value="0" disabled selected="true">Seleccione</option>
                                                 <%while (empre.next()) {%>
                                                 <option value="<%= empre.getString(1)%>"><%=empre.getString(2)%></option>      
                                                 <% }%></select>
-                                        </center>
-                                        <div class="reply_form_email" value="<%=Estado != null ? Estado : ""%>" name="optestado" aria-hidden="true">Activo</div>
-                                        <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="S">Si</label>
-                                        <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="N">No</label>
+
+                                            <select id="company " name="cboartista" class="input_field reply_form_label" type="select" placeholder="Artista *" 
+                                                    title="Seleccione el Artista" required="required">
+                                                <option value="0" disabled selected="true">Seleccione</option>
+                                                <%while (artis.next()) {%>
+                                                <option value="<%= artis.getString(1)%>"><%=artis.getString(2)%></option>      
+                                                <% }%></select>
+
+                                           <input id="stageName" name="txtreproduccion" value="" onkeyup = "this.value = this.value.toUpperCase() 
+                                                  "class="input_field reply_form_name"  onkeypress="return soloNumeros(event)" type="text" placeholder="Cantidada de reproducciones *" required="required" data-error="">
+                                            
+                                            <input name="txtfecharegistro" type="text" readonly="readonly" class="input_field reply_form_label" 
+                                                   value="<%=fechaActual%>"
+                                                   maxlength="15" tabindex="2">
+
+                                        </center> 
+                                                   
 
                                     </div>
 
                                     <div class="Reply">
                                         <button id="save" type="submit" class="btn bg-info" name="action" value="Guardar">Guardar</button>
-                                        <%if (perfil.equals("Administrador")) {%> 
-                                        <button id="edit" type="submit" class="btn bg-info"  name="action" value="modificar">Modificar</button>
-                                        <%}%>
-                                        <button id="search" type="submit" class="btn bg-info" name="action" value="Buscar">Buscar</a></button>
-                                        <button id="exit" type="submit" class="btn bg-info" name="action" value="Cancelar">Cancelar</a></button>
-
 
                                     </div>
 

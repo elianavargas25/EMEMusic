@@ -24,15 +24,19 @@ public class NEmpresa {
     }
 //buscar registro
 
-    public Empresa buscarEmpresa( String NroDocumento) {
+    public Empresa buscarEmpresa( String NroDocumento, String TipoDoc) {
         con = new Conexion().getCon();// validar conexion
-        return dao.buscarEmpresa(con, NroDocumento);
+        return dao.buscarEmpresa(con, NroDocumento, TipoDoc);
+    }//fin buscar
+    
+    public Empresa buscarEmpresas( String NroDocumento, String TipoDoc) {
+        con = new Conexion().getCon();// validar conexion
+        return dao.buscarEmpresas(con, NroDocumento, TipoDoc);
     }//fin buscar
 
     public Empresa guardarEmpresa(Empresa empresa) throws Exception {
-        String IdEmpresa = empresa.getId_empresa();
         String TipoDocumento = empresa.getTipoDocumento();
-        String NroDocumento = empresa.getNroDcumento();
+        String NroDocumento = empresa.getNroDocumento();
         String Nombre = empresa.getNombre();
         String PagoOperacion = empresa.getPagoOperacion();
         String Estado = empresa.getEstado();
@@ -44,13 +48,13 @@ public class NEmpresa {
             error += "<br> Por favor ingrese número de dcumento";
         }
         if ("".equals(Nombre) || Nombre == null) {
-            error += "<br>Por favor infrese el primer nombre";
+            error += "<br>Por favor infrese el nombre";
         }
         if ("".equals(PagoOperacion) || PagoOperacion == null) {
-            error += "<br> Por favor ingrese el primer apellido";
+            error += "<br> Por favor ingrese el valor del pago por operación";
         }
         if ("".equals(Estado) || Estado == null) {
-            error += "<br> Por favor ingrese el nombre artistico";
+            error += "<br> Por favor seleccione el estado activo";
         }
         if (!"".equals(error)) {
             throw new Exception(error);
@@ -64,7 +68,7 @@ public class NEmpresa {
     public Empresa actualizarEmpresa(Empresa emp) throws Exception {
         String IdEmpresa = emp.getId_empresa();
         String TipoDocumento = emp.getTipoDocumento();
-        String NroDocumento = emp.getNroDcumento();
+        String NroDocumento = emp.getNroDocumento();
         String Nombre = emp.getNombre();
         String PagoOperacion = emp.getPagoOperacion();
         String Estado = emp.getEstado();
