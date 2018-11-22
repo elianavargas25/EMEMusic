@@ -26,38 +26,11 @@ public class NParametros {
     }
     //buscar registro 
 
-    public Parametros buscarParametros(String idParametro) {
-        con = new Conexion().getCon();
-        return dao.buscarUsuario(con, idParametro);
-    }//fin buscar
     
-    public Parametros actualizarParametro(Parametros usu) throws Exception {
-
-        String nombreParametro = usu.getNombreParametro();
-        String valor = usu.getValor();
-        
-        String error = "";
-
-        con = new Conexion().getCon();
-
-        if ("".equals(nombreParametro) || nombreParametro == null) {
-            error += "<br> Por favor ingrese el nombre del parámetro ";
-        }
-
-        if ("".equals(valor) || valor == null) {
-            error += "<br> Por favor ingrese el valor del parámetro";
-        }
-        if (!"".equals(error)) {
-            throw new Exception(error);
-        }
-        usu = dao.actualizarParametro(con, usu);
-        return usu;
-    }// Fin actualizar 
-    
-    public List<Parametros> listarParametros(String idParametro) {
+    public List<Parametros> listarParametros(Parametros Parametros) {
         Connection con;
         con = new Conexion().getCon();
-        return dao.listarParametros(con, idParametro);
+        return dao.listarParametros(con, Parametros);
     }//fin public lista
     
 }

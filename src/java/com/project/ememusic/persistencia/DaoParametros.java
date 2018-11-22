@@ -19,73 +19,10 @@ import java.util.List;
 public class DaoParametros {
     Parametros para = new Parametros();
     
-    public Parametros buscarUsuario(Connection con, String idParametro) {
-
-        try {
-            PreparedStatement par = con.prepareStatement(SQLParametros.getParametro(idParametro));
-            par.setString(1, idParametro);
-            
-            ResultSet ur = par.executeQuery();
-            while (ur.next()) {
-                Parametros paramet = new Parametros();
-                paramet.setIdParametro(ur.getString("idParametro"));
-                paramet.setNombreParametro(ur.getString("nombreParametro"));
-                paramet.setValor(ur.getString("valor"));
-                System.out.println("Busqueda exitosa...\n");
-                return paramet;
-            } 
-        } catch (Exception e) {
-            System.out.println("Error parámetro no registrado...\n");
-            e.getMessage();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }//cierra finally
-        if (!para.getIdParametro().equals(idParametro)) {
-            System.out.println("El Parámetro no se encuentra registrado en la base de datos");
-        }
-        return para;
-    }
-    
-     public Parametros actualizarParametro(Connection con, Parametros para) {
-        String mensaje = "";
-
-        try {
-            PreparedStatement ur = con.prepareStatement(SQLParametros.actualizarParametro());
-
-            ur.setString(1, para.getNombreParametro());
-            ur.setString(2, para.getValor());
-            ur.executeUpdate();
-            
-            System.out.println("Actualización de parámetro exitosa...\n");
-            if (ur.getUpdateCount() > 0) {
-                mensaje = "El parámetro se actualizo correctamente...\n";
-
-            } else {
-                mensaje = "Error al actualizar parámetro";
-            }
-
-        } catch (Exception e) {
-            System.out.println("Error al actualizar parámetro...\n");
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-
-        }//cierra finally
-        return para;
-    }
-     
-      public List<Parametros> listarParametros(Connection con, String idParametro) {
+      public List<Parametros> listarParametros(Connection con, Parametros parametros) {
         List<Parametros> result = new ArrayList<>();
         try {
             PreparedStatement lista = con.prepareStatement(SQLParametros.getLista());
-            lista.setString(1, idParametro);
-           
             ResultSet respuesta = lista.executeQuery();
             while (respuesta.next()) {
                 
