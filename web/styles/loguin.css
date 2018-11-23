@@ -47,6 +47,7 @@ form:before {
 }
 
 form h1 {
+    color: white;
   font-size:18px;
   text-shadow:0 1px 0 black;
   text-align:center;
@@ -70,13 +71,14 @@ form h1:after {
 }
 
 label {
- 	color:#666;
+ 	color:white;
   display:block;
   padding-bottom:9px;
 }
 
 input[type=text],
 input[type=password] {
+    color: white;
  	width:100%;
   padding:8px 5px;
   background:linear-gradient(#1f2124, #27292c);
