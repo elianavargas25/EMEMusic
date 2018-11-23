@@ -1,7 +1,39 @@
+<%@page import="com.project.ememusic.entidad.Usuarios"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.project.ememusic.persistencia.DaoPerfil"%>
 <!DOCTYPE html>
+
+<%
+    String id_usu = "";
+    String perfil = "";
+    String nombre = "";
+    Usuarios tec = new Usuarios();
+    if (session.getAttribute("usuario") != null) {
+        tec = (Usuarios) session.getAttribute("usuario");
+        id_usu = tec.getIdUsuario();
+        nombre = (String) (tec.getNombre());
+        perfil = tec.getPerfil();
+    }
+    
+    String idUsuario;
+    String Nombre = request.getParameter("txtnombre");
+    String Clave = request.getParameter("txtclave");
+    String Perfil = request.getParameter("cboperfil");
+    String Estadoo = request.getParameter("optionStateS");
+    
+    DaoPerfil daoPer = new DaoPerfil();
+    ResultSet per = daoPer.PERFIL();
+
+    Usuarios usua = request.getAttribute("datos") != null
+            ? (Usuarios) request.getAttribute("datos") : null;
+
+    String mensaje = request.getAttribute("mensaje") != null
+            ? (String) request.getAttribute("mensaje") : null;
+
+%>          
 <html lang="en">
     <head>
-        <title>EmeMusic - Contact</title>
+        <title>EmeMusic - Usuario</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="RanGO Project">
@@ -11,6 +43,8 @@
         <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
         <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
+        <link rel="stylesheet" type="text/css" href="styles/Caja.css">
+        <link rel="stylesheet" type="text/css" href="styles/btn.css">
     </head>
 
     <body>
@@ -28,15 +62,38 @@
 
                 <!-- Navigation -->
                 <nav class="main_nav justify-self-end text-right">
-                    <ul>
-                        <li class="menu_mm"><a href="index.jsp">Home</a></li>
-                        <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
-                        <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
-                        <li class="menu_mm"><a href="CargarVentas.jsp">Cargar Ventas</a></li>
-                        <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                        <li class="menu_mm"><a href="Administracion.jsp">AdministraciÃ³n</a></li>
-                    </ul>
+                    <%if (perfil.equals("Administrador")) {%> 
+                    <nav class="main_nav justify-self-end text-right">
+                        <ul>
+                            <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
+                            <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
+                            <li class="menu_mm"><a href="RegistrarVentas.jsp">Cargar Ventas</a></li>
+                            <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
+                            <li class="menu_mm">Administración
+                                <ul>
+                                    <li class="menu_mm"><a href="Parametros.jsp">Parámetros</a></li>
+                                    <li class="menu_mm"><a href="Usuarios.jsp">Usuarios</a></li>
+                                    <li class="menu_mm"><a href="Auditoria.jsp">Log Auditoria</a></li>
+                                </ul>
+                            </li>
+                            <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
+                            <a href="index.jsp">Cerrar sesión</a>
+                        </ul>   
+                    </nav>
+                    <%} else {%>
+                    <nav class="main_nav justify-self-end text-right">
+                        <ul>
+                            <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
+                            <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
+                            <li class="menu_mm"><a href="RegistrarVentas.jsp">Cargar Ventas</a></li>
+                            <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
+                            <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
+                            <a href="index.jsp">Cerrar sesión</a>
 
+                        </ul>   
+                    </nav>
+
+                    <%}%>
                     <!-- Search -->
                     <div class="search">
                         <div class="search_content d-flex flex-column align-items-center justify-content-center">
@@ -102,7 +159,7 @@
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
                         <li class="menu_mm"><a href="CargarVentas.jsp">Cargar Ventas</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                        <li class="menu_mm"><a href="Administracion.jsp">AdministraciÃ³n</a></li>
+                        <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
                     </ul>
                 </div>
             </div>
@@ -116,6 +173,7 @@
 
                 <div class="home_title">
                     <h2>Usuarios</h2>
+                    <center>  <h2><%=mensaje != null ? mensaje : ""%></h2><br> </center>
                     <div class="next_section_scroll">
                         <div class="next_section nav_links" data-scroll-to=".contact">
                             <i class="fas fa-chevron-down trans_200"></i>
@@ -126,211 +184,65 @@
 
             </div>
 
-            <!-- Contact -->
+            <div class="row contact_row">
+                <div class="content-box-gray">
+                    <div class="col-lg-8">
 
-            <div class="contact">
+                        <!-- Reply -->
 
-                <div class="container">
+                        <div class="Reply">
 
-                    <!-- Google Map Container -->
 
-                    <div class="row">
-                        <div class="col">
-                            <div id="google_map">
-                                <div class="map_container">
-                                    <div id="map"></div>
-                                </div>
+                            <div class="reply_form">
+
+                                <!-- Reply Form -->
+                                <form name="Usuarios" method="Post" id="Usuarios"
+                                      action="./MaestroUsuario" autocomplete="off" class="bod">
+
+                                    <div>
+                                        <center>
+
+                                            <input id="nombre" name="txtnombre" value="<%=Nombre != null ? Nombre : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Nombre Usuario *"   maxlength="15" min="3" required="required" data-error="Name is required.">
+
+                                            <input id="clave"  name="txtclave" value="<%=Clave != null ? Clave : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_label" type="password" placeholder="Clave *"  required="required" data-error="Valid clave is required."  maxlength="15" min="3">
+
+
+                                            <select id="cboDocument" name="cboperfil" value="<%=Perfil != null ? Perfil : ""%>" class="input_field reply_form_name" type="select"  required="required" 
+                                                    title="Seleccione el tipo de documento">
+                                                <option value="0" disabled selected="true">Seleccione</option>
+                                                <%while (per.next()) {%>
+                                                <option value="<%= per.getString(1)%>"><%=per.getString(2)%></option>      
+                                                <% }%></select>
+                                                
+                                            <div class="reply_form_name" value="<%=Estadoo != null ? Estadoo : ""%>" name="optestado" aria-hidden="true">Activo</div>
+                                            <label class="reply_form_name radio-inline"><input type="radio" name="optionStateS" value="S">Si</label>
+                                            <br>
+                                            <label class="reply_form_name radio-inline"><input type="radio" name="optionStateS" value="N">No</label>
+                                        </center>
+
+                                    </div>
+                                    <br>
+                                    <br>
+
+                                    <center> <div class="Reply">
+                                            <button id="save" type="submit" class="btn bg-info" name="action" value="Guardar">Guardar</button>
+                                             <button id="search" type="submit" class="btn bg-info" name="action" value="Buscar">Buscar</a></button>
+
+
+                                        </div>
+                                    </center>
+
+                                </form>
+
+
                             </div>
                         </div>
                     </div>
-
-                    <div class="row contact_row">
-                        <div class="col-lg-8">
-
-                            <!-- Reply -->
-
-                            <div class="reply">
-
-                                <div class="reply_title">Leave a reply</div>
-                                <div class="reply_form_container">
-
-                                    <!-- Reply Form -->
-
-                                    <form id="reply_form" action="post">
-                                        <div>
-                                            <input id="reply_form_name" class="input_field reply_form_name" type="text" placeholder="Name" required="required" data-error="Name is required.">
-                                            <input id="reply_form_email" class="input_field reply_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required.">
-                                            <input id="reply_form_subject" class="input_field reply_form_subject" type="text" placeholder="Subject" required="required" data-error="Subject is required.">
-                                            <textarea id="reply_form_message" class="text_field reply_form_message" name="message"  placeholder="Message" rows="4" required data-error="Please, write us a message."></textarea>
-                                        </div>
-                                        <div>
-                                            <button id="reply_form_submit" type="submit" class="reply_submit_btn trans_300" value="Submit">
-                                                send reply
-                                            </button>
-                                        </div>
-
-                                    </form>
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-4">
-
-                            <!-- Contact Info -->
-
-                            <div class="contact_info">
-
-                                <div class="contact_title">Contact info</div>
-
-                                <div class="contact_info_container">
-
-                                    <div class="logo contact_logo">
-                                        <a href="#">Ran<span>go</span></a>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae enim enim. Sed nec dignissim purus.</p>
-
-                                    <div class="address_container clearfix">
-                                        <div class="contact_info_icon">i</div>
-                                        <div class="contact_info_content">
-                                            <ul>
-                                                <li class="address">C/ Libertad, 34</li>
-                                                <li class="city">05200 ArÃ©valo</li>
-                                                <li class="phone">0034 37483 2445 322</li>
-                                                <li class="email">hello@company.com</li>
-                                            </ul>									
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
                 </div>
-
-
             </div>
+            <br>
+            <br>
 
-            <!-- Footer -->
-
-            <footer class="footer">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-4">
-
-                            <!-- Footer Intro -->
-                            <div class="footer_intro">
-
-                                <!-- Logo -->
-                                <div class="logo footer_logo">
-                                    <a href="#">Ran<span>go</span></a>
-                                </div>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae enim enim. Sed nec dignissim purus.</p>
-
-                                <!-- Social -->
-                                <div class="footer_social">
-                                    <ul>
-                                        <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-behance"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-
-                                <!-- Copyright -->
-                                <div class="footer_cr"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- Footer Services -->
-                        <div class="col-lg-2">
-
-                            <div class="footer_col">
-                                <div class="footer_col_title">Services</div>
-                                <ul>
-                                    <li><a href="#">Social media</a></li>
-                                    <li><a href="#">Management</a></li>
-                                    <li><a href="#">Branding</a></li>
-                                </ul>
-                            </div>
-
-                            <div class="footer_col">
-                                <div class="footer_col_title">Aditionals</div>
-                                <ul>
-                                    <li><a href="#">Social media</a></li>
-                                    <li><a href="#">Management</a></li>
-                                    <li><a href="#">Branding</a></li>
-                                </ul>
-                            </div>
-
-                        </div>
-
-                        <!-- Footer Menu -->
-                        <div class="col-lg-2">
-
-                            <div class="footer_col">
-                                <div class="footer_col_title">Menu</div>
-                                <ul>
-                                    <li class="menu_mm"><a href="index.jsp">Home</a></li>
-                                    <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
-                                    <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
-                                    <li class="menu_mm"><a href="CargarVentas.jsp">Cargar Ventas</a></li>
-                                    <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                                    <li class="menu_mm"><a href="Administracion.jsp">AdministraciÃ³n</a></li>
-                                </ul>
-                            </div>
-
-                        </div>
-
-                        <!-- Footer About -->
-                        <div class="col-lg-2">
-
-                            <div class="footer_col">
-                                <div class="footer_col_title">About us</div>
-                                <ul>
-                                    <li><a href="#">The team</a></li>
-                                    <li><a href="#">History</a></li>
-                                    <li><a href="#">Company</a></li>
-                                    <li><a href="#">Support</a></li>
-                                </ul>
-                            </div>
-
-                        </div>
-
-                        <!-- Footer Community -->
-                        <div class="col-lg-2">
-
-                            <div class="footer_col">
-                                <div class="footer_col_title">Community</div>
-                                <ul>
-                                    <li><a href="#">Blog</a></li>
-                                    <li><a href="#">Forums</a></li>
-                                    <li><a href="#">Q&A</a></li>
-                                    <li><a href="#">Purposes</a></li>
-                                </ul>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <!-- Copyright -->
-                            <div class="footer_cr_2">2017 All rights reserved</div>
-                        </div>
-                    </div>
-                </div>
             </footer>
 
         </div>
