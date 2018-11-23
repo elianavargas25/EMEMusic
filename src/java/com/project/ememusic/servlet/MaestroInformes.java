@@ -42,7 +42,8 @@ public class MaestroInformes extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String filtro = request.getParameter("Filtro");
+        String Filtro = request.getParameter("Filtro");
+        int filtro = Integer.parseInt(Filtro);
         String fechaDesde = request.getParameter("txtDateFrom");
         String fechaHasta = request.getParameter("txtDateTo");
         Date fechaFrom = Date.valueOf(fechaDesde);
@@ -55,43 +56,42 @@ public class MaestroInformes extends HttpServlet {
         request.setAttribute("filtro", null);
 
         if ("Buscar".equals(request.getParameter("action"))) {
-            switch (filtro) {
-                case "1":
-                    try {
+            if (fechaFrom.equals("") && fechaTo.equals("")) {
+                mensaje = "Debe ingresar la fecha";
+            }else
+            if (filtro==1) {
+                try {
                         List<InfoInformes> lista = ninfo.listarporArtis(fechaFrom, fechaTo);
                         request.setAttribute("lista", lista);
                         //request.setAttribute("filtro", filtro);
-                        break;
                     } catch (Exception e) {
                         Logger.getLogger(MaestroInformes.class.getName())
                                 .log(Level.SEVERE, null, e);
                         mensaje += "" + e.getMessage();
                     }
-                case "2":
-                    try {
+            }else if (filtro==2) {
+                try {
                         List<InfoInformes> lista = ninfo.listarporEmpre(fechaFrom, fechaTo);
                         request.setAttribute("lista", lista);
                         //request.setAttribute("filtro", filtro);
-                        break;
+                      
                     } catch (Exception e) {
                         Logger.getLogger(MaestroInformes.class.getName())
                                 .log(Level.SEVERE, null, e);
                         mensaje += "" + e.getMessage();
                     }
-                case "3":
-                    try {
+            }else if (filtro==3) {
+                try {
                         List<InfoInformes> lista = ninfo.listarporEmpre(fechaFrom, fechaTo);
                         request.setAttribute("lista", lista);
                         //request.setAttribute("filtro", filtro);
-                        break;
                     } catch (Exception e) {
                         Logger.getLogger(MaestroInformes.class.getName())
                                 .log(Level.SEVERE, null, e);
                         mensaje += "" + e.getMessage();
                     }
-                default:
+            }else {
                     mensaje = "Debe seleccionar una opción de la lista";
-                    break;
             }
         }
         request.setAttribute("mensaje", mensaje);
