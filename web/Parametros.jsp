@@ -1,9 +1,9 @@
+<%@page import="com.project.ememusic.negocio.NParametros"%>
 <%@page import="java.util.List"%>
 <%@page import="com.project.ememusic.entidad.Usuarios"%>
 <%@page import="com.project.ememusic.entidad.Parametros"%>
 <!DOCTYPE html>
-<%  List<Parametros> listaParametros = request.getAttribute("lista")
-            != null ? (List<Parametros>) request.getAttribute("lista") : null;%>
+ 
 <%
     String id_usu = "";
     String perfil = "";
@@ -15,6 +15,10 @@
         nombre = (String) (tec.getNombre());
         perfil = tec.getPerfil();
     }
+    NParametros negocio = new NParametros();
+    Parametros parametros = new Parametros();
+    List<Parametros> listaParametros = negocio.listarParametros(parametros);
+            
 %>
 <html lang="en">
     <head>
@@ -179,12 +183,12 @@
 
                             <div class="table container">
                                 <%if (listaParametros != null) {%>
-                                <table border="1" id="tabla" class="table">
+                                <table border="0" id="tabla" class="table" aling="center">
                                     <tbody class="table-responsive">
                                         <tr class="active" >
-                                            <td><div>Id Parámetro </div></td>
-                                            <td><div>Id Parámetro </div></td>
-                                            <td><div>Id Parámetro </div></td>
+                                            <th>Id Parámetro </th>
+                                            <th>Nombre Parámetros </th>
+                                            <th>Valor Parámetro </th>
                                         </tr> 
                                         <%for (Parametros para : listaParametros) {%>
                                         <tr>
