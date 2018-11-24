@@ -9,6 +9,9 @@ import com.project.ememusic.entidad.Parametros;
 import com.project.ememusic.negocio.NParametros;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,16 +24,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "MaestroParametros", urlPatterns = {"/MaestroParametros"})
 public class MaestroParametros extends HttpServlet {
-
-   Parametros paramet = new Parametros();
-    NParametros negocio = new NParametros();
-
-    public void limpiar() {
-        paramet.setIdParametro("");
-        paramet.setNombreParametro("");
-        paramet.setValor("");
-
-    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,60 +38,23 @@ public class MaestroParametros extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String idParametro = request.getParameter("txtIdParametro");
-        String nombreParametro = request.getParameter("txtnombreParametro");
-        String valor = request.getParameter("txtvalor");
+        NParametros negocio = new NParametros();
+        Parametros parametros = new Parametros();
 
         String mensaje = "";
-        String modulo = "Index.jsp";
+        String modulo = "Parametros.jsp";
 
         request.setAttribute("modulo", null);
-        request.setAttribute("mensaje", null);
-        request.setAttribute("datos", null);
+        request.setAttribute("lista", null);
+        try {
+            List<Parametros> lista = negocio.listarParametros(parametros);
+            request.setAttribute("lista", lista);
+        } catch (Exception e) {
+            Logger.getLogger(MaestroParametros.class.getName())
+                    .log(Level.SEVERE, null, e);
+            mensaje += "" + e.getMessage();
+        }
 
-        if ("buscar".equals(request.getParameter("action"))) {
-            try {
-                paramet = negocio.buscarParametros(idParametro);
-                if (!"*".equals(paramet.getIdParametro())) {
-//si encuentra el dato cargamos los datos en el setAttribute
-                    request.setAttribute("datos", paramet);
-                } else {
-                    mensaje = "El parámetro: " + idParametro + " no se encuentra registrado ";
-                    request.setAttribute("datos", null);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        } //cierra buscar
-
-        if ("modificar".equals(request.getParameter("action"))) {
-            try {
-                //vereificamos que el registro no exista en la tabla   
-                paramet = negocio.buscarParametros(idParametro);
-                if (!paramet.getIdParametro().equals(idParametro)) {
-                    mensaje = "El eparámetro no se encuentra registrado";
-                } else {
-                    try {
-                        paramet.setNombreParametro(nombreParametro);
-                        paramet.setValor(valor);
-
-                        //guardamos los datos en la tabla
-                        negocio.actualizarParametro(paramet);
-                        mensaje = "El parámetro se actualizocorrectamente";
-                        limpiar();
-
-                    } catch (Exception e2) {
-                        mensaje = "Error al actualizar el parámetro";
-                        limpiar();
-                    }
-
-                }
-            } catch (Exception e1) {
-                mensaje = "El parámetro no se encuentra registrado";
-                limpiar();
-            }
-        } //cierra modificar
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

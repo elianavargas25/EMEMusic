@@ -13,7 +13,7 @@ public class SQLInformes {
 
     public static String ListMes() {
         return "SELECT \n"
-                + "	ve.nombre as nacional_es_el_mejor,\n"
+                + "	ve.nombre as nombreEmpresa,\n"
                 + "	sum(ve.REPRODUCCION) as cantReprod,\n"
                 + "	sum(ve.REPRODUCCION * ve.PAGO_OPERACION) as Ventastotal\n"
                 + "	FROM (select emp.nombre, \n"

@@ -22,7 +22,7 @@
 %>
 <html lang="en">
     <head>
-        <title>EmeMusic - Parametros</title>
+        <title>EmeMusic - Auditoria</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="RanGO Project">
@@ -147,7 +147,13 @@
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
                         <li class="menu_mm"><a href="CargarVentas.jsp">Cargar Ventas</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                        <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
+                        <li class="menu_mm">Administración
+                            <ul>
+                                <li class="menu_mm"><a href="Parametros.jsp">Parámetros</a></li>
+                                <li class="menu_mm"><a href="Usuarios.jsp">Usuarios</a></li>
+                                <li class="menu_mm"><a href="Auditoria.jsp">Log Auditoria</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -160,7 +166,7 @@
                 </div>
 
                 <div class="home_title">
-                    <h2>Parámetros</h2>
+                    <h2>Log Auditoria</h2>
                     <div class="next_section_scroll">
                         <div class="next_section nav_links" data-scroll-to=".contact">
                             <i class="fas fa-chevron-down trans_200"></i>
@@ -178,9 +184,10 @@
                 <div class="container">
 
 
-                    <form name="Parametros" method="Post" id="Empresa"
+                    <form name="Auditoria" method="Post" id="Auditoria"
                           action="./MaestroParametros" autocomplete="off" class="bod"> 
-                        <div class="content-box-purple">
+                        <div class="content-box-red">
+
                             <div class="container">
 
                                 <div class="table container">
@@ -188,9 +195,13 @@
                                     <table border="0" id="tabla" class="table" aling="center">
                                         <tbody class="table-responsive">
                                             <tr class="active" >
-                                                <th>Id Parámetro </th>
-                                                <th>Nombre Parámetros </th>
-                                                <th>Valor Parámetro </th>
+                                                <th>Id Auditoria </th>
+                                                <th>Usuario</th>
+                                                <th>Tipo acción</th>
+                                                <th>Fecha</th>
+                                                <th>Nombre Tabla</th>
+                                                <th>Numero PK</th>
+                                                <th>Descripción</th>
                                             </tr> 
                                             <%for (Parametros para : listaParametros) {%>
                                             <tr>
@@ -204,13 +215,12 @@
                                     </table>
                                     <%}%>
                                 </div>
-
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-            </div>
+
             <script src="js/jquery-3.2.1.min.js"></script>
             <script src="styles/bootstrap4/popper.js"></script>
             <script src="styles/bootstrap4/bootstrap.min.js"></script>

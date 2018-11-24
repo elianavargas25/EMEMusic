@@ -140,7 +140,13 @@
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
                         <li class="menu_mm"><a href="RegistrarVentas.jsp">Cargar Ventas</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                        <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
+                        <li class="menu_mm">Administración
+                            <ul>
+                                <li class="menu_mm"><a href="Parametros.jsp">Parámetros</a></li>
+                                <li class="menu_mm"><a href="Usuarios.jsp">Usuarios</a></li>
+                                <li class="menu_mm"><a href="Auditoria.jsp">Log Auditoria</a></li>
+                            </ul>
+                        </li>
                         <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
                         <a href="index.jsp">Cerrar sesión</a>
                     </ul>   
@@ -241,7 +247,7 @@
                                 <!-- Reply Form -->
                                 <form name="Artista" method="Post" id="Artista"
                                       action="./MaestroArtista" autocomplete="off" class="bod">
-                                   
+
                                     <div>
                                         <center>
                                             <select id="cboDocument" name="cbotipodocumento" value="<%=TipoDocumento != null ? TipoDocumento : ""%>" class="input_field reply_form_email" type="select"  required="required" 
@@ -250,7 +256,7 @@
                                                 <%while (tdocu.next()) {%>
                                                 <option value="<%= tdocu.getString(1)%>"><%=tdocu.getString(2)%></option>      
                                                 <% }%></select>
-                                                <input id="nroDocument" name="txtnumdocumento" value="<%=NroDocumento != null ? NroDocumento : "" %>" class="input_field reply_form_name" type="text" placeholder="Número de Documento *"   maxlength="15" min="3" required="required" data-error="Name is required.">
+                                            <input id="nroDocument" name="txtnumdocumento" value="<%=NroDocumento != null ? NroDocumento : ""%>" class="input_field reply_form_name" type="text" placeholder="Número de Documento *"   maxlength="15" min="3" required="required" data-error="Name is required.">
                                             <br>
                                             <input id="firstName"  name="txtprimernombre" value="<%=PrimerNombre != null ? PrimerNombre : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Primer Nombre *"  required="required" data-error="Valid Primer Nombre is required." onkeypress="return soloLetras()(event)" maxlength="15" min="3">
                                             <input id="secondName" name="txtsegundonombre" value="<%=SegundoNombre != null ? SegundoNombre : ""%>"onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_name"  maxlength="15" min="3" type="text" placeholder="Segundo Nombre" onkeypress="return soloLetras(event)"><br>

@@ -2,6 +2,7 @@
 package com.project.ememusic.persistencia;
 
 import com.project.ememusic.entidad.Usuarios;
+import com.project.ememusic.persistencia.SQLUsuarioCrear;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,4 +45,67 @@ public class DaoUsuarios {
         }
         return miusuario;
     }  //fin validar Ingreso :::::::::::::::::::::::::::::::: 
+     
+     
+     public Usuarios guardarUsuario(Connection con, Usuarios miusuario) {//validar conexion
+        String mensaje = "";
+        try {
+            PreparedStatement us = con.prepareStatement(SQLUsuarioCrear.insertarUsuario());
+            int index = 1;
+            us.setString(index++, miusuario.getNombre());
+            us.setString(index++, miusuario.getClave());
+            us.setString(index++, miusuario.getPerfil());
+            us.setString(index++, miusuario.getEstado());
+            
+            int result = us.executeUpdate();
+            System.out.println("El registro de Usuario fue exitoso...\n");
+            if (us.getUpdateCount() > 0) {
+                mensaje = "El Usuario se registró correctamente";
+            } else {
+                mensaje = "Error al registrar Usuario";
+            }
+        } catch (Exception e) {
+            System.out.println("Error al registrar Usuario");
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (Exception e) {
+            }
+        }//cierra finally
+        return miusuario;
+    }//cierra guardar
+     
+    public Usuarios buscarUsuario(Connection con, String Nombre) {//validar conexion
+        try {
+            PreparedStatement ar = con.prepareStatement(SQLUsuarioCrear.getUsuario(Nombre));
+            ar.setString(1, Nombre);
+            ResultSet art = ar.executeQuery();
+                while (art.next()) {
+                    miusuario.setIdUsuario(art.getString("id_usuario"));
+                    miusuario.setNombre(art.getString("nombre_usuario"));
+                    miusuario.setClave(art.getString("clave"));
+                    miusuario.setPerfil(art.getString("id_perfil"));
+                    miusuario.setEstado(art.getString("activo"));
+                    
+                    System.out.println("Busqueda exitosa...\n");
+                }//cierra while
+            
+
+        } catch (Exception e) {
+            System.out.println("Error Usuario no registrado...\n");
+            e.getMessage();
+        } finally {
+            try {
+                con.close();
+            } catch (Exception e) {
+            }
+        }//cierra finally
+        if (!miusuario.getNombre().equals(Nombre)){
+            System.out.println("El Usuario no se encuentra registrado en la base de datos");
+        }
+        return miusuario;
+
+    }//finaliza buscar
+
 }
