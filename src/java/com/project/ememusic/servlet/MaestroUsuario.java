@@ -58,7 +58,9 @@ public class MaestroUsuario extends HttpServlet {
         request.setAttribute("datos", null);
         
         if ("Guardar".equals(request.getParameter("action"))) {
-           
+                    if (perfil.equals("1")) {
+                        mensaje = "Usuario Administrador ya existe";
+                    }else {
                     try {
                         usuario.setNombre(nombre);
                         usuario.setClave(clave);
@@ -73,6 +75,7 @@ public class MaestroUsuario extends HttpServlet {
                         mensaje = "Error en el registro de Usuario, favor verificar";
                         limpiar();
                     }
+           }
                 }//fin guardar
         
         if ("Buscar".equals(request.getParameter("action"))) {
