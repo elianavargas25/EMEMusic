@@ -53,7 +53,7 @@ public class DaoArtistaTest {
         String tdocu = "1";
         DaoArtista instance = new DaoArtista();
         Artistas artista = new Artistas();
-        Artistas result = instance.buscarArtistas(con, Documento, tdocu);
+        Artistas result = instance.buscarArtista(con, Documento, tdocu);
         Artistas expResult = artista;
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
