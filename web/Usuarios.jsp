@@ -202,9 +202,9 @@
                                     <div>
                                         <center>
 
-                                            <input id="nombre" name="txtnombre" value="<%=Nombre != null ? Nombre : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Nombre Usuario *"   maxlength="15" min="3" required="required" data-error="Name is required.">
+                                            <input id="nombre" name="txtnombre" value="<%=Nombre != null ? Nombre : ""%>"  class="input_field reply_form_name" type="text" placeholder="Nombre Usuario *"   maxlength="15" min="3" required="required" data-error="Name is required.">
 
-                                            <input id="clave"  name="txtclave" value="<%=Clave != null ? Clave : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_label" type="password" placeholder="Clave *"  required="required" data-error="Valid clave is required."  maxlength="15" min="3">
+                                            <input id="clave"  name="txtclave" value="<%=Clave != null ? Clave : ""%>"  class="input_field reply_form_label" type="password" placeholder="Clave *"  required="required" data-error="Valid clave is required."  maxlength="15" min="3">
 
 
                                             <select id="cboDocument" name="cboperfil" value="<%=Perfil != null ? Perfil : ""%>" class="input_field reply_form_name" type="select"  required="required" 

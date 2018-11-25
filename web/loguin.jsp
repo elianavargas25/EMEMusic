@@ -5,8 +5,8 @@
     /*vamos a entregar la respuesta del servlet en la pagina JSP
    * página JSP
      */
-    String mensajeError = request.getAttribute("men") != null
-            ? (String) request.getAttribute("men") : null;
+    String mensaje = request.getAttribute("mensaje") != null
+            ? (String) request.getAttribute("mensaje") : null;
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="styles/loguin.css">
@@ -16,7 +16,8 @@
     <div class="home_background_container prlx_parent">
         <div class="home_background prlx" style="background-image:url(images/slider_background.jpg)"></div>
     </div>
-    <h1><%=mensajeError == null ? "" : mensajeError%></h1>
+    <br>
+    <h1><%=mensaje == null ? "" : mensaje%></h1>
     <h1>Ingresar al Sistema</h1>
     <div class="inset">
         <p>

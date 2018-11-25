@@ -6,6 +6,7 @@
 package com.project.ememusic.persistencia;
 
 import com.project.ememusic.entidad.Artistas;
+import com.project.ememusic.utilidades.Conexion;
 import java.sql.Connection;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,6 +20,8 @@ import static org.junit.Assert.*;
  * @author max
  */
 public class DaoArtistaTest {
+            Connection con = null;
+
     
     public DaoArtistaTest() {
     }
@@ -45,12 +48,13 @@ public class DaoArtistaTest {
     @Test
     public void testBuscarArtista() {
         System.out.println("buscarArtista");
-        Connection con = null;
+        con = new Conexion().getCon();
         String Documento = "123456";
         String tdocu = "1";
         DaoArtista instance = new DaoArtista();
-        String expResult = "Busqueda exitosa";
-        Artistas result = instance.buscarArtista(con, Documento, tdocu);
+        Artistas artista = new Artistas();
+        Artistas result = instance.buscarArtistas(con, Documento, tdocu);
+        Artistas expResult = artista;
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -61,31 +65,25 @@ public class DaoArtistaTest {
      */
     @Test
     public void testGuardarArtista() {
-        System.out.println("guardarArtista");
-        Connection con = null;
-        Artistas artista = null;
+        System.out.println("guardar Artista");
+        Artistas artista = new Artistas();
+        artista.setTipoDocumento("1");
+        artista.setNroDocumento("789456123");
+        artista.setPrimerNombre("Pepito");
+        artista.setSegundoNombre("");
+        artista.setPrimerApellido("Pérez");
+        artista.setSegundoApellido("");
+        artista.setNombreArtistico("Pepito flow");
+        artista.setEstado("S");
+        artista.setEmpresa("1");
+        con = new Conexion().getCon();
         DaoArtista instance = new DaoArtista();
-        Artistas expResult = null;
+        Artistas expResult = artista;
         Artistas result = instance.guardarArtista(con, artista);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of actualizarArtista method, of class DaoArtista.
-     */
-    @Test
-    public void testActualizarArtista() {
-        System.out.println("actualizarArtista");
-        Connection con = null;
-        Artistas artista = null;
-        DaoArtista instance = new DaoArtista();
-        Artistas expResult = null;
-        Artistas result = instance.actualizarArtistas(con, artista);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
-    }
+    
     
 }
