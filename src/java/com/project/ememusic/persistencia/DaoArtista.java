@@ -43,7 +43,7 @@ public class DaoArtista {
             ResultSet art = ar.executeQuery();
             if (art.next()) {
                 while (art.next()) {
-                    Artistas artista = new Artistas();
+                    //Artistas artista = new Artistas();
                     artista.setIdArtista(art.getString("id_artistas"));
                     artista.setTipoDocumento(art.getString("id_tipo_documento"));
                     artista.setNroDocumento(art.getString("nro_documento"));
@@ -94,7 +94,7 @@ public class DaoArtista {
             ar.setString(2, tdocu);
             ResultSet art = ar.executeQuery();
             while (art.next()) {
-                Artistas artista = new Artistas();
+                //Artistas artista = new Artistas();
                 artista.setIdArtista(art.getString("id_artistas"));
                 artista.setTipoDocumento(art.getString("id_tipo_documento"));
                 artista.setNroDocumento(art.getString("nro_documento"));

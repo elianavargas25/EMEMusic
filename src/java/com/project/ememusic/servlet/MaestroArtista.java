@@ -69,7 +69,7 @@ public class MaestroArtista extends HttpServlet {
         if ("Guardar".equals(request.getParameter("action"))) {
             try {
                 //verifica si existe el dato
-                artista = negocio.buscarArtista(NroDocumento, TipoDocumento);
+                artista = negocio.buscarArtistas(NroDocumento, TipoDocumento);
                 if (artista.getNroDocumento().equals(NroDocumento) && artista.getTipoDocumento().equals(TipoDocumento) || artista.getNombreArtistico().equals(NombreArtistico)) {
                     mensaje = "El Artista que desea registrar, ya se encuentra en sistema";
                 } else {
@@ -123,7 +123,6 @@ public class MaestroArtista extends HttpServlet {
                         mensaje="Error al actualizar el Artista";
                          limpiar();
                         }
-
                     }
                        } catch (Exception e1) {
                         mensaje="El Artista no esta registrado";
