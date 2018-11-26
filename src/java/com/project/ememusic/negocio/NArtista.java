@@ -46,10 +46,10 @@ public class NArtista {
             error += "<br> Por favor ingrese el tipo de documento";
         }
         if ("".equals(NroDocumento) || NroDocumento == null) {
-            error += "<br> Por favor ingrese número de dcumento";
+            error += "<br> Por favor ingrese número de documento";
         }
         if ("".equals(PrimerNombre) || PrimerNombre == null) {
-            error += "<br>Por favor infrese el primer nombre";
+            error += "<br>Por favor ingrese el primer nombre";
         }
         if ("".equals(PrimerApellido) || PrimerApellido == null) {
             error += "<br> Por favor ingrese el primer apellido";

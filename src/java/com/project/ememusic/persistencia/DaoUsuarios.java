@@ -30,7 +30,7 @@ public class DaoUsuarios {
                 miusuario.setEstado(rs.getString(5));  
                 System.out.println("Usuario logueado correctamente...");
              } //cierra el while          
-           if(miusuario.getIdUsuario().equals("*")){
+           if(!miusuario.getNombre().equals(usuario) || !miusuario.getClave().equals(clave)){
            System.out.println("Usuario y/o Clave incorrectos...");    
            }
         } catch (Exception e) {

@@ -65,7 +65,7 @@ public class DaoEmpresa {
             } catch (Exception e) {
             }
         }//cierra finally
-        if (!emp.getNroDocumento().equals(NroDocumento) && emp.getTipoDocumento().equals(TipoDocu)) {
+        if (!emp.getNroDocumento().equals(NroDocumento) || emp.getTipoDocumento().equals(TipoDocu)) {
             System.out.println("La empresa no se encuentra regitrada en nuestra la base de datos");
         }
         return emp;
@@ -98,7 +98,7 @@ public class DaoEmpresa {
             } catch (Exception e) {
             }
         }//cierra finally
-        if (!emp.getNroDocumento().equals(NroDocumento) && !emp.getTipoDocumento().equals(TipoDocu)) {
+        if (!emp.getNroDocumento().equals(NroDocumento) || !emp.getTipoDocumento().equals(TipoDocu)) {
             System.out.println("La empresa no se encuentra regitrada en nuestra la base de datos");
         }
         return emp;

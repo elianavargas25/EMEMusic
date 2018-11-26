@@ -35,6 +35,49 @@
     String mensaje = request.getAttribute("mensaje") != null
             ? (String) request.getAttribute("mensaje") : null;
 %>
+
+<script>
+    function soloLetras(e) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toString();
+        letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ";//Se define todo el abecedario que se quiere que se muestre.
+        especiales = [8, 37, 39, 46, 6]; //Es la validación del KeyCodes, que teclas recibe el campo de texto.
+
+        tecla_especial = false
+        for (var i in especiales) {
+            if (key == especiales[i]) {
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+            alert('Tecla no aceptada');
+            return false;
+        }
+    }
+
+    function soloNumeros(e) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toString();
+        letras = "0123456789";//Se define todo el abecedario que se quiere que se muestre.
+        especiales = [8, 37, 39, 46, 6]; //Es la validación del KeyCodes, que teclas recibe el campo de texto.
+
+        tecla_especial = false
+        for (var i in especiales) {
+            if (key == especiales[i]) {
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+            alert('Tecla no aceptada');
+            return false;
+        }
+    }
+
+</script>
 <html lang="en">
     <head>
         <title>EME MUSIC</title>
@@ -75,8 +118,10 @@
                         <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
                         <li class="menu_mm"><a href="RegistrarVentas.jsp">Cargar Ventas</a></li>
+                        <li class="menu_mm"><a href="Usuarios.jsp">Usuarios</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
                         <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
+                        
                         <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
                         <a href="index.jsp">Cerrar sesión</a>
                     </ul>   
@@ -197,16 +242,16 @@
                                <form name="Empresa" method="Post" id="Empresa"
                                       action="./MaestroEmpresa" autocomplete="off" class="bod"> 
                                     <div>
-                                        <select id="cboDocument" name="cbotipodocumento" value="<%=TipoDocumento != null ? TipoDocumento : ""%>" class="input_field reply_form_email" type="select" placeholder="Tipo de Documento *" required="required" data-error="Valid Tipo de Documento is required.">
+                                        <select id="cboDocument" name="cbotipodocumento" value="<%=TipoDocumento != null ? TipoDocumento : ""%>" class="input_field reply_form_email" type="select" placeholder="Tipo de Documento *" required="required" data-error="Valid Tipo de Documento is required." >
                                             <option>Seleccione su tipo de documento</option>
                                         <%while (tdocu.next()) {%>
                                                 <option value="<%= tdocu.getString(1)%>"><%=tdocu.getString(2)%></option>      
                                                 <% }%></select>
-                                        <input id="Document" name="txtnrodocumento" value="<%=NroDocumento != null ? NroDocumento : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Número de Documento *" required="required" data-error="Name is required.">
+                                        <input id="Document" name="txtnrodocumento" value="<%=NroDocumento != null ? NroDocumento : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Número de Documento *" maxlength="15" min="3" onkeypress="return soloNumeros(event)" required="required" data-error="Name is required.">
                                     </div>
                                     <div>
-                                        <input id="Name" name="txtnombre" value="<%=nombreEmpresa != null ? nombreEmpresa : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Nombre *" required="required" data-error="Valid Primer Nombre is required.">
-                                        <input id="PagoPorOperacion" name="txtpagooperacion" value="<%=pagoOperacion != null ? pagoOperacion : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Pago por Operación *" required="required" data-error="Name is required."><br>
+                                        <input id="Name" name="txtnombre" maxlength="50" min="3" onkeypress="return soloLetras(event)" value="<%=nombreEmpresa != null ? nombreEmpresa : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Nombre *" required="required" data-error="Valid Primer Nombre is required.">
+                                        <input id="PagoPorOperacion" name="txtpagooperacion" value="<%=pagoOperacion != null ? pagoOperacion : ""%>" maxlength="15" min="3" onkeypress="return soloNumeros(event)" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Pago por Operación *" required="required" data-error="Name is required."><br>
                                         <div class="reply_form_email" name="txtestadoS" value="<%=Estado != null ? Estado : ""%>"  aria-hidden="true">Activo</div>
                                         <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="S">Si</label>
                                         <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="N">No</label>

@@ -62,15 +62,15 @@ public class MaestroArtista extends HttpServlet {
         String mensaje = "";
         String modulo = "Artista.jsp"; // validar con la vista
 
-        //request.setAttribute("mensaje", null);
+        request.setAttribute("mensaje", null);
         request.setAttribute("modulo", null);
         request.setAttribute("datos", null);
 
         if ("Guardar".equals(request.getParameter("action"))) {
             try {
                 //verifica si existe el dato
-                artista = negocio.buscarArtista(NroDocumento, TipoDocumento);
-                if (artista.getNroDocumento().equals(NroDocumento) && artista.getTipoDocumento().equals(TipoDocumento)) {
+                artista = negocio.buscarArtistas(NroDocumento, TipoDocumento);
+                if (artista.getNroDocumento().equals(NroDocumento) && artista.getTipoDocumento().equals(TipoDocumento) || artista.getNombreArtistico().equals(NombreArtistico)) {
                     mensaje = "El Artista que desea registrar, ya se encuentra en sistema";
                 } else {
                     try {
@@ -102,7 +102,7 @@ public class MaestroArtista extends HttpServlet {
          if("modificar".equals(request.getParameter("action"))){
                   try {
                 //vereificamos que el registro no exista en la tabla   
-                    artista= negocio.buscarArtista(NroDocumento, TipoDocumento);
+                    artista= negocio.buscarArtistas(NroDocumento, TipoDocumento);
                     if (artista.getNroDocumento().equals(NroDocumento) && artista.getTipoDocumento().equals(TipoDocumento)){
                     mensaje="El Artista no se  encuentra registrado";
                     }else{
@@ -123,7 +123,6 @@ public class MaestroArtista extends HttpServlet {
                         mensaje="Error al actualizar el Artista";
                          limpiar();
                         }
-
                     }
                        } catch (Exception e1) {
                         mensaje="El Artista no esta registrado";

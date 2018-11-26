@@ -34,7 +34,7 @@ public class MaestroEmpresa extends HttpServlet {
      * methods.
      *
      * @param request servlet request
-     * @param response servlet response 
+     * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
@@ -47,7 +47,7 @@ public class MaestroEmpresa extends HttpServlet {
         String PagoOperacion = request.getParameter("txtpagooperacion");
         String Estado = request.getParameter("optionStateS");
         String mensaje = "";
-        String modulo = "Empresa.jsp"; 
+        String modulo = "Empresa.jsp";
         request.setAttribute("mensaje", null);
         request.setAttribute("modulo", null);
         request.setAttribute("datos", null);
@@ -55,8 +55,8 @@ public class MaestroEmpresa extends HttpServlet {
         if ("Guardar".equals(request.getParameter("action"))) {
             try {
                 //verifica si existe el dato
-                empresa = negocio.buscarEmpresa(NroDocumento, TipoDocumento);
-                if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento)){
+                empresa = negocio.buscarEmpresas(NroDocumento, TipoDocumento);
+                if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento) || empresa.getNombre().equals(Nombre)) {
                     mensaje = "La empresa que desea registrar, ya se encuentra en sistema ";
                 } else {
                     try {
@@ -70,14 +70,20 @@ public class MaestroEmpresa extends HttpServlet {
                         negocio.guardarEmpresa(empresa);
                         mensaje = "Registro guardado correctamente";
                         limpiar();
+                        request.setAttribute("datos", empresa);
+
                     } catch (Exception e2) {
                         mensaje = "Error en el registro , favor verificar";
                         limpiar();
+                        request.setAttribute("datos", empresa);
+
                     }
                 }
             } catch (Exception e1) {
                 mensaje = "La empresa ya se encuentra registrado en la base de datos";
                 limpiar();
+                request.setAttribute("datos", empresa);
+
             }
         }//fin guardar
 
@@ -86,7 +92,7 @@ public class MaestroEmpresa extends HttpServlet {
             try {
                 //vereficamos que el registró no exista en la tabla 
                 empresa = negocio.buscarEmpresa(NroDocumento, TipoDocumento);
-                if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento)){
+                if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento)) {
                     mensaje = "La empresa que desea registrar, ya se encuentra en sistema";
                 } else {
                     try {
@@ -109,12 +115,13 @@ public class MaestroEmpresa extends HttpServlet {
         }//fin modificar
         if ("Cancelar".equals(request.getParameter("action"))) {
             limpiar();
+            request.setAttribute("datos", empresa);
         }//fin linpiar
 
         if ("Buscar".equals(request.getParameter("action"))) {
             try {
                 empresa = negocio.buscarEmpresas(NroDocumento, TipoDocumento);
-                if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento)){
+                if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento)) {
                     //si encuentra el dato cargamos los datos en el setAttribute
                     request.setAttribute("datos", empresa);
                 } else {

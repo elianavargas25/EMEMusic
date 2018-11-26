@@ -38,8 +38,10 @@ public class ValidacionServlet extends HttpServlet {
         String password = request.getParameter("Clave");
         request.setAttribute("target", null);
         request.setAttribute("usuario", null);
-        request.setAttribute("mensajeError", null);
-        String men = "";
+        request.setAttribute("mensaje", null);
+        request.setAttribute("modulo", null);
+        String modulo = "";
+        String mensaje = "";
         // JOptionPane.showMessageDialog(null,user+" "+password);
         Usuarios usu = new Usuarios();
         NUsuario negocio = new NUsuario();
@@ -53,35 +55,43 @@ public class ValidacionServlet extends HttpServlet {
 
                     String perfil = usu.getPerfil();
                     if (perfil.equals("Administrador")) {
-                        men = "Bienvenido al Sistema";
-                        request.setAttribute("mensajeError", men);
+                        mensaje = "Bienvenido al Sistema";
                         id_usu = usu.getIdUsuario();
                         user = usu.getNombre();
                         perfil = usu.getPerfil();
+                        modulo = "Menu.jsp";
+                        request.setAttribute("mensaje", mensaje);
                         request.getSession(true).setAttribute("usuario", usu);
-                        request.getRequestDispatcher("/Menu.jsp").forward(request, response);
+                        request.getRequestDispatcher(modulo).forward(request, response);
 
                     } else if (perfil.equals("Operario")) {
-                        men = "Bienvenido al Sistema";
-                        request.setAttribute("mensajeError", men);
+                        mensaje = "Bienvenido al Sistema";
                         id_usu = usu.getIdUsuario();
                         user = usu.getNombre();
                         perfil = usu.getPerfil();
+                        modulo = "Menu.jsp";
+                        request.setAttribute("mensaje", mensaje);
                         request.getSession(true).setAttribute("usuario", usu);
-                        request.getRequestDispatcher("/Menu.jsp").forward(request, response);
+                        request.getRequestDispatcher(modulo).forward(request, response);
                     }
 
                 } else {
-                    men = "Su estado es inactivo, por favor comuníquese con el Administrador";
-                    request.setAttribute("mensajeError", men);
-                    request.getRequestDispatcher("/loguin.jsp").forward(request, response);
+                    modulo = "loguin.jsp";
+                    mensaje = "Su estado es inactivo, por favor comuníquese con el Administrador";
+                    request.setAttribute("mensaje", mensaje);
+                    request.getRequestDispatcher(modulo).forward(request, response);
                 }
             } else {
-                men = "Usuario y/o Contraseña incorrectos";
-                request.setAttribute("mensajeError", men);
-                request.getRequestDispatcher("/loguin.jsp").forward(request, response);
+                modulo = "loguin.jsp";
+                mensaje = "Usuario y/o Contraseña incorrectos";
+                request.setAttribute("mensaje", mensaje);
+                request.getRequestDispatcher(modulo).forward(request, response);
             }
         } catch (Exception e) {
+            modulo = "loguin.jsp";
+            mensaje = "Usuario y/o Contraseña incorrectos";
+            request.setAttribute("mensaje", mensaje);
+            request.getRequestDispatcher(modulo).forward(request, response);
         }
 
     }

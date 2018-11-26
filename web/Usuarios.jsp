@@ -14,13 +14,13 @@
         nombre = (String) (tec.getNombre());
         perfil = tec.getPerfil();
     }
-    
+
     String idUsuario;
     String Nombre = request.getParameter("txtnombre");
     String Clave = request.getParameter("txtclave");
     String Perfil = request.getParameter("cboperfil");
     String Estadoo = request.getParameter("optionStateS");
-    
+
     DaoPerfil daoPer = new DaoPerfil();
     ResultSet per = daoPer.PERFIL();
 
@@ -157,9 +157,9 @@
                         <li class="menu_mm"><a href="index.jsp">Home</a></li>
                         <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
-                        <li class="menu_mm"><a href="CargarVentas.jsp">Cargar Ventas</a></li>
+                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Registrar Ventas</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                        <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
+                        <li class="menu_mm"><a href="Administración.jsp">Administración</a></li>
                     </ul>
                 </div>
             </div>
@@ -202,18 +202,15 @@
                                     <div>
                                         <center>
 
-                                            <input id="nombre" name="txtnombre" value="<%=Nombre != null ? Nombre : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Nombre Usuario *"   maxlength="15" min="3" required="required" data-error="Name is required.">
-
-                                            <input id="clave"  name="txtclave" value="<%=Clave != null ? Clave : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_label" type="password" placeholder="Clave *"  required="required" data-error="Valid clave is required."  maxlength="15" min="3">
-
-
+                                            <input id="nombre" name="txtnombre" value="<%=Nombre != null ? Nombre : ""%>"  class="input_field reply_form_name" type="text" placeholder="Nombre Usuario *"   maxlength="8" minlength="3" required="required" data-error="Name is required.">
+                                            <input id="clave"  name="txtclave" value="<%=Clave != null ? Clave : ""%>"  class="input_field reply_form_label" type="password" placeholder="Clave *"  required="required" data-error="Valid clave is required."  maxlength="10" minlength="3">
                                             <select id="cboDocument" name="cboperfil" value="<%=Perfil != null ? Perfil : ""%>" class="input_field reply_form_name" type="select"  required="required" 
                                                     title="Seleccione el tipo de documento">
                                                 <option value="0" disabled selected="true">Seleccione</option>
                                                 <%while (per.next()) {%>
                                                 <option value="<%= per.getString(1)%>"><%=per.getString(2)%></option>      
                                                 <% }%></select>
-                                                
+
                                             <div class="reply_form_name" value="<%=Estadoo != null ? Estadoo : ""%>" name="optestado" aria-hidden="true">Activo</div>
                                             <label class="reply_form_name radio-inline"><input type="radio" name="optionStateS" value="S">Si</label>
                                             <br>
@@ -226,7 +223,7 @@
 
                                     <center> <div class="Reply">
                                             <button id="save" type="submit" class="btn bg-info" name="action" value="Guardar">Guardar</button>
-                                             <button id="search" type="submit" class="btn bg-info" name="action" value="Buscar">Buscar</a></button>
+                                            <button id="search" type="submit" class="btn bg-info" name="action" value="Buscar">Buscar</a></button>
 
 
                                         </div>
