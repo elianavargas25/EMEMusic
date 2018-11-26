@@ -75,8 +75,8 @@ public class DaoArtistaTest {
         artista.setPrimerApellido("Pérez");
         artista.setSegundoApellido("");
         artista.setNombreArtistico("Pepito flow");
+        artista.setEmpresa("2");
         artista.setEstado("S");
-        artista.setEmpresa("1");
         con = new Conexion().getCon();
         DaoArtista instance = new DaoArtista();
         Artistas expResult = artista;
@@ -98,8 +98,8 @@ public class DaoArtistaTest {
         a.setPrimerApellido("Montes");
         a.setSegundoApellido("");
         a.setNombreArtistico("JMontes");
-        a.setEstado("S");
         a.setEmpresa("2");
+        a.setEstado("S");
         NArtista instance = new NArtista();
         String expResult = "<br> Por favor ingrese el tipo de documento";//No debe guardar un nuevo artista.
         Artistas result = instance.guardarArtista(a);
@@ -121,8 +121,8 @@ public class DaoArtistaTest {
         a.setPrimerApellido("Montes");
         a.setSegundoApellido("");
         a.setNombreArtistico("JMontes");
-        a.setEstado("S");
         a.setEmpresa("2");
+        a.setEstado("S");
         NArtista instance = new NArtista();
         String expResult = "<br> Por favor ingrese número de documento";//No debe guardar un nuevo artista.
         Artistas result = instance.guardarArtista(a);
@@ -144,8 +144,8 @@ public class DaoArtistaTest {
         a.setPrimerApellido("Montes");
         a.setSegundoApellido("");
         a.setNombreArtistico("JMontes");
-        a.setEstado("S");
         a.setEmpresa("2");
+        a.setEstado("S");
         NArtista instance = new NArtista();
         String expResult = "<br>Por favor ingrese el primer nombre";//No debe guardar un nuevo artista.
         Artistas result = instance.guardarArtista(a);
@@ -167,8 +167,8 @@ public class DaoArtistaTest {
         a.setPrimerApellido("");
         a.setSegundoApellido("");
         a.setNombreArtistico("JMontes");
-        a.setEstado("S");
         a.setEmpresa("2");
+        a.setEstado("S");
         NArtista instance = new NArtista();
         String expResult = "<br>Por favor ingrese el primer apellido";//No debe guardar un nuevo artista.
         Artistas result = instance.guardarArtista(a);
@@ -186,11 +186,11 @@ public class DaoArtistaTest {
         a.setNroDocumento("14225223");//Campo obligatorio
         a.setPrimerNombre("Juan");
         a.setSegundoNombre("");
-        a.setPrimerApellido("");
+        a.setPrimerApellido("Montes");
         a.setSegundoApellido("");
-        a.setNombreArtistico("JMontes");
-        a.setEstado("S");
+        a.setNombreArtistico("");
         a.setEmpresa("2");
+        a.setEstado("S");
         NArtista instance = new NArtista();
         String expResult = "<br> Por favor ingrese el nombre artistico";//No debe guardar un nuevo artista.
         Artistas result = instance.guardarArtista(a);
@@ -209,13 +209,34 @@ public class DaoArtistaTest {
         a.setNroDocumento("14225223");//Campo obligatorio
         a.setPrimerNombre("Juan");
         a.setSegundoNombre("");
+        a.setPrimerApellido("Montes");
+        a.setSegundoApellido("");
+        a.setNombreArtistico("");
+        a.setEmpresa("");
+        a.setEstado("S");
+        NArtista instance = new NArtista();
+        String expResult = "<br> Por favor ingrese la empresa";//No debe guardar un nuevo artista.
+        Artistas result = instance.guardarArtista(a);
+        assertEquals(result, expResult);
+        // TODO review the generated test code and remove the default call to fail.
+    }
+    //Probamos que no deje guardar debido el Campo Estado es obligatorio obligatorio.
+
+    @Test
+    public void testObligatoriedadEstado() throws Exception {
+        System.out.println("Obligatoriedad campo Estado");
+        Artistas a = new Artistas();
+        a.setTipoDocumento("1");
+        a.setNroDocumento("14225223");//Campo obligatorio
+        a.setPrimerNombre("Juan");
+        a.setSegundoNombre("");
         a.setPrimerApellido("");
         a.setSegundoApellido("");
         a.setNombreArtistico("JMontes");
-        a.setEstado("S");
         a.setEmpresa("2");
+         a.setEstado("");
         NArtista instance = new NArtista();
-        String expResult = "<br> Por favor ingrese el Empresa";//No debe guardar un nuevo artista.
+        String expResult = "<br> Por favor ingrese el estado";//No debe guardar un nuevo artista.
         Artistas result = instance.guardarArtista(a);
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
