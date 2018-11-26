@@ -6,6 +6,7 @@
 package com.project.ememusic.persistencia;
 
 import com.project.ememusic.entidad.Empresa;
+import com.project.ememusic.utilidades.Conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import org.junit.After;
@@ -20,60 +21,42 @@ import static org.junit.Assert.*;
  * @author max
  */
 public class DaoEmpresaTest {
-    
+
+    Connection con = null;
+
     public DaoEmpresaTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
-    
-
-    /**
-     * Test of buscarEmpresa method, of class DaoEmpresa.
-     */
-    @Test
-    public void testBuscarEmpresa() {
-        System.out.println("buscarEmpresa");
-        Connection cxn = null;
-        String NroDocumento = "";
-        String TipoDocu = "";
-        DaoEmpresa instance = new DaoEmpresa();
-        Empresa expResult = null;
-        Empresa result = instance.buscarEmpresa(cxn, NroDocumento, TipoDocu);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of buscarEmpresas method, of class DaoEmpresa.
      */
     @Test
     public void testBuscarEmpresas() {
-        System.out.println("buscarEmpresas");
-        Connection cxn = null;
-        String NroDocumento = "";
-        String TipoDocu = "";
+        System.out.println("Prueba Buscar Empresa");
+        con = new Conexion().getCon();
+        String NroDocumento = "99825563";
+        String TipoDocu = "2";
         DaoEmpresa instance = new DaoEmpresa();
-        Empresa expResult = null;
-        Empresa result = instance.buscarEmpresas(cxn, NroDocumento, TipoDocu);
+        Empresa result = instance.buscarEmpresas(con, NroDocumento, TipoDocu);
+        Empresa expResult = result;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -81,12 +64,12 @@ public class DaoEmpresaTest {
      */
     @Test
     public void testGuardarEmpresa() {
-        System.out.println("guardarEmpresa");
-        Connection cxn = null;
+        System.out.println("Prueba guardar Empresa");
+        con = new Conexion().getCon();
         Empresa emp = null;
         DaoEmpresa instance = new DaoEmpresa();
         Empresa expResult = null;
-        Empresa result = instance.guardarEmpresa(cxn, emp);
+        Empresa result = instance.guardarEmpresa(con, emp);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -107,5 +90,5 @@ public class DaoEmpresaTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }

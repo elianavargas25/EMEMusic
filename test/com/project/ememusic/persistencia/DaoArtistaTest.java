@@ -48,12 +48,11 @@ public class DaoArtistaTest {
      */
     @Test
     public void testBuscarArtista() {
-        System.out.println("buscarArtista");
+        System.out.println("Prueba Buscar Artista");
         con = new Conexion().getCon();
         String Documento = "123456";
         String tdocu = "1";
         DaoArtista instance = new DaoArtista();
-        Artistas artista = new Artistas();
         Artistas result = instance.buscarArtistas(con, Documento, tdocu);
         Artistas expResult = result;
         assertEquals(expResult, result);
@@ -66,7 +65,7 @@ public class DaoArtistaTest {
      */
     @Test
     public void testGuardarArtista() {
-        System.out.println("guardar Artista");
+        System.out.println("Prueba guardar Artista");
         Artistas artista = new Artistas();
         artista.setTipoDocumento("1");
         artista.setNroDocumento("789456123");
