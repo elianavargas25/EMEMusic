@@ -49,6 +49,7 @@ public class ArtistaTest {
 
     @After
     public void tearDown() {
+        driver.quit();
     }
 
     @Test

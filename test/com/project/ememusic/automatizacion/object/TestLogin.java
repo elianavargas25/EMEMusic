@@ -22,8 +22,6 @@ public class TestLogin {
     private static WebDriver driver = null;
     Login log;
     UserPage user;
-    //Account acco;
-    //Deposit dep;
 
     
 
@@ -46,7 +44,7 @@ public class TestLogin {
 
     @After
     public void tearDown() {
-     // driver.quit();
+     driver.quit();
     }
 
     /**

@@ -66,29 +66,18 @@ public class DaoEmpresaTest {
     public void testGuardarEmpresa() {
         System.out.println("Prueba guardar Empresa");
         con = new Conexion().getCon();
-        Empresa emp = null;
+        Empresa emp = new Empresa();
+        emp.setTipoDocumento("1");
+        emp.setNroDcumento("45225233");
+        emp.setNombre("YouTube");
+        emp.setPago_operacion("300");
+        emp.setEstado("S");
         DaoEmpresa instance = new DaoEmpresa();
-        Empresa expResult = null;
+        Empresa expResult = emp;
         Empresa result = instance.guardarEmpresa(con, emp);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of actualizarEmpresa method, of class DaoEmpresa.
-     */
-    @Test
-    public void testActualizarEmpresa() {
-        System.out.println("actualizarEmpresa");
-        Connection cxn = null;
-        Empresa inc = null;
-        DaoEmpresa instance = new DaoEmpresa();
-        Empresa expResult = null;
-        Empresa result = instance.actualizarEmpresa(cxn, inc);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
 
 }
