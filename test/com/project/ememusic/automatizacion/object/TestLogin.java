@@ -46,7 +46,7 @@ public class TestLogin {
 
     @After
     public void tearDown() {
-        driver.quit();
+     // driver.quit();
     }
 
     /**
@@ -54,19 +54,23 @@ public class TestLogin {
      */
     @org.junit.Test
     public  void testLoginApplication() {
-        System.out.println("Prueba Login aplicación");
+        String User =("Usuario: admin");
         driver.findElement(By.linkText("Ingresar")).click();
-        String strUser  = "admin";
-        String strPass= "admin";
-        log = new Login(driver);
-        log.loginApplication(strUser, strPass);
-        user = new UserPage(driver);
-        System.out.println("El usuario es " + user.UserName());
-        String User = user.UserName();
-        String actual = "Usuario: admin";
-        assertEquals(User, actual);
+        driver.findElement(By.name("Usuario")).sendKeys("admin");
+        driver.findElement(By.name("Clave")).sendKeys("admin");
+        driver.findElement(By.name("action")).click();
+        String UserCap= driver.findElement(By.xpath("/html/body/div/header/nav/ul/h4")).getText();
+        assertEquals(User, UserCap);
         
         
 }
 
+   @org.junit.Test
+    public void Artista (){
+   
+    }
+    
+    
+    
 }
+
