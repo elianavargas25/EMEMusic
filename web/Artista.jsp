@@ -228,11 +228,6 @@
 
             </div>
 
-
-            <br>
-
-            <center>  <h4><%=mensaje != null ? mensaje : ""%></h4><br> </center>
-
             <div class="row contact_row">
                 <div class="content-box-gray">
                     <div class="col-lg-8">
