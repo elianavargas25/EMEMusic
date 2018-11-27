@@ -86,6 +86,7 @@ public class DaoEmpresa {
                     emp.setPago_operacion(ur.getString("PAGO_OPERACION"));
                     emp.setEstado(ur.getString("ID_ESTADO"));
                     System.out.println("Busqueda exitosa...\n");
+                    return emp;
                 }//cierra while
             
         } catch (Exception e) {

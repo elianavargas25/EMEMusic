@@ -91,7 +91,7 @@ public class MaestroEmpresa extends HttpServlet {
         if ("Modificar".equals(request.getParameter("action"))) {
             try {
                 //vereficamos que el registró no exista en la tabla 
-                empresa = negocio.buscarEmpresa(NroDocumento, TipoDocumento);
+                empresa = negocio.buscarEmpresas(NroDocumento, TipoDocumento);
                 if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento)) {
                     mensaje = "La empresa que desea registrar, ya se encuentra en sistema";
                 } else {

@@ -34,6 +34,7 @@ public class ArtistaTest {
     public static void setUpClass() {
         System.setProperty("webdriver.chrome.driver", "lib\\drivers\\chromedriver.exe");
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
     }
 
     @AfterClass
@@ -49,7 +50,7 @@ public class ArtistaTest {
 
     @After
     public void tearDown() {
-        driver.quit();
+        //driver.quit();
     }
 
     @Test
@@ -66,7 +67,7 @@ public class ArtistaTest {
         driver.findElement(By.name("cbotipodocumento")).sendKeys(Keys.RETURN);
         driver.findElement(By.name("cbotipodocumento")).click();
         driver.findElement(By.name("txtnumdocumento")).sendKeys("972367");
-        driver.findElement(By.name("txtprimernombre")).sendKeys("Ricado");
+        driver.findElement(By.name("txtprimernombre")).sendKeys("Ricardo");
         driver.findElement(By.name("txtsegundonombre")).sendKeys("Dario");
         driver.findElement(By.name("txtprimerapellido")).sendKeys("Arjona");
         driver.findElement(By.name("txtsegundopellido")).sendKeys("Velasquez");

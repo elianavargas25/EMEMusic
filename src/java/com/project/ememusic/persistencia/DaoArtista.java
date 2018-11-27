@@ -55,8 +55,6 @@ public class DaoArtista {
                     artista.setEmpresa(art.getString("id_empresa"));
                     artista.setEstado(art.getString("estado"));
                     System.out.println("Busqueda exitosa...\n");
-
-                    System.out.println("Busqueda exitosa...\n");
                 }//cierra while
             } else {
                 artista.setIdArtista("");

@@ -30,8 +30,7 @@ public class EmpresaTest {
     public static void setUpClass() {
         System.setProperty("webdriver.chrome.driver", "lib\\drivers\\chromedriver.exe");
         driver = new ChromeDriver();
-        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
+        driver.manage().window().maximize();
     }
 
     @AfterClass
