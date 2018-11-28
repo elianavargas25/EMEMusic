@@ -6,6 +6,7 @@
 package com.project.ememusic.persistencia;
 
 import com.project.ememusic.entidad.LogAuditoria;
+import com.project.ememusic.utilidades.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,12 +20,14 @@ import java.util.List;
  */
 public class DaoLogAuditoria {
 
+    Connection conn = Conexion.getInstance();
+
     LogAuditoria auditoria = new LogAuditoria();
 
-    public List<LogAuditoria> ListaAuditoria(Connection con, LogAuditoria auditoria) {
+    public List<LogAuditoria> ListaAuditoria(LogAuditoria auditoria) {
         List<LogAuditoria> result = new ArrayList<>();
         try {
-            PreparedStatement lista = con.prepareStatement(SqlLogAuditoria.getLista());
+            PreparedStatement lista = conn.prepareStatement(SqlLogAuditoria.getLista());
             ResultSet respuesta = lista.executeQuery();
             while (respuesta.next()) {
                 int index = 1;
@@ -42,13 +45,12 @@ public class DaoLogAuditoria {
             e.printStackTrace();
         } finally {
             try {
-                con.close();//cierra la conexion de la bd
             } catch (Exception e) {
             }//fin try/catch
         }//fin try/catch/finall
         return result;
     }
-    
+
     //insertar registro en la tabla
     public LogAuditoria guardarArtista(Connection con, LogAuditoria auditoria) {//validar conexion
         String mensaje = "";
