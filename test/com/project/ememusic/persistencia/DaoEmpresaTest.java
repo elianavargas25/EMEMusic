@@ -43,7 +43,6 @@ public class DaoEmpresaTest {
     public void tearDown() {
     }
 
-
     /**
      * Test of buscarEmpresas method, of class DaoEmpresa.
      */
@@ -54,7 +53,7 @@ public class DaoEmpresaTest {
         String NroDocumento = "99825563";
         String TipoDocu = "2";
         DaoEmpresa instance = new DaoEmpresa();
-        Empresa result = instance.buscarEmpresas(con, NroDocumento, TipoDocu);
+        Empresa result = instance.buscarEmpresas(NroDocumento, TipoDocu);
         Empresa expResult = result;
         assertEquals(expResult, result);
     }
@@ -74,10 +73,8 @@ public class DaoEmpresaTest {
         emp.setEstado("S");
         DaoEmpresa instance = new DaoEmpresa();
         Empresa expResult = emp;
-        Empresa result = instance.guardarEmpresa(con, emp);
+        Empresa result = instance.guardarEmpresa(emp);
         assertEquals(expResult, result);
     }
-
-    
 
 }

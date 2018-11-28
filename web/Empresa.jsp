@@ -257,8 +257,8 @@
                                         <input id="Name" name="txtnombre" maxlength="50" min="3" onkeypress="return soloLetras(event)" value="<%=nombreEmpresa != null ? nombreEmpresa : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Nombre *" required="required" data-error="Valid Primer Nombre is required.">
                                         <input id="PagoPorOperacion" name="txtpagooperacion" value="<%=pagoOperacion != null ? pagoOperacion : ""%>" maxlength="15" min="3" onkeypress="return soloNumeros(event)" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Pago por Operación *" required="required" data-error="Name is required."><br>
                                         <div class="reply_form_email" name="txtestadoS" value="<%=Estado != null ? Estado : ""%>"  aria-hidden="true">Activo</div>
-                                        <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="S">Si</label>
-                                        <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="N">No</label>
+                                        <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="S" value="<%=Estado != null ? Estado : ""%>">Si</label>
+                                        <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="N" value="<%=Estado != null ? Estado : ""%>">No</label>
                                     </div>
                                     <div class="Reply">
                                         <button id="save" type="submit" class="btn bg-info" name="action" value="Guardar">Guardar</button>

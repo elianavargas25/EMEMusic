@@ -17,20 +17,14 @@ import com.project.ememusic.utilidades.Conexion;
 public class NArtista {
 
     DaoArtista dao;
-    Connection con;//validar
+   
 
     public NArtista() {
         dao = new DaoArtista();
     }
-//buscar registro
 
-    public Artistas buscarArtista(String docu, String tdocu) {
-        con = new Conexion().getCon();// validar conexion
-        return dao.buscarArtista(con, docu, tdocu);
-    }//fin buscar
     public Artistas buscarArtistas(String docu, String tdocu) {
-        con = new Conexion().getCon();// validar conexion
-        return dao.buscarArtistas(con, docu, tdocu);
+        return dao.buscarArtistas( docu, tdocu);
     }//fin buscar
 
     public Artistas guardarArtista(Artistas artista) throws Exception {
@@ -66,8 +60,7 @@ public class NArtista {
         if (!"".equals(error)) {
             throw new Exception(error);
         }
-        con = new Conexion().getCon();//validar
-        artista = dao.guardarArtista(con,artista);//revisar
+        artista = dao.guardarArtista(artista);//revisar
         return artista;//revisar
     }//fin guardar
 
@@ -81,7 +74,6 @@ public class NArtista {
         String Empresa = art.getEmpresa();
         String Estado = art.getEstado();
         String error = "";
-        con = new Conexion().getCon();//validar
         
         if ("".equals(PrimerNombre) || PrimerNombre == null) {
             error += "<br>Por favor infrese el primer nombre";
@@ -101,7 +93,7 @@ public class NArtista {
         if (!"".equals(error)) {
             throw new Exception(error);
         }
-        art = dao.actualizarArtistas(con, art);
+        art = dao.actualizarArtistas( art);
         return art;
     }// Fin actualizar
 

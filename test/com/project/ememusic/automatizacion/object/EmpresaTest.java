@@ -68,7 +68,7 @@ public class EmpresaTest {
         driver.findElement(By.name("txtnombre")).sendKeys(Empresa);
         driver.findElement(By.name("txtpagooperacion")).sendKeys("900");
         driver.findElement(By.name("optionStateS")).sendKeys(Keys.DOWN);
-        driver.findElement(By.name("optionStateS")).sendKeys(Keys.RETURN);
+        //driver.findElement(By.name("optionStateS")).sendKeys(Keys.RETURN);
         driver.findElement(By.name("optionStateS")).click();
         driver.findElement(By.name("action")).click();
         String MensajeMostrado = driver.findElement(By.xpath("/html/body/div/div[2]/div[2]/center/h4")).getText();

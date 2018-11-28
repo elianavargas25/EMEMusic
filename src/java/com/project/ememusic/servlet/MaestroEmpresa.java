@@ -56,10 +56,12 @@ public class MaestroEmpresa extends HttpServlet {
             try {
                 //verifica si existe el dato
                 empresa = negocio.buscarEmpresas(NroDocumento, TipoDocumento);
-                if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento) || empresa.getNombre().equals(Nombre)) {
+               // if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento) || empresa.getNombre().equals(Nombre)) {
+                if (empresa!=null) {
                     mensaje = "La empresa que desea registrar, ya se encuentra en sistema ";
                 } else {
                     try {
+                        empresa = new Empresa();
                         empresa.setTipoDocumento(TipoDocumento);
                         empresa.setNroDcumento(NroDocumento);
                         empresa.setNombre(Nombre);
@@ -69,13 +71,9 @@ public class MaestroEmpresa extends HttpServlet {
                         //se guarda los datos en la tabla
                         negocio.guardarEmpresa(empresa);
                         mensaje = "Registro guardado correctamente";
-                        limpiar();
-                        request.setAttribute("datos", empresa);
 
                     } catch (Exception e2) {
                         mensaje = "Error en el registro , favor verificar";
-                        limpiar();
-                        request.setAttribute("datos", empresa);
 
                     }
                 }

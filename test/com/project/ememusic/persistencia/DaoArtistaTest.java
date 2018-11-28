@@ -21,24 +21,24 @@ import static org.junit.Assert.*;
  * @author max
  */
 public class DaoArtistaTest {
-            Connection con = null;
 
-    
+    Connection con = null;
+
     public DaoArtistaTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -53,7 +53,7 @@ public class DaoArtistaTest {
         String Documento = "123456";
         String tdocu = "1";
         DaoArtista instance = new DaoArtista();
-        Artistas result = instance.buscarArtistas(con, Documento, tdocu);
+        Artistas result = instance.buscarArtistas(Documento, tdocu);
         Artistas expResult = result;
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
@@ -79,13 +79,12 @@ public class DaoArtistaTest {
         con = new Conexion().getCon();
         DaoArtista instance = new DaoArtista();
         Artistas expResult = artista;
-        Artistas result = instance.guardarArtista(con, artista);
+        Artistas result = instance.guardarArtista(artista);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
     }
-    
-    //Probamos que no deje guardar debido el Campo Tipo Documento es obligatorio obligatorio.
 
+    //Probamos que no deje guardar debido el Campo Tipo Documento es obligatorio obligatorio.
     @Test
     public void testObligatoriedadTipoDocumento() throws Exception {
         System.out.println("Obligatoriedad campo tipo documento");
@@ -104,11 +103,10 @@ public class DaoArtistaTest {
         Artistas result = instance.guardarArtista(a);
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        
-    }
-    
-    //Probamos que no deje guardar debido el Campo Nro Documento es obligatorio obligatorio.
 
+    }
+
+    //Probamos que no deje guardar debido el Campo Nro Documento es obligatorio obligatorio.
     @Test
     public void testObligatoriedadNroDocumento() throws Exception {
         System.out.println("Obligatoriedad campo Nro documento");
@@ -127,11 +125,10 @@ public class DaoArtistaTest {
         Artistas result = instance.guardarArtista(a);
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        
-    }
-    
-    //Probamos que no deje guardar debido el Campo Primer nombre es obligatorio obligatorio.
 
+    }
+
+    //Probamos que no deje guardar debido el Campo Primer nombre es obligatorio obligatorio.
     @Test
     public void testObligatoriedadPrimerNombre() throws Exception {
         System.out.println("Obligatoriedad campo Primer nombre");
@@ -150,11 +147,10 @@ public class DaoArtistaTest {
         Artistas result = instance.guardarArtista(a);
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        
+
     }
 
     //Probamos que no deje guardar debido el Campo Primer nombre es obligatorio obligatorio.
-
     @Test
     public void testObligatoriedadPrimerApellido() throws Exception {
         System.out.println("Obligatoriedad campo Primer apellido");
@@ -174,9 +170,8 @@ public class DaoArtistaTest {
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
     }
-    
-    //Probamos que no deje guardar debido el Campo Primer nombre es obligatorio obligatorio.
 
+    //Probamos que no deje guardar debido el Campo Primer nombre es obligatorio obligatorio.
     @Test
     public void testObligatoriedadNombreArtistico() throws Exception {
         System.out.println("Obligatoriedad campo Nombre artístico");
@@ -196,10 +191,8 @@ public class DaoArtistaTest {
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
     }
-    
-    
-    //Probamos que no deje guardar debido el Campo Empresa es obligatorio obligatorio.
 
+    //Probamos que no deje guardar debido el Campo Empresa es obligatorio obligatorio.
     @Test
     public void testObligatoriedadEmpresa() throws Exception {
         System.out.println("Obligatoriedad campo Empresa");
@@ -233,7 +226,7 @@ public class DaoArtistaTest {
         a.setSegundoApellido("");
         a.setNombreArtistico("JMontes");
         a.setEmpresa("2");
-         a.setEstado("");
+        a.setEstado("");
         NArtista instance = new NArtista();
         String expResult = "<br> Por favor ingrese el estado";//No debe guardar un nuevo artista.
         Artistas result = instance.guardarArtista(a);
