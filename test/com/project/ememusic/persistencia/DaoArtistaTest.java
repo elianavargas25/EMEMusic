@@ -68,13 +68,13 @@ public class DaoArtistaTest {
         System.out.println("Prueba guardar Artista");
         Artistas artista = new Artistas();
         artista.setTipoDocumento("1");
-        artista.setNroDocumento("789456123");
-        artista.setPrimerNombre("Pepito");
+        artista.setNroDocumento("789456");
+        artista.setPrimerNombre("PEPITO");
         artista.setSegundoNombre("");
-        artista.setPrimerApellido("Pérez");
+        artista.setPrimerApellido("PEREZ");
         artista.setSegundoApellido("");
-        artista.setNombreArtistico("Pepito flow");
-        artista.setEmpresa("2");
+        artista.setNombreArtistico("PEPITO FLOW");
+        artista.setEmpresa("1");
         artista.setEstado("S");
         con = new Conexion().getCon();
         DaoArtista instance = new DaoArtista();
