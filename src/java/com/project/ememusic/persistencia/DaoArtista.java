@@ -20,13 +20,14 @@ import java.util.logging.Logger;
  */
 public class DaoArtista {
 
+    Connection conn = Conexion.getInstance();
+
     Artistas artista = new Artistas();
 
     public ResultSet idArtista() {
-        Conexion db = new Conexion();
         PreparedStatement stTD;
         try {
-            stTD = db.getConexion().prepareStatement("SELECT  ID_ARTISTAS,NOMBRE_ARTISTICO FROM ARTISTAS");
+            stTD = conn.prepareStatement("SELECT  ID_ARTISTAS,NOMBRE_ARTISTICO FROM ARTISTAS");
             ResultSet result = stTD.executeQuery();
             return result;
         } catch (SQLException ex) {
@@ -37,7 +38,7 @@ public class DaoArtista {
 
     public Artistas buscarArtista(Connection con, String Documento, String tdocu) {//validar conexion
         try {
-            PreparedStatement ar = con.prepareStatement(SqlArtista.getArtista(Documento));
+            PreparedStatement ar = conn.prepareStatement(SqlArtista.getArtista(Documento));
             ar.setString(1, Documento);
             ar.setString(2, tdocu);
             ResultSet art = ar.executeQuery();
@@ -54,8 +55,6 @@ public class DaoArtista {
                     artista.setNombreArtistico(art.getString("nombre_artistico"));
                     artista.setEmpresa(art.getString("id_empresa"));
                     artista.setEstado(art.getString("estado"));
-                    System.out.println("Busqueda exitosa...\n");
-
                     System.out.println("Busqueda exitosa...\n");
                 }//cierra while
             } else {
@@ -76,7 +75,7 @@ public class DaoArtista {
             e.getMessage();
         } finally {
             try {
-                con.close();
+                //con.close();
             } catch (Exception e) {
             }
         }//cierra finally
@@ -87,47 +86,60 @@ public class DaoArtista {
 
     }//finaliza buscar
 
-    public Artistas buscarArtistas(Connection con, String Documento, String tdocu) {
+    public Artistas buscarArtistas( String Documento, String tdocu) {
         try {
-            PreparedStatement ar = con.prepareStatement(SqlArtista.getArtista(Documento));
+            PreparedStatement ar = conn.prepareStatement(SqlArtista.getArtista(Documento));
             ar.setString(1, Documento);
             ar.setString(2, tdocu);
             ResultSet art = ar.executeQuery();
-            while (art.next()) {
-                //Artistas artista = new Artistas();
-                artista.setIdArtista(art.getString("id_artistas"));
-                artista.setTipoDocumento(art.getString("id_tipo_documento"));
-                artista.setNroDocumento(art.getString("nro_documento"));
-                artista.setPrimerNombre(art.getString("primer_nombre"));
-                artista.setSegundoNombre(art.getString("segundo_nombre"));
-                artista.setPrimerApellido(art.getString("primer_apellido"));
-                artista.setSegundoApellido(art.getString("segundo_apellido"));
-                artista.setNombreArtistico(art.getString("nombre_artistico"));
-                artista.setEmpresa(art.getString("id_empresa"));
-                artista.setEstado(art.getString("estado"));
-                System.out.println("Busqueda exitosa...\n");
-                return artista;
-            }//cierra while
+
+            if (!art.next()) {                            //if rs.next() returns false
+                //then there are no rows.
+                System.out.println("No records found");
+                return null;
+            } else {
+                do {
+                    artista.setIdArtista(art.getString("id_artistas"));
+                    artista.setTipoDocumento(art.getString("id_tipo_documento"));
+                    artista.setNroDocumento(art.getString("nro_documento"));
+                    artista.setPrimerNombre(art.getString("primer_nombre"));
+                    artista.setSegundoNombre(art.getString("segundo_nombre"));
+                    artista.setPrimerApellido(art.getString("primer_apellido"));
+                    artista.setSegundoApellido(art.getString("segundo_apellido"));
+                    artista.setNombreArtistico(art.getString("nombre_artistico"));
+                    artista.setEmpresa(art.getString("id_empresa"));
+                    artista.setEstado(art.getString("estado"));
+                    System.out.println("Busqueda exitosa...\n");
+                    return artista;
+                    // Get data from the current row and use it
+                } while (art.next());
+            }
         } catch (Exception e) {
             System.out.println("Error Artista no registrado...\n");
             e.getMessage();
         } finally {
             try {
-                con.close();
             } catch (Exception e) {
             }
         }//cierra finally
         if (!artista.getNroDocumento().equals(Documento) || !artista.getTipoDocumento().equals(tdocu)) {
             System.out.println("El Artista no se encuentra registrado en la base de datos");
         }
-        return artista;
+        return  null;
+    }
+
+    public boolean existsArtista(String id, String type) {
+
+        // Consultar a base de datos por el metodo SQL existente
+        // Se pregunta si el número de de filas recuperadas es mayor a 0
+        return true;
     }
 
     //insertar registro en la tabla
-    public Artistas guardarArtista(Connection con, Artistas artista) {//validar conexion
+    public Artistas guardarArtista(Artistas artista) {//validar conexion
         String mensaje = "";
         try {
-            PreparedStatement artist = con.prepareStatement(SqlArtista.insertarArtista());
+            PreparedStatement artist = conn.prepareStatement(SqlArtista.insertarArtista());
             int index = 1;
             artist.setString(index++, artista.getTipoDocumento());
             artist.setString(index++, artista.getNroDocumento());
@@ -150,7 +162,6 @@ public class DaoArtista {
             e.printStackTrace();
         } finally {
             try {
-                con.close();
             } catch (Exception e) {
             }
         }//cierra finally
@@ -158,11 +169,11 @@ public class DaoArtista {
     }//cierra guardar
 
     //insertar registro en la tabla
-    public Artistas actualizarArtistas(Connection con, Artistas artista) {
+    public Artistas actualizarArtistas( Artistas artista) {
         String mensaje = "";
 
         try {
-            PreparedStatement stm = con.prepareStatement(SqlArtista.actualizarArtista());
+            PreparedStatement stm = conn.prepareStatement(SqlArtista.actualizarArtista());
 
             stm.setString(1, artista.getPrimerNombre());
             stm.setString(2, artista.getSegundoNombre());
@@ -186,7 +197,6 @@ public class DaoArtista {
             e.printStackTrace();
         } finally {
             try {
-                con.close();
             } catch (Exception e) {
             }
 

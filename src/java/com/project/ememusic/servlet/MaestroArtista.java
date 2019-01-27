@@ -70,10 +70,12 @@ public class MaestroArtista extends HttpServlet {
             try {
                 //verifica si existe el dato
                 artista = negocio.buscarArtistas(NroDocumento, TipoDocumento);
-                if (artista.getNroDocumento().equals(NroDocumento) && artista.getTipoDocumento().equals(TipoDocumento) || artista.getNombreArtistico().equals(NombreArtistico)) {
+                //if (artista.getNroDocumento().equals(NroDocumento) && artista.getTipoDocumento().equals(TipoDocumento) || artista.getNombreArtistico().equals(NombreArtistico)) {
+                if (artista != null) {
                     mensaje = "El Artista que desea registrar, ya se encuentra en sistema";
                 } else {
                     try {
+                        artista = new Artistas();
                         artista.setTipoDocumento(TipoDocumento);
                         artista.setNroDocumento(NroDocumento);
                         artista.setPrimerNombre(PrimerNombre);
@@ -96,40 +98,43 @@ public class MaestroArtista extends HttpServlet {
             } catch (Exception e1) {
                 mensaje = "El artista ya se encuentra registrado en la base de datos";
                 limpiar();
+
             }
         }//fin guardar
 
-         if("modificar".equals(request.getParameter("action"))){
-                  try {
+        if ("modificar".equals(request.getParameter("action"))) {
+            try {
                 //vereificamos que el registro no exista en la tabla   
-                    artista= negocio.buscarArtistas(NroDocumento, TipoDocumento);
-                    if (artista.getNroDocumento().equals(NroDocumento) && artista.getTipoDocumento().equals(TipoDocumento)){
-                    mensaje="El Artista no se  encuentra registrado";
-                    }else{
-                        try {
-                         artista.setPrimerNombre(PrimerNombre);
-                         artista.setSegundoNombre(SegundoNombre);
-                         artista.setPrimerApellido(PrimerApellido);
-                         artista.setSegundoApellido(SegundoApellido);
-                         artista.setNombreArtistico(NombreArtistico);
-                         artista.setEmpresa(Empresa);
-                         artista.setEstado(Estado);
-                         //guardamos los datos en la tabla
-                         negocio.actualizarArtistas(artista);
-                        mensaje= "El Artista fue actualizado correctamente";
-                         limpiar();
-
-                        } catch (Exception e2) {
-                        mensaje="Error al actualizar el Artista";
-                         limpiar();
-                        }
+                artista = negocio.buscarArtistas(NroDocumento, TipoDocumento);
+                if (artista.getNroDocumento().equals(NroDocumento) && artista.getTipoDocumento().equals(TipoDocumento)) {
+                    mensaje = "El Artista no se  encuentra registrado";
+                } else {
+                    try {
+                        artista.setPrimerNombre(PrimerNombre);
+                        artista.setSegundoNombre(SegundoNombre);
+                        artista.setPrimerApellido(PrimerApellido);
+                        artista.setSegundoApellido(SegundoApellido);
+                        artista.setNombreArtistico(NombreArtistico);
+                        artista.setEmpresa(Empresa);
+                        artista.setEstado(Estado);
+                        //guardamos los datos en la tabla
+                        negocio.actualizarArtistas(artista);
+                        mensaje = "El Artista fue actualizado correctamente";
+                        limpiar();
+                        request.setAttribute("datos", artista);
+                    } catch (Exception e2) {
+                        mensaje = "Error al actualizar el Artista";
+                        limpiar();
+                        request.setAttribute("datos", artista);
                     }
-                       } catch (Exception e1) {
-                        mensaje="El Artista no esta registrado";
-                         limpiar();
-                       }
+                }
+            } catch (Exception e1) {
+                mensaje = "El Artista no esta registrado";
+                limpiar();
+                request.setAttribute("datos", artista);
+            }
         } //cierra modificar
-        
+
         //modificar
         if ("Actualizar".equals(request.getParameter("action"))) {
             try {
@@ -158,6 +163,7 @@ public class MaestroArtista extends HttpServlet {
         }//fin modificar
         if ("Cancelar".equals(request.getParameter("action"))) {
             limpiar();
+            request.setAttribute("datos", artista);
         }//fin linpiar
 
         if ("Buscar".equals(request.getParameter("action"))) {

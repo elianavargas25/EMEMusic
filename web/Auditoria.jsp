@@ -1,3 +1,5 @@
+<%@page import="com.project.ememusic.entidad.LogAuditoria"%>
+<%@page import="com.project.ememusic.negocio.NLogAuditoria"%>
 <%@page import="com.project.ememusic.negocio.NParametros"%>
 <%@page import="java.util.List"%>
 <%@page import="com.project.ememusic.entidad.Usuarios"%>
@@ -15,9 +17,9 @@
         nombre = (String) (tec.getNombre());
         perfil = tec.getPerfil();
     }
-    NParametros negocio = new NParametros();
-    Parametros parametros = new Parametros();
-    List<Parametros> listaParametros = negocio.listarParametros(parametros);
+    NLogAuditoria negocio = new NLogAuditoria();
+    LogAuditoria Auditoria = new LogAuditoria();
+    List<LogAuditoria> listaAuditoria = negocio.listarAuditorias(Auditoria);
 
 %>
 <html lang="en">
@@ -55,8 +57,7 @@
                     <ul>
                         <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
-                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Cargar Ventas</a></li>
-                        <li class="menu_mm"><a href="Usuarios.jsp">Usuarios</a></li>
+                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Registrar Ventas</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
                         <li class="menu_mm">Administración
                             <ul>
@@ -74,8 +75,8 @@
                     <ul>
                         <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
-                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Cargar Ventas</a></li>
-                       
+                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Registrar Ventas</a></li>
+
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
                         <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
                         <a href="index.jsp">Cerrar sesión</a>
@@ -147,7 +148,7 @@
                         <li class="menu_mm"><a href="index.jsp">Home</a></li>
                         <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
-                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Cargar Ventas</a></li>
+                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Registrar Ventas</a></li>
                         <li class="menu_mm"><a href="Usuarios.jsp">Usuarios</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
                         <li class="menu_mm">Administración
@@ -194,7 +195,7 @@
                             <div class="container">
 
                                 <div class="table container">
-                                    <%if (listaParametros != null) {%>
+                                    <%if (listaAuditoria != null) {%>
                                     <table border="0" id="tabla" class="table" aling="center">
                                         <tbody class="table-responsive">
                                             <tr class="active" >
@@ -206,11 +207,15 @@
                                                 <th>Numero PK</th>
                                                 <th>Descripción</th>
                                             </tr> 
-                                            <%for (Parametros para : listaParametros) {%>
+                                            <%for (LogAuditoria para : listaAuditoria) {%>
                                             <tr>
-                                                <td><%=para.getIdParametro()%></td>
-                                                <td><%=para.getNombreParametro()%></td>
-                                                <td><%=para.getValor()%></td>
+                                                <td><%=para.getIdAuditoria()%></td>
+                                                <td><%=para.getIdUsuario()%></td>
+                                                <td><%=para.getTipoAccion()%></td>
+                                                <td><%=para.getFecha()%></td>
+                                                <td><%=para.getNombreTabla()%></td>
+                                                <td><%=para.getNumeroPK()%></td>
+                                                <td><%=para.getDescripcion()%></td>
 
                                             </tr>
                                             <%}%>

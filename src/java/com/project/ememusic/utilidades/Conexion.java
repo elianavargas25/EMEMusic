@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,8 +37,30 @@ public class Conexion {
     }
  
     public Conexion() {
+               
     }
  
+    private static Connection conn;
+    
+    public static Connection getInstance() {
+        if(conn == null){            
+            try { 
+                Class.forName("com.mysql.jdbc.Driver").newInstance();
+                String servidor = "jdbc:mysql://" + "127.0.0.1" + ":"+ "3306" + "/" + "music";
+                conn = DriverManager.getConnection(servidor, "root", "");
+            } catch (SQLException ex) {
+                Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return conn;
+    }
+    
     //Metodo que se devuelve la conexion o null si hubo un error
     public Connection getConexion() {
         try {

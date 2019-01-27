@@ -17,7 +17,6 @@ import java.sql.Connection;
 public class NEmpresa {
 
     DaoEmpresa dao;
-    Connection con;//validar
 
     public NEmpresa() {
         dao = new DaoEmpresa();
@@ -25,13 +24,11 @@ public class NEmpresa {
 //buscar registro
 
     public Empresa buscarEmpresa( String NroDocumento, String TipoDoc) {
-        con = new Conexion().getCon();// validar conexion
-        return dao.buscarEmpresa(con, NroDocumento, TipoDoc);
+        return dao.buscarEmpresa( NroDocumento, TipoDoc);
     }//fin buscar
     
     public Empresa buscarEmpresas( String NroDocumento, String TipoDoc) {
-        con = new Conexion().getCon();// validar conexion
-        return dao.buscarEmpresas(con, NroDocumento, TipoDoc);
+        return dao.buscarEmpresas( NroDocumento, TipoDoc);
     }//fin buscar
 
     public Empresa guardarEmpresa(Empresa empresa) throws Exception {
@@ -59,8 +56,7 @@ public class NEmpresa {
         if (!"".equals(error)) {
             throw new Exception(error);
         }
-        con = new Conexion().getCon();//validar
-        empresa = dao.guardarEmpresa(con,empresa);//revisar
+        empresa = dao.guardarEmpresa(empresa);//revisar
         return empresa;//revisar
     }//fin guardar
 
@@ -73,7 +69,6 @@ public class NEmpresa {
         String PagoOperacion = emp.getPagoOperacion();
         String Estado = emp.getEstado();
         String error = "";
-        con = new Conexion().getCon();//validar
         if ("".equals(TipoDocumento) || TipoDocumento == null) {
             error += "<br> Por favor ingrese tipo de documento";
         }
@@ -92,7 +87,7 @@ public class NEmpresa {
         if (!"".equals(error)) {
             throw new Exception(error);
         }
-        emp = dao.actualizarEmpresa(con, emp);
+        emp = dao.actualizarEmpresa( emp);
         return emp;
     }// Fin actualizar
 

@@ -16,13 +16,14 @@ import java.util.logging.Logger;
  */
 public class DaoEmpresa {
 
+    Connection conn = Conexion.getInstance();
+
     Empresa emp = new Empresa();
 
     public ResultSet idEmpresa() {
-        Conexion db = new Conexion();
         PreparedStatement stTD;
         try {
-            stTD = db.getConexion().prepareStatement("SELECT  ID_EMPRESA,NOMBRE FROM EMPRESA");
+            stTD = conn.prepareStatement("SELECT  ID_EMPRESA,NOMBRE FROM EMPRESA");
             ResultSet result = stTD.executeQuery();
             return result;
         } catch (SQLException ex) {
@@ -31,9 +32,9 @@ public class DaoEmpresa {
         }
     }
 
-    public Empresa buscarEmpresa(Connection cxn, String NroDocumento, String TipoDocu) {
+    public Empresa buscarEmpresa(String NroDocumento, String TipoDocu) {
         try {
-            PreparedStatement em = cxn.prepareStatement(SqlEmpresa.getEmpresa(NroDocumento));
+            PreparedStatement em = conn.prepareStatement(SqlEmpresa.getEmpresa(NroDocumento));
             em.setString(1, NroDocumento);
             em.setString(2, TipoDocu);
             ResultSet ur = em.executeQuery();
@@ -60,8 +61,6 @@ public class DaoEmpresa {
             e.getMessage();
         } finally {
             try {
-
-                cxn.close();
             } catch (Exception e) {
             }
         }//cierra finally
@@ -70,15 +69,19 @@ public class DaoEmpresa {
         }
         return emp;
     }
-    
-     public Empresa buscarEmpresas(Connection cxn, String NroDocumento, String TipoDocu) {
+
+    public Empresa buscarEmpresas(String NroDocumento, String TipoDocu) {
         try {
-            PreparedStatement em = cxn.prepareStatement(SqlEmpresa.getEmpresa(NroDocumento));
+            PreparedStatement em = conn.prepareStatement(SqlEmpresa.getEmpresa(NroDocumento));
             em.setString(1, NroDocumento);
             em.setString(2, TipoDocu);
             ResultSet ur = em.executeQuery();
-            
-                while (ur.next()) {
+            if (!ur.next()) {                            //if rs.next() returns false
+                //then there are no rows.
+                System.out.println("No records found");
+                return null;
+            } else {
+                do {
                     emp.setId_empresa(ur.getString("ID_EMPRESA"));
                     emp.setTipoDocumento(ur.getString("ID_TIPO_DOCUMENTO"));
                     emp.setNroDcumento(ur.getString("NRO_DOCUMENTO"));
@@ -86,15 +89,16 @@ public class DaoEmpresa {
                     emp.setPago_operacion(ur.getString("PAGO_OPERACION"));
                     emp.setEstado(ur.getString("ID_ESTADO"));
                     System.out.println("Busqueda exitosa...\n");
-                }//cierra while
-            
+                    return emp;
+                    // Get data from the current row and use it
+                } while (ur.next());
+            }
+
         } catch (Exception e) {
             System.out.println("Empresa no registrada...\n");
             e.getMessage();
         } finally {
             try {
-
-                cxn.close();
             } catch (Exception e) {
             }
         }//cierra finally
@@ -103,13 +107,12 @@ public class DaoEmpresa {
         }
         return emp;
     }
-    
-    //insertar registro en la tabla
 
-    public Empresa guardarEmpresa(Connection cxn, Empresa emp) {
+    //insertar registro en la tabla
+    public Empresa guardarEmpresa( Empresa emp) {
         String mensaje = "";
         try {
-            PreparedStatement ur = cxn.prepareStatement(SqlEmpresa.insertarEmpresa());
+            PreparedStatement ur = conn.prepareStatement(SqlEmpresa.insertarEmpresa());
             int index = 1;
             ur.setString(index++, emp.getTipoDocumento());
             ur.setString(index++, emp.getNroDocumento());
@@ -128,17 +131,16 @@ public class DaoEmpresa {
             e.printStackTrace();
         } finally {
             try {
-                cxn.close();
             } catch (Exception e) {
             }
         }//cierra finally
         return emp;
     }//cierra guardar
 
-    public Empresa actualizarEmpresa(Connection cxn, Empresa inc) {
+    public Empresa actualizarEmpresa( Empresa inc) {
         String mensaje = "";
         try {
-            PreparedStatement ur = cxn.prepareStatement(SqlEmpresa.actualizarEmpresa());
+            PreparedStatement ur = conn.prepareStatement(SqlEmpresa.actualizarEmpresa());
             int index = 1;
             ur.setString(index++, emp.getTipoDocumento());
             ur.setString(index++, emp.getNroDocumento());
@@ -159,7 +161,6 @@ public class DaoEmpresa {
             e.printStackTrace();
         } finally {
             try {
-                cxn.close();
             } catch (Exception e) {
             }
 

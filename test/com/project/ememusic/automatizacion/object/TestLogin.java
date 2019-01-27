@@ -1,4 +1,3 @@
-
 package com.project.ememusic.automatizacion.object;
 
 import com.project.ememusic.automatizacion.pages.Artista;
@@ -19,20 +18,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * @author Estefanía
  */
 public class TestLogin {
+
     private static WebDriver driver = null;
     Login log;
     UserPage user;
-    //Account acco;
-    //Deposit dep;
-
-    
 
     @BeforeClass
     public static void setUpClass() {
         System.setProperty("webdriver.chrome.driver", "lib\\drivers\\chromedriver.exe");
         driver = new ChromeDriver();
-        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-       
+        driver.manage().window().maximize();
     }
 
     @AfterClass
@@ -46,31 +41,27 @@ public class TestLogin {
 
     @After
     public void tearDown() {
-     // driver.quit();
+        driver.quit();
     }
 
     /**
      * Test of loginApplication method, of class Login.
      */
     @org.junit.Test
-    public  void testLoginApplication() {
-        String User =("Usuario: admin");
+    public void testLoginApplication() {
+        String User = ("Usuario: admin");
         driver.findElement(By.linkText("Ingresar")).click();
         driver.findElement(By.name("Usuario")).sendKeys("admin");
         driver.findElement(By.name("Clave")).sendKeys("admin");
         driver.findElement(By.name("action")).click();
-        String UserCap= driver.findElement(By.xpath("/html/body/div/header/nav/ul/h4")).getText();
+        String UserCap = driver.findElement(By.xpath("/html/body/div/header/nav/ul/h4")).getText();
         assertEquals(User, UserCap);
-        
-        
-}
 
-   @org.junit.Test
-    public void Artista (){
-   
     }
-    
-    
-    
-}
 
+    @org.junit.Test
+    public void Artista() {
+
+    }
+
+}
