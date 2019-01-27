@@ -1,8 +1,8 @@
 package com.project.ememusic.automatizacion.object;
 
-import com.project.ememusic.automatizacion.pages.Empresa;
-import com.project.ememusic.automatizacion.pages.Login;
-import com.project.ememusic.automatizacion.pages.UserPage;
+import com.project.ememusic.automatizacion.PageObject.Empresa;
+import com.project.ememusic.automatizacion.PageObject.Login;
+import com.project.ememusic.automatizacion.PageObject.UserPage;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;

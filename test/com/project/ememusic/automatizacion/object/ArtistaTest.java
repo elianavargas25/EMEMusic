@@ -5,9 +5,9 @@
  */
 package com.project.ememusic.automatizacion.object;
 
-import com.project.ememusic.automatizacion.pages.Artista;
-import com.project.ememusic.automatizacion.pages.Login;
-import com.project.ememusic.automatizacion.pages.UserPage;
+import com.project.ememusic.automatizacion.PageObject.Artista;
+import com.project.ememusic.automatizacion.PageObject.Login;
+import com.project.ememusic.automatizacion.PageObject.UserPage;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -21,7 +21,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  *
- * @author Usuario
+ * @author Estefanía
  */
 public class ArtistaTest {
 
@@ -54,7 +54,7 @@ public class ArtistaTest {
     }
 
     @Test
-    public void Artista() throws InterruptedException {
+    public void ArtistaGuardar() throws InterruptedException {
         driver.findElement(By.linkText("Ingresar")).click();
         driver.findElement(By.name("Usuario")).sendKeys("admin");
         driver.findElement(By.name("Clave")).sendKeys("admin");
@@ -82,5 +82,12 @@ public class ArtistaTest {
         String MensajeMostrado = driver.findElement(By.xpath("/html/body/div/div[2]/div[2]/center/h4")).getText();
         assertEquals(Mensaje, MensajeMostrado);
 
+    }
+    
+     @Test
+    public void ArtistaBuscar () {
+    
+    
+    
     }
 }

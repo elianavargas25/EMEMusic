@@ -1,4 +1,4 @@
-package com.project.ememusic.automatizacion.pages;
+package com.project.ememusic.automatizacion.PageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
