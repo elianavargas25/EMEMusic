@@ -5,9 +5,9 @@
  */
 package com.project.ememusic.automatizacion.object;
 
-import com.project.ememusic.automatizacion.pages.Artista;
-import com.project.ememusic.automatizacion.pages.Login;
-import com.project.ememusic.automatizacion.pages.UserPage;
+import com.project.ememusic.automatizacion.PageObject.Artista;
+import com.project.ememusic.automatizacion.PageObject.Login;
+import com.project.ememusic.automatizacion.PageObject.UserPage;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
