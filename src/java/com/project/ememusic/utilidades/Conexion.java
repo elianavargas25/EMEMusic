@@ -20,7 +20,7 @@ public class Conexion {
 
  //Configuracion de los datos de la BD
     private final String usuario = "root";
-    private final String pass = "";
+    private final String pass = "123456789";
     private final String host = "127.0.0.1";
     private final String puerto= "3306";
     private final String nombre_BD = "music";
