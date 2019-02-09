@@ -47,7 +47,7 @@ public class Conexion {
             try { 
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 String servidor = "jdbc:mysql://" + "127.0.0.1" + ":"+ "3306" + "/" + "music";
-                conn = DriverManager.getConnection(servidor, "root", "");
+                conn = DriverManager.getConnection(servidor, "root", "123456789");
             } catch (SQLException ex) {
                 Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {

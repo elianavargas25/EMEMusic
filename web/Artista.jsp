@@ -117,6 +117,8 @@
         <link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
         <link rel="stylesheet" type="text/css" href="styles/about_styles.css">
         <link rel="stylesheet" type="text/css" href="styles/about_responsive.css">
+        <link rel="stylesheet" type="text/css" href="styles/EstilosNav.css">
+        <link href="css/EstiloNav.css"  media="screen" rel="stylesheet" type="text/css">
     </head>
 
     <body>
@@ -134,38 +136,11 @@
 
                 <!-- Navigation -->
                 <%if (perfil.equals("Administrador")) {%> 
-                <nav class="main_nav justify-self-end text-right">
-                    <ul>
-                        <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
-                        <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
-                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Registrar Ventas</a></li>
-                        <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                        <li class="menu_mm">Administración
-                            <ul>
-                                <li class="menu_mm"><a href="Parametros.jsp">Parámetros</a></li>
-                                <li class="menu_mm"><a href="Usuarios.jsp">Usuarios</a></li>
-                                <li class="menu_mm"><a href="Auditoria.jsp">Log Auditoria</a></li>
-                            </ul>
-                        </li>
-                        <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
-                        <a href="index.jsp">Cerrar sesión</a>
-                    </ul>   
-                </nav>
-                <%} else {%>
-                <nav class="main_nav justify-self-end text-right">
-                    <ul>
-                        <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
-                        <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
-                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Registrar Ventas</a></li>
-                        <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                        <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
-                        <a href="index.jsp">Cerrar sesión</a>
-
-                    </ul>   
-                </nav>
-
+                <jsp:include page="Smenu.jsp" flush="false"></jsp:include>
                 <%}%>
-
+                
+<!--                <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
+                <a href="index.jsp">Cerrar sesión</a>-->
                 <!-- Search -->
                 <div class="search">
                     <div class="search_content d-flex flex-column align-items-center justify-content-center">
@@ -216,21 +191,27 @@
                 </div>
 
                 <div class="home_title">
-                    <h2>Registro de Artistas</h2>
-                    <center>  <h4><%=mensaje != null ? mensaje : ""%></h4><br> </center>
+
                     <div class="next_section_scroll">
-                        <div class="next_section nav_links" data-scroll-to=".icon_boxes">
-                            <i class="fas fa-chevron-down trans_200"></i>
-                            <i class="fas fa-chevron-down trans_200"></i>
-                        </div>
+
+                        <h1>Registro de Artistas</h1>
                     </div>
+                    <div><center>  <h3><%=mensaje != null ? mensaje : ""%></h3></center></div>
+
                 </div>
+
 
             </div>
 
+
+
             <div class="row contact_row">
+
+
                 <div class="content-box-gray">
+
                     <div class="col-lg-8">
+
 
                         <!-- Reply -->
 
@@ -238,6 +219,8 @@
 
 
                             <div class="reply_form">
+
+
 
                                 <!-- Reply Form -->
                                 <form name="Artista" method="Post" id="Artista"

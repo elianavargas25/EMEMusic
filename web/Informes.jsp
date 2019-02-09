@@ -163,15 +163,11 @@
                 </div>
 
                 <div class="home_title">
-                    <h2>Informes</h2>
-                    <center>  <h4><%=mensaje != null ? mensaje : ""%></h4><br> </center>
-                    <div class="next_section_scroll">
-                        <div class="next_section nav_links" data-scroll-to=".blog">
-                            <i class="fas fa-chevron-down trans_200"></i>
-                            <i class="fas fa-chevron-down trans_200"></i>
-                        </div>
-                    </div>
+                    <h1>Informes</h1>
+                   
+                    
                 </div>
+                     <div><center>  <h3><%=mensaje != null ? mensaje : ""%></h3></center></div>
 
             </div>
 

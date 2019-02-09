@@ -83,7 +83,7 @@
         <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
         <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
 
-        <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+        <!--<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">-->
         <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
         <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
@@ -92,8 +92,8 @@
         <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
         <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
         <link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
-        <link rel="stylesheet" type="text/css" href="styles/about_styles.css">
-        <link rel="stylesheet" type="text/css" href="styles/about_responsive.css">
+<!--        <link rel="stylesheet" type="text/css" href="styles/about_styles.css">
+        <link rel="stylesheet" type="text/css" href="styles/about_responsive.css">-->
     </head>
 
     <body>
@@ -186,27 +186,25 @@
             </div>
 
             <!-- Home -->
-
             <div class="home">
                 <div class="home_background_container prlx_parent">
                     <div class="home_background prlx" style="background-image:url(images/home_background.jpg)"></div>
                 </div>
 
                 <div class="home_title">
-                    <h2>Registro de Ventas</h2>
-                    <center>  <h4><%=mensaje != null ? mensaje : ""%></h4><br> </center>
+                  
                     <div class="next_section_scroll">
-                        <div class="next_section nav_links" data-scroll-to=".icon_boxes">
-                            <i class="fas fa-chevron-down trans_200"></i>
-                            <i class="fas fa-chevron-down trans_200"></i>
-                        </div>
-                    </div>
+                        
+                        <h1>Registro de Ventas </h1>
+                      </div>
+                    <div><center>  <h3><%=mensaje != null ? mensaje : ""%></h3></center></div>
+
                 </div>
+
 
             </div>
 
-
-            <br>
+            
 
             <div class="row contact_row">
                 <div class="content-box-gray">
@@ -250,6 +248,7 @@
                                                    
 
                                     </div>
+                                  <br>
 
                                     <div class="Reply">
                                         <button id="save" type="submit" class="btn bg-info" name="action" value="Guardar">Guardar</button>
