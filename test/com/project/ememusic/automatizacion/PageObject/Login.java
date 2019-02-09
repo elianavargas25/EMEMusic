@@ -11,7 +11,7 @@ public class Login {
 WebDriver driver;
 By User= By.name("Usuario");
 By Password= By.name("Clave");
-By Button= By.name("action");
+By Button= By.name("Login");
 
  public Login(WebDriver driver){
         this.driver = driver;
@@ -26,9 +26,9 @@ By Button= By.name("action");
   public void ClicLogin (){
  driver.findElement(Button).click();
  }
-  public void LoginAplication(String usuario,String contraseña){
-  this.setUserName(usuario);
-  this.setPass(contraseña);
-  this.ClicLogin(); 
+  public void LoginAplication(String User ,String Password){
+  this.setUserName(User);
+  this.setPass(Password);
+  this.ClicLogin();
   }
 }
