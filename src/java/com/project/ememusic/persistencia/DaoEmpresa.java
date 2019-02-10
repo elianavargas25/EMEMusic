@@ -23,7 +23,7 @@ public class DaoEmpresa {
     public ResultSet idEmpresa() {
         PreparedStatement stTD;
         try {
-            stTD = conn.prepareStatement("SELECT  ID_EMPRESA,NOMBRE FROM EMPRESA");
+            stTD = conn.prepareStatement("SELECT  ID_EMPRESA, NOMBRE FROM EMPRESA");
             ResultSet result = stTD.executeQuery();
             return result;
         } catch (SQLException ex) {

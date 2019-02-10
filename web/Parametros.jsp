@@ -57,12 +57,16 @@
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
                         <li class="menu_mm"><a href="RegistarVentas.jsp">Registar Ventas</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                        <li class="menu_mm">Administración
+                        <li class="menu_mm">
                             <ul>
                                 <li class="menu_mm"><a href="Parametros.jsp">Parámetros</a></li>
+                             </ul>
+                             <ul>
                                 <li class="menu_mm"><a href="Usuarios.jsp">Usuarios</a></li>
+                             </ul>
+                              <ul> 
                                 <li class="menu_mm"><a href="Auditoria.jsp">Log Auditoria</a></li>
-                            </ul>
+                              </ul>
                         </li>
                         <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
                         <a href="index.jsp">Cerrar sesión</a>
@@ -75,7 +79,7 @@
                         <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
                         <li class="menu_mm"><a href="RegistrarVentas.jsp">Registrar Ventas</a></li>
                         <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                        <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
+                        <h4 style="text-align: right">Usuario: <%=nombre%></h4>
                         <a href="index.jsp">Cerrar sesión</a>
 
                     </ul>   
@@ -130,43 +134,29 @@
                 </div>
 
                 <!-- Hamburger -->
-                <div class="hamburger_container bez_1">
-                    <i class="fas fa-bars trans_200"></i>
-                </div>
+                
 
             </header>
 
             <!-- Menu -->
 
-            <div class="menu_container">
-                <div class="menu menu_mm text-right">
-                    <div class="menu_close"><i class="far fa-times-circle trans_200"></i></div>
-                    <ul class="menu_mm">
-                        <li class="menu_mm"><a href="index.jsp">Home</a></li>
-                        <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
-                        <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
-                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Registrar Ventas</a></li>
-                        <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                        <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
-                    </ul>
-                </div>
-            </div>
+            
 
             <!-- Home -->
 
             <div class="home">
                 <div class="home_background_container prlx_parent">
-                    <div class="home_background prlx" style="background-image:url(images/blog_background.jpg)"></div>
+                    <div class="home_background prlx" style="background-image:url(images/home_background.jpg)"></div>
                 </div>
 
                 <div class="home_title">
-                    <h2>Parámetros</h2>
+                  
                     <div class="next_section_scroll">
-                        <div class="next_section nav_links" data-scroll-to=".contact">
-                            <i class="fas fa-chevron-down trans_200"></i>
-                            <i class="fas fa-chevron-down trans_200"></i>
-                        </div>
-                    </div>
+                        
+                        <h1>Parámetros</h1>
+                      </div>
+                    
+
                 </div>
 
             </div>
