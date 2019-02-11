@@ -55,7 +55,7 @@ body
 	font-size: 15px;
 	line-height: 2;
 	font-weight: 400;
-	background: #FFFFFF;
+	background: white;
 	color: #6e6e6e;
 }
 div
@@ -129,12 +129,20 @@ h2{font-size: 24px;}
 h3{font-size: 18px;}
 h4{font-size: 14px;}
 h5{font-size: 11px;}
-h1, h2, h3, h4, h5, h6
+h2, h3, h4, h5, h6
 {
 	color: white;
 	-webkit-font-smoothing: antialiased;
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+
+h1{
+         color: white;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+	text-shadow: rgba(0,0,0,.01) 0 0 1px;   
+    
 }
 h1::selection, 
 h2::selection, 
@@ -317,7 +325,7 @@ section
 .home
 {
 	width: 100%;
-	height: 372px;
+	height: 300px;
 }
 .home_background_container
 {
@@ -520,7 +528,7 @@ section
 {
 	font-size: 30px;
 	font-weight: 500;
-	color: #FFFFFF;
+	color: black;
 	margin-bottom: 15px;
 }
 
@@ -1129,3 +1137,93 @@ section
 {
 	color: #28262d;
 }
+
+.wrap {
+    width: 700px;
+    margin: 1em auto;
+    margin-bottom: 4em;        
+}
+
+nav {
+    background: -webkit-gradient(linear, center top, center bottom, from(#fff), to(#ccc));
+    background-image: linear-gradient(#fff, #ccc);
+    border-radius: 6px;
+    box-shadow: 0px 0px 4px 2px rgba(0,0,0,0.4);
+    padding: 0 10px;
+    position: absolute;
+}
+
+.menu li {
+    float: left;
+    position: relative;
+}
+
+.menu li a {
+    color: #444;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 6px 12px;
+    margin: 8px 8px;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+.menu li a:hover {
+    background: -webkit-gradient(linear, center top, center bottom, from(#ededed), to(#fff));
+    background-image: linear-gradient(#ededed, #fff);
+    border-radius: 12px;
+    box-shadow: inset 0px 0px 1px 1px rgba(0,0,0,0.1);
+    color: #222;
+}
+
+/* Dropdown styles */
+
+.menu ul {
+    position: fixed;       
+    left:   -9999px;
+    list-style: none;
+    opacity: 10%;
+    transition: opacity 15s linear;
+}
+
+.menu ul li {
+    float:end;
+}
+
+.menu ul a {
+    white-space: nowrap;
+}
+
+/* Displays the dropdown on hover and moves back into position */
+.menu li:hover ul {
+    background: rgba(255,255,255,0.7);
+    border-radius: 0 0 6px 6px;
+    box-shadow: inset 0px 2px 4px rgba(0,0,0,0.4);
+    left: 270px;
+    opacity: 100;
+}
+
+/* Persistant Hover State */
+.menu li:hover a {
+    background: -webkit-gradient(linear, center top, center bottom, from(#ccc), to(#ededed));
+    background-image: linear-gradient(#ccc, #ccc);
+    border-radius: 12px;
+    box-shadow: inset 0px 0px 1px 1px rgba(0,0,0,0.1);
+    color: #000;
+}
+
+.menu li:hover ul a {
+    background: #eee;
+    border-radius: 1;
+    box-shadow: #101010;
+}
+
+.menu li:hover ul li a:hover {
+    background: -webkit-gradient(linear, center top, center bottom, from(#eee), to(#fff));
+    background-image: linear-gradient(#28a4c9, #d5d5d5);
+    border-radius: 12px;
+    box-shadow: inset 0px 0px 4px 2px rgba(0,0,0,0.3);
+}
+
+
