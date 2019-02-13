@@ -225,7 +225,7 @@
                                         <center>
                                             <select id="company " name="cboempresa" class="input_field reply_form_name" type="select" placeholder="Empresa *" 
                                                     title="Seleccione la empresa" required="required">
-                                                <option value="0" disabled selected="true">Seleccione</option>
+                                                <option value="0" disabled selected="true">Seleccione la empresa</option>
                                                 <%while (empre.next()) {%>
                                                 <option value="<%= empre.getString(1)%>"><%=empre.getString(2)%></option>      
                                                 <% }%></select>
@@ -238,7 +238,7 @@
                                                 <% }%></select>
 
                                            <input id="stageName" name="txtreproduccion" value="" onkeyup = "this.value = this.value.toUpperCase() 
-                                                  "class="input_field reply_form_name"  onkeypress="return soloNumeros(event)" type="text" placeholder="Cantidada de reproducciones *" required="required" data-error="">
+                                                  "class="input_field reply_form_name"  onkeypress="return soloNumeros(event)" type="text" placeholder="Cantidad de reproducciones *"  data-error="">
                                             
                                             <input name="txtfecharegistro" type="text" readonly="readonly" class="input_field reply_form_label" 
                                                    value="<%=fechaActual%>"
