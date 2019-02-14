@@ -17,14 +17,14 @@ public class Empresa {
     By PagoOpeacion = By.name("txtpagooperacion");
     By Estado = By.xpath("//*[@id=\"Empresa\"]/div[2]/label[1]/input");
     By Guardar = By.id("save");
-    By MensajeValidacion= By.xpath("/html/body/div/div[2]/div[2]/center/h4");
+    By MensajeValidacion= By.xpath("/html/body/div/div[2]/div[2]/div[2]/center/h3");
 
     public Empresa(WebDriver driver) {
         this.driver = driver;
     }
     
     
-    public String SetMensaje() {
+    public String GetMensaje() {
         return driver.findElement(MensajeValidacion).getText();
     }
 
@@ -37,6 +37,9 @@ public class Empresa {
 
     public void SetNroDo(String Nro) {
         driver.findElement(NroDocEmp).sendKeys(Nro);
+    }
+     public void SetPago (String Pago) {
+        driver.findElement(PagoOpeacion).sendKeys(Pago);
     }
 
     public void SetNombre(String NombreEmpr) {
@@ -54,6 +57,7 @@ public class Empresa {
     public void EmpresaAplication(String NroDocEmp,String NombreEmp,String PagoOperacion){
         SetTipodo();
         SetNroDo(NroDocEmp);
+        SetPago(NroDocEmp);
         SetNombre(NombreEmp);
         SetEstado();
         ClicGuardar();

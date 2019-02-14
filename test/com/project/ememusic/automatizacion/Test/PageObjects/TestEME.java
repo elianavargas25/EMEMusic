@@ -65,7 +65,7 @@ public class TestEME {
     @Test
     public void CtestLoginApplicationAdmin() throws InterruptedException {
         System.out.println("Test Login Admin");
-       // driver.findElement(By.linkText("Ingresar")).click();
+        // driver.findElement(By.linkText("Ingresar")).click();
         String User = "admin";
         String Password = "admin";
         log = new Login(driver);
@@ -75,7 +75,7 @@ public class TestEME {
         System.out.println("el usuario es:" + Usuario);
         String actual = "Usuario: admin";
         assertEquals(Usuario, actual);
-       // driver.findElement(By.linkText("Cerrar sesión")).click();
+        // driver.findElement(By.linkText("Cerrar sesión")).click();
 
     }
 
@@ -114,26 +114,39 @@ public class TestEME {
 
     }
 
-    //Probamos que la permita guardar una 
-    @Test
-    public void DTestCreateEmpresaAplication() throws Exception {
-        driver.findElement(By.linkText("Registro de Empresas")).click();
-        String NroDocEmp = ("12345678910");
-        String NombreEmp = "Ruben Pte";
-        String PagoOpeacion = "1000000000000";
-        Emp = new Empresa(driver);
-        Emp.EmpresaAplication(NroDocEmp, NombreEmp, PagoOpeacion);
-        String Msj= Emp.SetMensaje();
-        System.out.println("el mensaje es:" + Msj);
-        String MensajeEsperado = "Registro guardado correctamente";
-        assertEquals(Msj, MensajeEsperado);
-    }
+//    //Probamos que la permita guardar una 
+//    @Test
+//    public void DTestCreateEmpresaAplication() throws Exception {
+//        driver.findElement(By.linkText("Registro de Empresas")).click();
+//        String NroDocEmp = ("1234567891");
+//        String NombreEmp = "Otra ";
+//        String PagoOpeacion = "10000";
+//        Emp = new Empresa(driver);
+//        Emp.EmpresaAplication(NroDocEmp, NombreEmp, PagoOpeacion);
+//        Thread.sleep(2000);
+//        String Mensaje = Emp.GetMensaje();
+//        System.out.println("el mensaje es:" + Mensaje);
+//        String MensajeEsperado = "Registro guardado correctamente";
+//        assertEquals(Mensaje, MensajeEsperado);
+//    }
 
-    //Probamos que no deje guardar debido el Campo Primer nombre es obligatorio obligatorio.
+    //Probamos que no deje guardar debido el Campo Número de documento es obligatorio.
     @Test
     public void testObligatoriedadPrimerApellido() throws Exception {
-
+        driver.findElement(By.linkText("Registro de Empresas")).click();
+        String NroDocEmp = ("  ");
+        String NombreEmp = "Ruben Pte";
+        String PagoOpeacion = "10000";
+        Emp = new Empresa(driver);
+        Emp.EmpresaAplication(NroDocEmp, NombreEmp, PagoOpeacion);
+        Thread.sleep(2000);
+        String Mensaje = Emp.GetMensaje();
+        System.out.println("No se realizó el registro:" + Mensaje);
+        String MensajeEsperado = "";
+        assertEquals(Mensaje, MensajeEsperado);
     }
 
-    //Probamos que no deje guardar debido el Campo Primer nombre es obligatorio obligatorio.
 }
+
+//Probamos que no deje guardar debido el Campo Primer nombre es obligatorio obligatorio.
+
