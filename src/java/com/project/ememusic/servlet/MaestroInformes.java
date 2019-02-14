@@ -42,13 +42,17 @@ public class MaestroInformes extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        String mensaje = "";
         String Filtro = request.getParameter("Filtro");
         int filtro = Integer.parseInt(Filtro);
         String fechaDesde = request.getParameter("txtDateFrom");
         String fechaHasta = request.getParameter("txtDateTo");
         Date fechaFrom = Date.valueOf(fechaDesde);
         Date fechaTo = Date.valueOf(fechaHasta);
-        String mensaje = "";
+        if (fechaFrom.equals("") && fechaTo.equals("")) {
+            mensaje = "Debe ingresar la fecha";
+        }
+
         String modulo = "Informes.jsp";
         request.setAttribute("mensaje", null);
         request.setAttribute("modulo", null);
@@ -58,45 +62,44 @@ public class MaestroInformes extends HttpServlet {
         if ("Buscar".equals(request.getParameter("action"))) {
             if (fechaFrom.equals("") && fechaTo.equals("")) {
                 mensaje = "Debe ingresar la fecha";
-            }else
-            if (filtro==1) {
+            } else if (filtro == 1) {
                 try {
-                        List<InfoInformes> lista = ninfo.listarporArtis(fechaFrom, fechaTo);
-                        request.setAttribute("lista", lista);
-                        //request.setAttribute("filtro", filtro);
-                    } catch (Exception e) {
-                        Logger.getLogger(MaestroInformes.class.getName())
-                                .log(Level.SEVERE, null, e);
-                        mensaje += "" + e.getMessage();
-                    }
-            }else if (filtro==2) {
+                    List<InfoInformes> lista = ninfo.listarporArtis(fechaFrom, fechaTo);
+                    request.setAttribute("lista", lista);
+                    //request.setAttribute("filtro", filtro);
+                } catch (Exception e) {
+                    Logger.getLogger(MaestroInformes.class.getName())
+                            .log(Level.SEVERE, null, e);
+                    mensaje += "" + e.getMessage();
+                }
+            } else if (filtro == 2) {
                 try {
-                        List<InfoInformes> lista = ninfo.listarporEmpre(fechaFrom, fechaTo);
-                        request.setAttribute("lista", lista);
+                    List<InfoInformes> lista = ninfo.listarporEmpre(fechaFrom, fechaTo);
+                    request.setAttribute("lista", lista);
                         //request.setAttribute("filtro", filtro);
-                      
-                    } catch (Exception e) {
-                        Logger.getLogger(MaestroInformes.class.getName())
-                                .log(Level.SEVERE, null, e);
-                        mensaje += "" + e.getMessage();
-                    }
-            }else if (filtro==3) {
+
+                } catch (Exception e) {
+                    Logger.getLogger(MaestroInformes.class.getName())
+                            .log(Level.SEVERE, null, e);
+                    mensaje += "" + e.getMessage();
+                }
+            } else if (filtro == 3) {
                 try {
-                        List<InfoInformes> lista = ninfo.listarporEmpre(fechaFrom, fechaTo);
-                        request.setAttribute("lista", lista);
-                        //request.setAttribute("filtro", filtro);
-                    } catch (Exception e) {
-                        Logger.getLogger(MaestroInformes.class.getName())
-                                .log(Level.SEVERE, null, e);
-                        mensaje += "" + e.getMessage();
-                    }
-            }else {
-                    mensaje = "Debe seleccionar una opción de la lista";
+                    List<InfoInformes> lista = ninfo.listarporEmpre(fechaFrom, fechaTo);
+                    request.setAttribute("lista", lista);
+                    //request.setAttribute("filtro", filtro);
+                } catch (Exception e) {
+                    Logger.getLogger(MaestroInformes.class.getName())
+                            .log(Level.SEVERE, null, e);
+                    mensaje += "" + e.getMessage();
+                }
+            } else {
+                mensaje = "Debe seleccionar una opción de la lista";
             }
         }
         request.setAttribute("mensaje", mensaje);
         request.getRequestDispatcher(modulo).forward(request, response);
-        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

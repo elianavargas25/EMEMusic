@@ -38,13 +38,24 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="RanGO Project">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="styles/Caja.css">
+        <link rel="stylesheet" type="text/css" href="styles/btn.css">
+        <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+        <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+
         <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
         <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
         <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
         <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
-        <link rel="stylesheet" type="text/css" href="styles/Caja.css">
-        <link rel="stylesheet" type="text/css" href="styles/btn.css">
+        <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+        <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+        <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+        <link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
+        <link rel="stylesheet" type="text/css" href="styles/about_styles.css">
+        <link rel="stylesheet" type="text/css" href="styles/about_responsive.css">
+        <link rel="stylesheet" type="text/css" href="styles/EstilosNav.css">
+        <link href="css/EstiloNav.css"  media="screen" rel="stylesheet" type="text/css">
     </head>
 
     <body>
@@ -61,39 +72,9 @@
                 </div>
 
                 <!-- Navigation -->
-                <nav class="main_nav justify-self-end text-right">
-                    <%if (perfil.equals("Administrador")) {%> 
-                    <nav class="main_nav justify-self-end text-right">
-                        <ul>
-                            <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
-                            <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
-                            <li class="menu_mm"><a href="RegistrarVentas.jsp">Registrar Ventas</a></li>
-                            <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                            <li class="menu_mm">Administración
-                                <ul>
-                                    <li class="menu_mm"><a href="Parametros.jsp">Parámetros</a></li>
-                                    <li class="menu_mm"><a href="Usuarios.jsp">Usuarios</a></li>
-                                    <li class="menu_mm"><a href="Auditoria.jsp">Log Auditoria</a></li>
-                                </ul>
-                            </li>
-                            <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
-                            <a href="index.jsp">Cerrar sesión</a>
-                        </ul>   
-                    </nav>
-                    <%} else {%>
-                    <nav class="main_nav justify-self-end text-right">
-                        <ul>
-                            <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
-                            <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
-                            <li class="menu_mm"><a href="RegistrarVentas.jsp">Registrar Ventas</a></li>
-                            <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                            <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
-                            <a href="index.jsp">Cerrar sesión</a>
-
-                        </ul>   
-                    </nav>
-
-                    <%}%>
+               <%if (perfil.equals("Administrador")) {%> 
+                <jsp:include page="Smenu.jsp" flush="false"></jsp:include>
+                <%}%>
                     <!-- Search -->
                     <div class="search">
                         <div class="search_content d-flex flex-column align-items-center justify-content-center">

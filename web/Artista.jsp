@@ -117,7 +117,6 @@
         <link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
         <link rel="stylesheet" type="text/css" href="styles/about_styles.css">
         <link rel="stylesheet" type="text/css" href="styles/about_responsive.css">
-        <link rel="stylesheet" type="text/css" href="styles/EstilosNav.css">
         <link href="css/EstiloNav.css"  media="screen" rel="stylesheet" type="text/css">
     </head>
 

@@ -30,8 +30,8 @@ public class DaoInforme {
             while (respuesta.next()) {
                 InfoInformes ven = new InfoInformes();
                 ven.getEmpresa().setNombre(respuesta.getString("nombreEmpresa"));
-                ven.getVenta().setReproduccion(respuesta.getString("cantReprod"));
-                ven.getVenta().setTotalGanado(respuesta.getString("Ventastotal"));
+                ven.getVenta().setReproduccion(respuesta.getDouble("cantReprod"));
+                ven.getVenta().setTotalGanado(respuesta.getDouble("Ventastotal"));
                 result.add(ven);
             }//fin while
         } catch (Exception e) {
@@ -56,8 +56,8 @@ public class DaoInforme {
                 InfoInformes ven = new InfoInformes();
                 ven.getArtista().setNombreArtistico(respuesta.getString("nombreArtista"));
                 ven.getEmpresa().setNombre(respuesta.getString("nombreEmpresa"));
-                ven.getVenta().setReproduccion(respuesta.getString("cantReprod"));
-                ven.getVenta().setTotalGanado(respuesta.getString("Ventastotal"));
+                ven.getVenta().setReproduccion(respuesta.getDouble("cantReprod"));
+                ven.getVenta().setTotalGanado(respuesta.getDouble("Ventastotal"));
                 result.add(ven);
             }//fin while
         } catch (Exception e) {

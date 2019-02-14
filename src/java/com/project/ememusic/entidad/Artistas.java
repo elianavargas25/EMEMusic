@@ -10,7 +10,8 @@ package com.project.ememusic.entidad;
  * @author Mileidy
  */
 public class Artistas {
-    String idArtista,TipoDocumento,NroDocumento,PrimerNombre,SegundoNombre,PrimerApellido,SegundoApellido,NombreArtistico,Estado,Empresa;
+
+    String idArtista, TipoDocumento, NroDocumento, PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, NombreArtistico, Estado, Empresa;
 
     public String getNroDocumento() {
         return NroDocumento;
@@ -91,8 +92,5 @@ public class Artistas {
     public void setEmpresa(String Empresa) {
         this.Empresa = Empresa;
     }
-    
-    
-    
-    
+
 }
