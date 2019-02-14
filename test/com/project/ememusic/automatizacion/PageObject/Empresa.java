@@ -1,6 +1,7 @@
 package com.project.ememusic.automatizacion.PageObject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -8,47 +9,57 @@ import org.openqa.selenium.WebDriver;
  * @author Estefanía
  */
 public class Empresa {
+
     WebDriver driver;
-    By selector = By.name("cbotipodocumento");
-    By NroDoc= By.name("txtnrodocumento");
-    By Nombre= By.name("txtnombre");
-    By Pago= By.name("txtpagooperacion");
-    By Estado = By.name("optionStateS");
-    By guardar = By.id("save");
-    
-    public Empresa (WebDriver driver){
+    By selectipo = By.name("cbotipodocumento");
+    By NroDocEmp = By.name("txtnrodocumento");
+    By NombreEmp = By.name("txtnombre");
+    By PagoOpeacion = By.name("txtpagooperacion");
+    By Estado = By.xpath("//*[@id=\"Empresa\"]/div[2]/label[1]/input");
+    By Guardar = By.id("save");
+    By MensajeValidacion= By.xpath("/html/body/div/div[2]/div[2]/center/h4");
+
+    public Empresa(WebDriver driver) {
         this.driver = driver;
     }
     
-    public void setSelector (String Selec){
-    driver.findElement(selector).sendKeys(Selec);
+    
+    public String SetMensaje() {
+        return driver.findElement(MensajeValidacion).getText();
+    }
+
+    public void SetTipodo() {
+        driver.findElement(selectipo).sendKeys(Keys.DOWN);
+        driver.findElement(selectipo).sendKeys(Keys.DOWN);
+        driver.findElement(selectipo).sendKeys(Keys.RETURN);
+        driver.findElement(selectipo).click();
+    }
+
+    public void SetNroDo(String Nro) {
+        driver.findElement(NroDocEmp).sendKeys(Nro);
+    }
+
+    public void SetNombre(String NombreEmpr) {
+        driver.findElement(NombreEmp).sendKeys(NombreEmpr);
+    }
+
+    public void SetEstado() {
+        driver.findElement(Estado).click();
+    }
+
+    public void ClicGuardar() {
+        driver.findElement(Guardar).click();
     }
     
-    public void setNroDo (String Documento){
-    driver.findElement(NroDoc).sendKeys(Documento);
-    }
-   
-    public void setNombre (String Nomb){
-    driver.findElement(Nombre).sendKeys(Nomb);
+    public void EmpresaAplication(String NroDocEmp,String NombreEmp,String PagoOperacion){
+        SetTipodo();
+        SetNroDo(NroDocEmp);
+        SetNombre(NombreEmp);
+        SetEstado();
+        ClicGuardar();
+    
     }
     
-    public void setPago(String OperacionP){
-    driver.findElement(Pago).sendKeys(OperacionP);
-    }
-   
-    public void setEstado (String State){
-    driver.findElement(Estado).sendKeys(State);
-    }
     
-    public void ClicGuardarEmp(){
-    driver.findElement(guardar).click();
- }
-    public void EmpresaAplication(String selector, String NroDoc, String Nombre, String Pago,String Estado, String guardar){
-    this.setSelector(selector);
-    this.setNroDo(NroDoc);
-    this.setNombre(Nombre);
-    this.setPago(Pago);
-    this.setEstado(Estado);
-    this.ClicGuardarEmp();
-    }
+    
 }

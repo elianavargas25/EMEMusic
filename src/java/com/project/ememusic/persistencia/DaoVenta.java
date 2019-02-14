@@ -26,7 +26,7 @@ public class DaoVenta {
             PreparedStatement ven = con.prepareStatement(SqlVenta.insertarVenta());
             int index = 1;
             ven.setString(index++, venta.getIdArtista());
-            ven.setString(index++, venta.getReproduccion());
+            ven.setDouble(index++, venta.getReproduccion());
             ven.setDate(index++, new java.sql.Date(new java.util.Date().getTime()));
             int result = ven.executeUpdate();
             System.out.println("El registro de ventas fue exitoso...\n");

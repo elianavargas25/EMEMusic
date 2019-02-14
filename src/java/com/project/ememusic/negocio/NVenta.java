@@ -32,7 +32,7 @@ public class NVenta {
     public Ventas guardarVenta(Ventas venta) throws Exception {
         String IdArtista = venta.getIdArtista();
         String IdEmpresa = venta.getIdEmpresa();
-        String Reproduccion = venta.getReproduccion();
+        Double Reproduccion = venta.getReproduccion();
         String error = "";
         if ("".equals(IdArtista) || IdArtista == null) {
             error += "<br> Por favor ingrese el Nombre del Artista";
@@ -40,8 +40,6 @@ public class NVenta {
         if ("".equals(IdEmpresa) || IdEmpresa == null) {
             error += "<br> Por favor ingrese la Empresa";
         } 
-        
-        
         if ("".equals(Reproduccion) || Reproduccion == null) {
             error += "<br> Por favor ingrese la cantidad de reproducciones";
         }
