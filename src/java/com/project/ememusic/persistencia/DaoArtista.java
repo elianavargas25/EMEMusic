@@ -86,7 +86,7 @@ public class DaoArtista {
 
     }//finaliza buscar
 
-    public Artistas buscarArtistas( String Documento, String tdocu) {
+    public Artistas buscarArtistas(String Documento, String tdocu) {
         try {
             PreparedStatement ar = conn.prepareStatement(SqlArtista.getArtista(Documento));
             ar.setString(1, Documento);
@@ -125,7 +125,7 @@ public class DaoArtista {
         if (!artista.getNroDocumento().equals(Documento) || !artista.getTipoDocumento().equals(tdocu)) {
             System.out.println("El Artista no se encuentra registrado en la base de datos");
         }
-        return  null;
+        return null;
     }
 
     public boolean existsArtista(String id, String type) {
@@ -169,7 +169,7 @@ public class DaoArtista {
     }//cierra guardar
 
     //insertar registro en la tabla
-    public Artistas actualizarArtistas( Artistas artista) {
+    public Artistas actualizarArtistas(Artistas artista) {
         String mensaje = "";
 
         try {

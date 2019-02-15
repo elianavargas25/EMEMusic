@@ -5,23 +5,26 @@
  */
 package com.project.ememusic.persistencia;
 
+import com.project.ememusic.utilidades.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import com.project.ememusic.utilidades.Conexion;
+import java.sql.Connection;
 
 /**
  *
  * @author eliana.vargas
  */
 public class DaoTipoDocumento {
+
+    Connection con = Conexion.getInstance();
+
     public ResultSet tipoDoc() {
-        Conexion db = new Conexion();
         PreparedStatement stTD;
         try {
-            stTD = db.getConexion().prepareStatement("SELECT  ID_TIPO_DOCUMENTO,DESCRIPCION FROM TIPO_DOCUMENTO");
+            stTD = con.prepareStatement("SELECT  ID_TIPO_DOCUMENTO,DESCRIPCION FROM TIPO_DOCUMENTO");
             ResultSet result = stTD.executeQuery();
             return result;
         } catch (SQLException ex) {
@@ -29,17 +32,16 @@ public class DaoTipoDocumento {
             return null;
         }
     }
-    
-    public int IdtipoDoc( String tipodocumento) {
-        int tdocu = 0; 
-        Conexion db = new Conexion();
+
+    public int IdtipoDoc(String tipodocumento) {
+        int tdocu = 0;
         PreparedStatement stTD;
         try {
-            stTD = db.getConexion().prepareStatement("SELECT ID_TIPO_DOCUMENTO FROM TIPO_DOCUMENTO where DESCRIPCION = '"+tipodocumento+"'");
+            stTD = con.prepareStatement("SELECT ID_TIPO_DOCUMENTO FROM TIPO_DOCUMENTO where DESCRIPCION = '" + tipodocumento + "'");
             ResultSet result = stTD.executeQuery();
-            
+
             if (result.next()) {
-                tdocu= result.getInt("ID_TIPO_DOCUMENTO");
+                tdocu = result.getInt("ID_TIPO_DOCUMENTO");
             }
             return tdocu;
         } catch (SQLException ex) {

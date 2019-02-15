@@ -50,8 +50,8 @@ public class DaoEmpresaTest {
     public void testBuscarEmpresas() {
         System.out.println("Prueba Buscar Empresa");
         con = new Conexion().getCon();
-        String NroDocumento = "99825563";
-        String TipoDocu = "2";
+        String NroDocumento = "45225233";
+        String TipoDocu = "1";
         DaoEmpresa instance = new DaoEmpresa();
         Empresa result = instance.buscarEmpresas(NroDocumento, TipoDocu);
         Empresa expResult = result;
@@ -61,14 +61,21 @@ public class DaoEmpresaTest {
     /**
      * Test of guardarEmpresa method, of class DaoEmpresa.
      */
+    static int index = 1;
+    
+
     @Test
     public void testGuardarEmpresa() {
         System.out.println("Prueba guardar Empresa");
         con = new Conexion().getCon();
         Empresa emp = new Empresa();
         emp.setTipoDocumento("1");
-        emp.setNroDcumento("45225233");
-        emp.setNombre("YouTube");
+        index = index + 1;
+        emp.setNroDcumento("45225233" + index);
+        String[] abecedario = {"Aaa", "Bbb", "Cccc", "Dddd", "Eeee", "Fffff", "Gggg", "Hhhh", "Iiii", "Jjjj",
+            "Kkkk", "Llll", "Mmmm", "Nnnn", "Oooo", "Pppp", "Qqqq", "Rrrr", "Ssss", "Tttt", "Uuuu", "vvv", "Wwww", "Xxxx", "Yyyy", "Zzzz"};
+        int numRandom = (int) Math.round(Math.random() * 26);
+        emp.setNombre(abecedario[numRandom]);
         emp.setPago_operacion("300");
         emp.setEstado("S");
         DaoEmpresa instance = new DaoEmpresa();

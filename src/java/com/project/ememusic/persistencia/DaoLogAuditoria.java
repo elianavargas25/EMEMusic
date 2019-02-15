@@ -51,35 +51,4 @@ public class DaoLogAuditoria {
         return result;
     }
 
-    //insertar registro en la tabla
-    public LogAuditoria guardarArtista(Connection con, LogAuditoria auditoria) {//validar conexion
-        String mensaje = "";
-        try {
-            PreparedStatement audito = con.prepareStatement(SqlLogAuditoria.insertAuditoria());
-            int index = 1;
-            audito.setString(index++, auditoria.getIdUsuario());
-            audito.setString(index++, auditoria.getTipoAccion());
-            audito.setTimestamp(2, new java.sql.Timestamp(new Date().getTime()));
-            audito.setString(index++, auditoria.getNombreTabla());
-            audito.setString(index++, auditoria.getNumeroPK());
-            audito.setString(index++, auditoria.getDescripcion());
-            int result = audito.executeUpdate();
-            System.out.println("Registro de auditoria exitoso...\n");
-            if (audito.getUpdateCount() > 0) {
-                mensaje = "La auditoria se registró correctamente";
-            } else {
-                mensaje = "Error al registrar auditoria";
-            }
-        } catch (Exception e) {
-            System.out.println("Error al registrar auditoria");
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }//cierra finally
-        return auditoria;
-    }//cierra guardar
-
 }

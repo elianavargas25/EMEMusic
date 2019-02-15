@@ -109,7 +109,7 @@ public class DaoEmpresa {
     }
 
     //insertar registro en la tabla
-    public Empresa guardarEmpresa( Empresa emp) {
+    public Empresa guardarEmpresa(Empresa emp) {
         String mensaje = "";
         try {
             PreparedStatement ur = conn.prepareStatement(SqlEmpresa.insertarEmpresa());
@@ -137,7 +137,7 @@ public class DaoEmpresa {
         return emp;
     }//cierra guardar
 
-    public Empresa actualizarEmpresa( Empresa inc) {
+    public Empresa actualizarEmpresa(Empresa inc) {
         String mensaje = "";
         try {
             PreparedStatement ur = conn.prepareStatement(SqlEmpresa.actualizarEmpresa());
