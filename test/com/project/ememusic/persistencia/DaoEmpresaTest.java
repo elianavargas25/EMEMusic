@@ -61,22 +61,27 @@ public class DaoEmpresaTest {
     /**
      * Test of guardarEmpresa method, of class DaoEmpresa.
      */
+    static int index = 1;
+    
+
     @Test
     public void testGuardarEmpresa() {
         System.out.println("Prueba guardar Empresa");
         con = new Conexion().getCon();
-        int index =1;
         Empresa emp = new Empresa();
         emp.setTipoDocumento("1");
-        emp.setNroDcumento("45225233"+index);
-        emp.setNombre("YouTube");
+        index = index + 1;
+        emp.setNroDcumento("45225233" + index);
+        String[] abecedario = {"Aaa", "Bbb", "Cccc", "Dddd", "Eeee", "Fffff", "Gggg", "Hhhh", "Iiii", "Jjjj",
+            "Kkkk", "Llll", "Mmmm", "Nnnn", "Oooo", "Pppp", "Qqqq", "Rrrr", "Ssss", "Tttt", "Uuuu", "vvv", "Wwww", "Xxxx", "Yyyy", "Zzzz"};
+        int numRandom = (int) Math.round(Math.random() * 26);
+        emp.setNombre(abecedario[numRandom]);
         emp.setPago_operacion("300");
         emp.setEstado("S");
         DaoEmpresa instance = new DaoEmpresa();
         Empresa expResult = emp;
         Empresa result = instance.guardarEmpresa(emp);
         assertEquals(expResult, result);
-        index++;
     }
 
 }
