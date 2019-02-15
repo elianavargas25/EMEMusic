@@ -26,22 +26,22 @@ public class SqlArtista {
                 + "                art.NOMBRE_ARTISTICO,\n"
                 + "                emp.ID_EMPRESA,\n"
                 + "                art.ESTADO\n"
-                + "                FROM artistas art \n"
-                + "                INNER JOIN TIPO_DOCUMENTO td ON art.ID_TIPO_DOCUMENTO = td.ID_TIPO_DOCUMENTO \n"
-                + "                INNER JOIN EMPRESA emp ON emp.ID_EMPRESA = art.ID_EMPRESA\n"
+                + "                FROM music.artistas art \n"
+                + "                INNER JOIN music.TIPO_DOCUMENTO td ON art.ID_TIPO_DOCUMENTO = td.ID_TIPO_DOCUMENTO \n"
+                + "                INNER JOIN music.EMPRESA emp ON emp.ID_EMPRESA = art.ID_EMPRESA\n"
                 + "                WHERE art.NRO_DOCUMENTO =? and art.ID_TIPO_DOCUMENTO =?";
     }
 //INSERTAR (GUARDAR) UN REGISTRO EN LA TABLA
 
     public static String insertarArtista() {
-        return "INSERT INTO `artistas`"
+        return "INSERT INTO music.artistas"
                 + " ( `ID_TIPO_DOCUMENTO`, `NRO_DOCUMENTO`, `PRIMER_NOMBRE`, "
                 + "`SEGUNDO_NOMBRE`, `PRIMER_APELLIDO`, `SEGUNDO_APELLIDO`, `NOMBRE_ARTISTICO`, `ID_EMPRESA`, `ESTADO`)"
                 + "values (?,?,?,?,?,?,?,?,?)" ;
     }
     //Actualizar (GUARDAR) UN REGISTRO EN LA TABLA
     public static String actualizarArtista() {
-         return "UPDATE `artistas` art SET `PRIMER_NOMBRE` = ?, `SEGUNDO_NOMBRE` = ?, "
+         return "UPDATE music.artistas art SET `PRIMER_NOMBRE` = ?, `SEGUNDO_NOMBRE` = ?, "
                  + "`PRIMER_APELLIDO`=?, `SEGUNDO_APELLIDO`=?, `NOMBRE_ARTISTICO`=?, `ID_EMPRESA`=?, `ESTADO`=? "
                  + " WHERE `art`.`ID_ARTISTAS` = ?";
                 
