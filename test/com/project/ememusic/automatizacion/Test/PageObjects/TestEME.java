@@ -114,7 +114,7 @@ public class TestEME {
 
     }
 
-//    //Probamos que la permita guardar una 
+//    Probamos que la permita guardar una 
 //    @Test
 //    public void DTestCreateEmpresaAplication() throws Exception {
 //        driver.findElement(By.linkText("Registro de Empresas")).click();
@@ -130,22 +130,34 @@ public class TestEME {
 //        assertEquals(Mensaje, MensajeEsperado);
 //    }
 
-    //Probamos que no deje guardar debido el Campo Número de documento es obligatorio.
+    //Probamos que no deje guardar una empresa debido a que el Campo Número de documento es obligatorio.
     @Test
-    public void testObligatoriedadPrimerApellido() throws Exception {
+    public void testObligatoriedadNroDocEmpresa() throws Exception {
         driver.findElement(By.linkText("Registro de Empresas")).click();
-        String NroDocEmp = ("  ");
         String NombreEmp = "Ruben Pte";
         String PagoOpeacion = "10000";
         Emp = new Empresa(driver);
-        Emp.EmpresaAplication(NroDocEmp, NombreEmp, PagoOpeacion);
+        Emp.EmpresaAplication1(NombreEmp, PagoOpeacion);
         Thread.sleep(2000);
         String Mensaje = Emp.GetMensaje();
         System.out.println("No se realizó el registro:" + Mensaje);
         String MensajeEsperado = "";
         assertEquals(Mensaje, MensajeEsperado);
     }
-
+  //Probamos que no deje guardar una empresa debido a que el Campo Nombre es obligatorio.
+    @Test
+    public void testObligatoriedadNombreEmpresa() throws Exception {
+        driver.findElement(By.linkText("Registro de Empresas")).click();
+        String NroDocEmp = ("1234567800");
+        String PagoOpeacion = "10000";
+        Emp = new Empresa(driver);
+        Emp.EmpresaAplication2(NroDocEmp, PagoOpeacion);
+        Thread.sleep(2000);
+        String Mensaje = Emp.GetMensaje();
+        System.out.println("No se realizó el registro:" + Mensaje);
+        String MensajeEsperado = "";
+        assertEquals(Mensaje, MensajeEsperado);
+    }
 }
 
 //Probamos que no deje guardar debido el Campo Primer nombre es obligatorio obligatorio.

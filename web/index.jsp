@@ -93,10 +93,7 @@
 
             <!-- Menu -->
 
-             <%if (perfil.equals("Administrador")) {%> 
-                <jsp:include page="Smenu.jsp" flush="false"></jsp:include>
-                <%}%>
-
+           
             <!-- Home -->
 
             <div class="home">
