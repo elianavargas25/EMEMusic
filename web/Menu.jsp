@@ -27,9 +27,9 @@
         <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
         <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
         <link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
-        <link href="plugins/icon-font/styles.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
-        <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+        <link rel="stylesheet" type="text/css" href="styles/about_styles.css">
+        <link rel="stylesheet" type="text/css" href="styles/about_responsive.css">
+        <link href="css/EstiloNav.css"  media="screen" rel="stylesheet" type="text/css">
     </head>
 
     <body>
@@ -42,43 +42,18 @@
 
                 <!-- Logo -->
                 <div class="logo mr-auto">
-                    <a href="#">EME<span>MUSIC</span></a>
+                    <a href="#">EME<spa>MUSIC</spa></a>
                 </div>
                 <br>
 
                 <!-- Navigation -->
                 
-                <%if (perfil.equals("Administrador")) {%> 
-                <nav class="main_nav justify-self-end text-right">
-                    <ul>
-                        <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
-                        <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
-                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Registrar Ventas</a></li>
-                        <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                        <li class="menu_mm">Administración
-                            <ul>
-                                <li class="menu_mm"><a href="Parametros.jsp">Parámetros</a></li>
-                                <li class="menu_mm"><a href="Usuarios.jsp">Usuarios</a></li>
-                                <li class="menu_mm"><a href="Auditoria.jsp">Log Auditoria</a></li>
-                            </ul>
-                        </li>
-                        <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
-                        <a href="index.jsp">Cerrar sesión</a>
-                    </ul>   
-                </nav>
+               <%if (perfil.equals("Administrador")) {%> 
+                <jsp:include page="Smenu.jsp" flush="false"></jsp:include>
                 <%} else {%>
-                <nav class="main_nav justify-self-end text-right">
-                    <ul>
-                        <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
-                        <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
-                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Registrar Ventas</a></li>
-                        <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
-                        <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
-                        <a href="index.jsp">Cerrar sesión</a>
-                        
-                    </ul>   
-                </nav>
-                    <%}%>
+                <jsp:include page="Smenu_1.jsp" flush="false"></jsp:include>
+                
+                <%}%>
 
                 <!-- Search -->
                 <div class="search">

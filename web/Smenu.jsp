@@ -12,13 +12,13 @@
             <li><a href="#"><span class="iconic pencil"></span>Administrador</a>
                 <ul>
                     <li> <a href="Parametros.jsp">
-                            <span class="iconic map-pin"></span>
+                            <span class=""></span>
                             Parámetros</a> </li>
                     <li>  <a href="Usuarios.jsp">
-                            <span class="iconic map-pin"></span>
-                            Restro de Usuarios</a></li>
+                            <span class="iconic"></span>
+                            Registro de Usuarios</a></li>
                     <li> <a href="Auditoria.jsp">
-                            <span class="iconic map-pin"></span>
+                            <span class="iconic "></span>
                             Log Auditoria</a></li>
                 </ul>
             </li>

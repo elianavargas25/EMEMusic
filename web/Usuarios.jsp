@@ -68,7 +68,7 @@
 
                 <!-- Logo -->
                 <div class="logo mr-auto">
-                    <a href="#">EME<span>Music</span></a>
+                    <a href="#">EME<spa>Music</spa></a>
                 </div>
 
                 <!-- Navigation -->
