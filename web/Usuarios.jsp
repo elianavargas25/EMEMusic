@@ -68,13 +68,15 @@
 
                 <!-- Logo -->
                 <div class="logo mr-auto">
-                    <a href="#">EME<spa>Music</spa></a>
+                    <a href="#">EME<spa>MUSIC</spa></a>
                 </div>
 
                 <!-- Navigation -->
                <%if (perfil.equals("Administrador")) {%> 
                 <jsp:include page="Smenu.jsp" flush="false"></jsp:include>
                 <%}%>
+                <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
+                        <a href="index.jsp">Cerrar sesión</a>
                     <!-- Search -->
                     <div class="search">
                         <div class="search_content d-flex flex-column align-items-center justify-content-center">
