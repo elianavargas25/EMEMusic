@@ -25,13 +25,13 @@ public class SqlEmpresa {
 "                   emp.PAGO_OPERACION,\n" +
 "                   emp.ID_ESTADO\n" +
 "                   FROM\n" +
-"                   music.empresa emp\n" +
-"                   inner join music.tipo_documento td on td.id_tipo_documento = emp.id_tipo_documento\n" +
+"                   empresa emp\n" +
+"                   inner join tipo_documento td on td.id_tipo_documento = emp.id_tipo_documento\n" +
 "                   WHERE emp.nro_documento =? and emp.id_tipo_documento =?";
     }
 //INSERTAR (GUARDAR) UN REGISTRO EN LA TABLA
     public static String insertarEmpresa() {
-        return "INSERT INTO music.empresa (`ID_TIPO_DOCUMENTO`, `NRO_DOCUMENTO`, `NOMBRE`, `PAGO_OPERACION`, `ID_ESTADO`) "
+        return "INSERT INTO empresa (`ID_TIPO_DOCUMENTO`, `NRO_DOCUMENTO`, `NOMBRE`, `PAGO_OPERACION`, `ID_ESTADO`) "
                 + "VALUES (?,?,?,?,?)";
     }
 
@@ -45,7 +45,7 @@ public class SqlEmpresa {
                 + "   emp.pago_operacion,\n"
                 + "   emp.id_estado,\n"
                 + "   FROM\n"
-                + "   music.empresa emp\n"
+                + "   empresa emp\n"
                 + "WHERE emp.id_empresa =?";    }
     
     
