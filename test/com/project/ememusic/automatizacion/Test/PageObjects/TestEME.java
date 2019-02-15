@@ -115,20 +115,20 @@ public class TestEME {
     }
 
 //    Probamos que la permita guardar una 
-//    @Test
-//    public void DTestCreateEmpresaAplication() throws Exception {
-//        driver.findElement(By.linkText("Registro de Empresas")).click();
-//        String NroDocEmp = ("1234567891");
-//        String NombreEmp = "Otra ";
-//        String PagoOpeacion = "10000";
-//        Emp = new Empresa(driver);
-//        Emp.EmpresaAplication(NroDocEmp, NombreEmp, PagoOpeacion);
-//        Thread.sleep(2000);
-//        String Mensaje = Emp.GetMensaje();
-//        System.out.println("el mensaje es:" + Mensaje);
-//        String MensajeEsperado = "Registro guardado correctamente";
-//        assertEquals(Mensaje, MensajeEsperado);
-//    }
+    @Test
+    public void DTestCreateEmpresaAplication() throws Exception {
+        driver.findElement(By.linkText("Registro de Empresas")).click();
+        String NroDocEmp = ("1234567891");
+        String NombreEmp = "Otra ";
+        String PagoOpeacion = "10000";
+        Emp = new Empresa(driver);
+        Emp.EmpresaAplication(NroDocEmp, NombreEmp, PagoOpeacion);
+        Thread.sleep(2000);
+        String Mensaje = Emp.GetMensaje();
+        System.out.println("el mensaje es:" + Mensaje);
+        String MensajeEsperado = "Registro guardado correctamente";
+        assertEquals(Mensaje, MensajeEsperado);
+    }
 
     //Probamos que no deje guardar una empresa debido a que el Campo Número de documento es obligatorio.
     @Test
@@ -158,7 +158,22 @@ public class TestEME {
         String MensajeEsperado = "";
         assertEquals(Mensaje, MensajeEsperado);
     }
+    //Probamos que no deje guardar debido el Campo Primer nombre es obligatorio obligatorio.
+     @Test
+    public void testObligatoriedadPrimerNombre() throws Exception {
+        driver.findElement(By.linkText("Registro de Empresas")).click();
+        String NroDocEmp = ("1234567800");
+        String PagoOpeacion = "10000";
+        Emp = new Empresa(driver);
+        Emp.EmpresaAplication2(NroDocEmp, PagoOpeacion);
+        Thread.sleep(2000);
+        String Mensaje = Emp.GetMensaje();
+        System.out.println("No se realizó el registro:" + Mensaje);
+        String MensajeEsperado = "";
+        assertEquals(Mensaje, MensajeEsperado);
+    }
 }
 
-//Probamos que no deje guardar debido el Campo Primer nombre es obligatorio obligatorio.
+
+
 
