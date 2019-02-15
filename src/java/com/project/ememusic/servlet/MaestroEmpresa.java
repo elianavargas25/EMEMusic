@@ -56,8 +56,8 @@ public class MaestroEmpresa extends HttpServlet {
             try {
                 //verifica si existe el dato
                 empresa = negocio.buscarEmpresas(NroDocumento, TipoDocumento);
-               // if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento) || empresa.getNombre().equals(Nombre)) {
-                if (empresa!=null) {
+                // if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento) || empresa.getNombre().equals(Nombre)) {
+                if (empresa != null) {
                     mensaje = "La empresa que desea registrar, ya se encuentra en sistema ";
                 } else {
                     try {
@@ -119,11 +119,16 @@ public class MaestroEmpresa extends HttpServlet {
         if ("Buscar".equals(request.getParameter("action"))) {
             try {
                 empresa = negocio.buscarEmpresas(NroDocumento, TipoDocumento);
-                if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento)) {
-                    //si encuentra el dato cargamos los datos en el setAttribute
-                    request.setAttribute("datos", empresa);
-                } else {
+                if (empresa!=null) {
+                    if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento)) {
+                        //si encuentra el dato cargamos los datos en el setAttribute
+                        request.setAttribute("datos", empresa);
+                    }else {
                     mensaje = "La empresa: " + empresa.getTipoDocumento() + " " + NroDocumento + " no se encuentra registrado ";
+                    request.setAttribute("datos", null);
+                    }
+                } else {
+                    mensaje = "La empresa no se encuentra registrado ";
                     request.setAttribute("datos", null);
                 }
             } catch (Exception e) {

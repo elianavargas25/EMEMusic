@@ -92,7 +92,6 @@
             </header>
 
             <!-- Menu -->
-
             <div class="menu_container">
                 <div class="menu menu_mm text-right">
                     <div class="menu_close"><i class="far fa-times-circle trans_200"></i></div>
@@ -106,7 +105,6 @@
                     </ul>
                 </div>
             </div>
-
             <!-- Home -->
 
             <div class="home">

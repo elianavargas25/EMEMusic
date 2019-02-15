@@ -44,8 +44,8 @@ public class DaoVentaTest {
      */
     @Test
     public void testGuardarVenta() {
-        System.out.println("guardarVenta");
-        Ventas venta = null;
+        System.out.println("Guardar Ventas");
+        Ventas venta = new Ventas();
         DaoVenta instance = new DaoVenta();
         Ventas expResult = null;
         Ventas result = instance.guardarVenta(venta);
