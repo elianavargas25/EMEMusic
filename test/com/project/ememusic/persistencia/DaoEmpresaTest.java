@@ -50,8 +50,8 @@ public class DaoEmpresaTest {
     public void testBuscarEmpresas() {
         System.out.println("Prueba Buscar Empresa");
         con = new Conexion().getCon();
-        String NroDocumento = "99825563";
-        String TipoDocu = "2";
+        String NroDocumento = "45225233";
+        String TipoDocu = "1";
         DaoEmpresa instance = new DaoEmpresa();
         Empresa result = instance.buscarEmpresas(NroDocumento, TipoDocu);
         Empresa expResult = result;
@@ -65,9 +65,10 @@ public class DaoEmpresaTest {
     public void testGuardarEmpresa() {
         System.out.println("Prueba guardar Empresa");
         con = new Conexion().getCon();
+        int index =1;
         Empresa emp = new Empresa();
         emp.setTipoDocumento("1");
-        emp.setNroDcumento("45225233");
+        emp.setNroDcumento("45225233"+index);
         emp.setNombre("YouTube");
         emp.setPago_operacion("300");
         emp.setEstado("S");
@@ -75,6 +76,7 @@ public class DaoEmpresaTest {
         Empresa expResult = emp;
         Empresa result = instance.guardarEmpresa(emp);
         assertEquals(expResult, result);
+        index++;
     }
 
 }

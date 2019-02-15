@@ -45,11 +45,10 @@ public class DaoVentaTest {
     @Test
     public void testGuardarVenta() {
         System.out.println("guardarVenta");
-        Connection con = null;
         Ventas venta = null;
         DaoVenta instance = new DaoVenta();
         Ventas expResult = null;
-        Ventas result = instance.guardarVenta(con, venta);
+        Ventas result = instance.guardarVenta(venta);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");

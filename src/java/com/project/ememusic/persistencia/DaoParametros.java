@@ -6,6 +6,7 @@
 package com.project.ememusic.persistencia;
 
 import com.project.ememusic.entidad.Parametros;
+import com.project.ememusic.utilidades.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,15 +18,17 @@ import java.util.List;
  * @author Mileidy
  */
 public class DaoParametros {
+
+    Connection con = Conexion.getInstance();
     Parametros para = new Parametros();
-    
-      public List<Parametros> listarParametros(Connection con, Parametros parametros) {
+
+    public List<Parametros> listarParametros(Parametros parametros) {
         List<Parametros> result = new ArrayList<>();
         try {
             PreparedStatement lista = con.prepareStatement(SQLParametros.getLista());
             ResultSet respuesta = lista.executeQuery();
             while (respuesta.next()) {
-                
+
                 Parametros paramet = new Parametros();
                 paramet.setIdParametro(respuesta.getString(1));
                 paramet.setNombreParametro(respuesta.getString(2));
@@ -36,7 +39,6 @@ public class DaoParametros {
             e.printStackTrace();
         } finally {
             try {
-                con.close();//cierra la conexion de la bd
             } catch (Exception e) {
             }//fin try/catch
         }//fin try/catch/finall

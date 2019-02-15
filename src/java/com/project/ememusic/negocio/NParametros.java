@@ -16,21 +16,17 @@ import java.util.List;
  * @author Mileidy
  */
 public class NParametros {
-    
+
     DaoParametros dao;
-    Connection con;
-    
+
     public NParametros() {
         dao = new DaoParametros();
 
     }
     //buscar registro 
 
-    
     public List<Parametros> listarParametros(Parametros Parametros) {
-        Connection con;
-        con = new Conexion().getCon();
-        return dao.listarParametros(con, Parametros);
+        return dao.listarParametros(Parametros);
     }//fin public lista
-    
+
 }
