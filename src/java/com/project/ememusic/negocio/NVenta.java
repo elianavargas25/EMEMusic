@@ -6,7 +6,8 @@
  */
 package com.project.ememusic.negocio;
 
-import com.project.ememusic.entidad.Ventas;;
+import com.project.ememusic.entidad.Ventas;
+;
 import java.sql.Connection;
 import com.project.ememusic.persistencia.DaoVenta;
 import com.project.ememusic.utilidades.Conexion;
@@ -16,18 +17,16 @@ import java.util.Date;
  *
  * @author Mileidy
  */
+
+
 public class NVenta {
 
     DaoVenta dao;
-    Connection con;//validar
 
     public NVenta() {
         dao = new DaoVenta();
     }
 //buscar registro
-
-    
-   
 
     public Ventas guardarVenta(Ventas venta) throws Exception {
         String IdArtista = venta.getIdArtista();
@@ -39,20 +38,17 @@ public class NVenta {
         }
         if ("".equals(IdEmpresa) || IdEmpresa == null) {
             error += "<br> Por favor ingrese la Empresa";
-        } 
+        }
         if ("".equals(Reproduccion) || Reproduccion == null) {
             error += "<br> Por favor ingrese la cantidad de reproducciones";
         }
-        
+
         if (!"".equals(error)) {
             throw new Exception(error);
         }
-        con = new Conexion().getCon();//validar
-        venta = dao.guardarVenta(con,venta);//revisar
+        venta = dao.guardarVenta(venta);//revisar
         return venta;//revisar
     }//fin guardar
 
     //Actualizar
-   
-
 }

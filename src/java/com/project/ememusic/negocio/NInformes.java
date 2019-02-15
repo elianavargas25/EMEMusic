@@ -17,20 +17,18 @@ import java.util.List;
  * @author max
  */
 public class NInformes {
-    
+
     DaoInforme dao;
-    Connection con;
-     public NInformes() {
+
+    public NInformes() {
         dao = new DaoInforme();
     }
-    
+
     public List<InfoInformes> listarporEmpre(Date fechaDesde, Date fechaHasta) {
-        con = new Conexion().getConexion();
-        return dao.VentasporMes(con, fechaDesde, fechaHasta);
+        return dao.VentasporMes(fechaDesde, fechaHasta);
     }//fin public lista
-    
+
     public List<InfoInformes> listarporArtis(Date fechaDesde, Date fechaHasta) {
-        con = new Conexion().getConexion();
-        return dao.VentasporArtista(con, fechaDesde, fechaHasta);
+        return dao.VentasporArtista(fechaDesde, fechaHasta);
     }//fin public lista
 }

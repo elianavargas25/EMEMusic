@@ -11,17 +11,20 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.project.ememusic.utilidades.Conexion;
+import java.sql.Connection;
 
 /**
  *
  * @author eliana.vargas
  */
 public class DaoPerfil {
+
+    Connection con = Conexion.getInstance();
+
     public ResultSet PERFIL() {
-        Conexion db = new Conexion();
         PreparedStatement stTD;
         try {
-            stTD = db.getConexion().prepareStatement("SELECT  ID_PERFIL,NOMBRE_PERFIL FROM PERFIL");
+            stTD = con.prepareStatement("SELECT  ID_PERFIL,NOMBRE_PERFIL FROM PERFIL");
             ResultSet result = stTD.executeQuery();
             return result;
         } catch (SQLException ex) {
@@ -29,17 +32,17 @@ public class DaoPerfil {
             return null;
         }
     }
-    
-    public int PERFIL( String PERFIL) {
-        int PER = 0; 
+
+    public int PERFIL(String PERFIL) {
+        int PER = 0;
         Conexion db = new Conexion();
         PreparedStatement stTD;
         try {
-            stTD = db.getConexion().prepareStatement("SELECT ID_PERFIL FROM PERFIL where NOMBRE_PERFIL = '"+PERFIL+"'");
+            stTD = db.getConexion().prepareStatement("SELECT ID_PERFIL FROM PERFIL where NOMBRE_PERFIL = '" + PERFIL + "'");
             ResultSet result = stTD.executeQuery();
-            
+
             if (result.next()) {
-                PER= result.getInt("ID_PERFIL");
+                PER = result.getInt("ID_PERFIL");
             }
             return PER;
         } catch (SQLException ex) {

@@ -8,6 +8,7 @@ package com.project.ememusic.persistencia;
 import com.project.ememusic.entidad.InfoInformes;
 import com.project.ememusic.entidad.Informes;
 import com.project.ememusic.entidad.Ventas;
+import com.project.ememusic.utilidades.Conexion;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -20,7 +21,10 @@ import java.util.List;
  * @author eliana.vargas
  */
 public class DaoInforme {
-    public List<InfoInformes> VentasporMes(Connection con, Date fechaDesde, Date fechaHasta) {
+
+    Connection con = Conexion.getInstance();
+
+    public List<InfoInformes> VentasporMes(Date fechaDesde, Date fechaHasta) {
         List<InfoInformes> result = new ArrayList<>();
         try {
             PreparedStatement lista = con.prepareStatement(SQLInformes.ListMes());
@@ -44,8 +48,8 @@ public class DaoInforme {
         }//fin try/catch/finall
         return result;
     }
-    
-    public List<InfoInformes> VentasporArtista(Connection con, Date fechaDesde, Date fechaHasta) {
+
+    public List<InfoInformes> VentasporArtista(Date fechaDesde, Date fechaHasta) {
         List<InfoInformes> result = new ArrayList<>();
         try {
             PreparedStatement lista = con.prepareStatement(SQLInformes.ListArtis());

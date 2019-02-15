@@ -16,12 +16,10 @@ import java.sql.Connection;
  */
 public class NUsuario {
 
-    Connection c;
     DaoUsuarios dao = new DaoUsuarios();
 
     public Usuarios validarIngreso(String usuario, String clave) {
-        c = new Conexion().getCon();
-        return dao.validarIngreso(c, usuario, clave);
+        return dao.validarIngreso(usuario, clave);
     }
     
     
@@ -53,14 +51,12 @@ public class NUsuario {
         if (!"".equals(error)) {
             throw new Exception(error);
         }
-        c = new Conexion().getCon();//validar
-        usuario = dao.guardarUsuario(c,usuario);//revisar
+        usuario = dao.guardarUsuario(usuario);//revisar
         return usuario;//revisar
     }//fin guardar
     
     public Usuarios buscarUsuario(String nombre) {
-        c = new Conexion().getCon();// validar conexion
-        return dao.buscarUsuario(c, nombre);
+        return dao.buscarUsuario( nombre);
     }//fin buscar
     
     

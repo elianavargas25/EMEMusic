@@ -130,12 +130,15 @@
 
                 <!-- Logo -->
                 <div class="logo mr-auto">
-                    <a href="#">EME<span>MUSIC</span></a>
+                    <a href="#">EME<spa>MUSIC</spa></a>
                 </div>
 
                 <!-- Navigation -->
                 <%if (perfil.equals("Administrador")) {%> 
                 <jsp:include page="Smenu.jsp" flush="false"></jsp:include>
+                <%} else {%>
+                <jsp:include page="Smenu_1.jsp" flush="false"></jsp:include>
+                
                 <%}%>
                 
 <!--                <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
@@ -249,6 +252,7 @@
                                         </center>
                                         <div class="reply_form_email" value="<%=Estado != null ? Estado : ""%>" name="optestado" aria-hidden="true">Activo</div>
                                         <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="S">Si</label>
+                                        <br>
                                         <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="N">No</label>
 
                                     </div>

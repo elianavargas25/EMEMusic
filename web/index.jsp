@@ -27,7 +27,7 @@
 
                 <!-- Logo -->
                 <div class="logo mr-auto">
-                    <a href="#">EME<span>MUSIC</span></a>
+                    <a href="#">EME<spa>MUSIC</spa></a>
                 </div>
 
                 <!-- Navigation -->
@@ -92,8 +92,19 @@
             </header>
 
             <!-- Menu -->
-
-           
+            <div class="menu_container">
+                <div class="menu menu_mm text-right">
+                    <div class="menu_close"><i class="far fa-times-circle trans_200"></i></div>
+                    <ul class="menu_mm">
+                        <li class="menu_mm"><a href="index.jsp">Home</a></li>
+                        <li class="menu_mm active"><a href="Artista.jsp">Registro de Artistas</a></li>
+                        <li class="menu_mm"><a href="Empresa.jsp">Registro de Empresas</a></li>
+                        <li class="menu_mm"><a href="RegistrarVentas.jsp">Cargar Ventas</a></li>
+                        <li class="menu_mm"><a href="Informes.jsp">Informes</a></li>
+                        <li class="menu_mm"><a href="Administracion.jsp">Administración</a></li>
+                    </ul>
+                </div>
+            </div>
             <!-- Home -->
 
             <div class="home">
