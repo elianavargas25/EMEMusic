@@ -13,7 +13,7 @@ public class SQLParametros {
     
     
     public static String  getLista() {
-        return "SELECT * FROM parametros_generales;";
+        return "SELECT * FROM music.parametros_generales;";
                 }
     
 }
