@@ -24,7 +24,7 @@ public class DaoTipoDocumento {
     public ResultSet tipoDoc() {
         PreparedStatement stTD;
         try {
-            stTD = con.prepareStatement("SELECT  ID_TIPO_DOCUMENTO,DESCRIPCION FROM MUSIC.TIPO_DOCUMENTO");
+            stTD = con.prepareStatement("SELECT  ID_TIPO_DOCUMENTO,DESCRIPCION FROM TIPO_DOCUMENTO");
             ResultSet result = stTD.executeQuery();
             return result;
         } catch (SQLException ex) {
