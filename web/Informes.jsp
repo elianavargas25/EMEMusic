@@ -26,7 +26,7 @@
 %>
 <html lang="en">
     <head>
-        <title>EME MUSIC - Informes</title>
+        <title>Informes</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="RanGO Project">
@@ -35,15 +35,12 @@
         <link rel="stylesheet" type="text/css" href="styles/btn.css">
         <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
         <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-
-        <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+<!--
+        <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">-->
         <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
         <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
         <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
-        <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-        <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-        <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
         <link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
         <link rel="stylesheet" type="text/css" href="styles/about_styles.css">
         <link rel="stylesheet" type="text/css" href="styles/about_responsive.css">
@@ -74,7 +71,7 @@
                 <!-- Search -->
                 <div class="search">
                     <div class="search_content d-flex flex-column align-items-center justify-content-center">
-                        <h4 style="text-height: right">Usuario:    <%=nombre%></h4>
+                        <h2 style="text-height: right">Usuario:    <%=nombre%></h2>
                         <a href="index.jsp">Cerrar sesión</a>
                         <div class="search_button d-flex flex-column align-items-center justify-content-center">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -157,6 +154,8 @@
                 <div><center>  <h3><%=mensaje != null ? mensaje : ""%></h3></center></div>
 
             </div>
+                <br>
+                <br>
 
             <!-- Blog -->
             <form name="Informes" method="Post" id="Informes"
@@ -177,20 +176,27 @@
 
                                                 <!-- Sidebar Search -->
                                                 <div>
-                                                    <select id="Filtro" name="Filtro" type="text" class="sidebar_search_input" align="Center">
-                                                        <option value="0" >Seleccione</option>
+                                                    <select id="Filtro" name="Filtro" class="input_field reply_form_email" type="select"
+                                                    title="Tipo de informe" type="text">
+                                                       <option value="0" >Seleccione</option>
                                                         <option value="1" >Dinero ganado por artista</option>
                                                         <option value="2" >Artistas con premio</option>
                                                         <option value="3" >Ventas por empresa</option>
                                                     </select>
                                                     <br>
+                                                    <br>
+                                                    <br>
                                                     <label><b>Fecha Desde</b></label>
-                                                    <input id="dateFrom" name="txtDateFrom"   type="date" class="search_input date">
+                                                    <input id="dateFrom" name="txtDateFrom" required="required" type="date" class="search_input date">
+                                                    <br>
+                                                    <br>
                                                     <br>
                                                     <label><b>Fecha Hasta</b></label>
                                                     <input id="dateTo" name="txtDateTo" type="date" class="search_input date">
                                                 </div>
                                                 <div>
+                                                    <br>
+                                                    <br>
                                                     <br>
                                                     <button id="search" type="submit" class="btn bg-info" name="action" value="Buscar">Buscar</a></button>
                                                     <button id="exit" type="submit" class="btn bg-info" name="action" value="Cancelar">Cancelar</a></button>

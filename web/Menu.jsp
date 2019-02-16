@@ -2,7 +2,7 @@
 <%@page import= "java.util.*" session="true"%>
 
 <%
-    String id_usu ="";
+    String id_usu = "";
     String perfil = "";
     String nombre = "";
     Usuarios tec = new Usuarios();
@@ -29,6 +29,7 @@
         <link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
         <link rel="stylesheet" type="text/css" href="styles/about_styles.css">
         <link rel="stylesheet" type="text/css" href="styles/about_responsive.css">
+        <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
         <link href="css/EstiloNav.css"  media="screen" rel="stylesheet" type="text/css">
     </head>
 
@@ -47,12 +48,12 @@
                 <br>
 
                 <!-- Navigation -->
-                
-               <%if (perfil.equals("Administrador")) {%> 
+
+                <%if (perfil.equals("Administrador")) {%> 
                 <jsp:include page="Smenu.jsp" flush="false"></jsp:include>
                 <%} else {%>
                 <jsp:include page="Smenu_1.jsp" flush="false"></jsp:include>
-                
+
                 <%}%>
 
                 <!-- Search -->

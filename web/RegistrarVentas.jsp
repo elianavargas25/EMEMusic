@@ -173,16 +173,15 @@
                         
                         <h1>Registro de Ventas </h1>
                       </div>
-                    <div><center>  <h3><%=mensaje != null ? mensaje : ""%></h3></center></div>
+                    <div><center>  <h2><%=mensaje != null ? mensaje : ""%></h2></center></div>
 
                 </div>
 
 
             </div>
-
-            
-
-            <div class="row contact_row">
+                    <br>
+                    <br>
+                    
                 <div class="content-box-gray">
                     <div class="col-lg-8">
 
@@ -200,14 +199,14 @@
                                     <div>
                                         <center>
                                             <select id="company " name="cboempresa" class="input_field reply_form_name" type="select" placeholder="Empresa *" 
-                                                    title="Seleccione la empresa" required="required">
+                                                    title="Seleccione la empresa" >
                                                 <option value="0" disabled selected="true">Seleccione la empresa</option>
                                                 <%while (empre.next()) {%>
                                                 <option value="<%= empre.getString(1)%>"><%=empre.getString(2)%></option>      
                                                 <% }%></select>
 
                                             <select id="company " name="cboartista" class="input_field reply_form_label" type="select" placeholder="Artista *" 
-                                                    title="Seleccione el Artista" required="required">
+                                                    title="Seleccione el Artista" >
                                                 <option value="0" disabled selected="true">Seleccione</option>
                                                 <%while (artis.next()) {%>
                                                 <option value="<%= artis.getString(1)%>"><%=artis.getString(2)%></option>      
@@ -221,11 +220,9 @@
                                                    maxlength="15" tabindex="2">
 
                                         </center> 
-                                                   
-
                                     </div>
-                                  <br>
-
+                                                   <br>
+                                  
                                     <div class="Reply">
                                         <button id="save" type="submit" class="btn bg-info" name="action" value="Guardar">Guardar</button>
 
@@ -238,17 +235,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <br>
-            <br>
-
-
-
-
-
-
-
-
+            
             <script src="js/jquery-3.2.1.min.js"></script>
             <script src="styles/bootstrap4/popper.js"></script>
             <script src="styles/bootstrap4/bootstrap.min.js"></script>

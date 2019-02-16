@@ -125,9 +125,9 @@ p::selection
 	background: #ffd9bf;
 }
 
-h2{font-size: 24px;}
-h3{font-size: 18px;}
-h4{font-size: 14px;}
+h2{font-size: 15px;}
+h3{font-size: 20px;}
+h4{font-size: 20px;}
 h5{font-size: 11px;}
 h2, h3, h4, h5, h6
 {
@@ -531,7 +531,7 @@ section
 3.2 Home Title
 *********************************/
 
-.home_title
+/*.home_title
 {
 	position: absolute;
 	bottom: 61px;
@@ -545,11 +545,11 @@ section
 }
 .home_title h2
 {
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: 500;
-	color: black;
+	color: white;
 	margin-bottom: 15px;
-}
+}*/
 
 /*********************************
 3.3 Next Section Scroll

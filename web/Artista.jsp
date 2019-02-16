@@ -145,7 +145,7 @@
                 <div class="search">
                     
                     <div class="search_content d-flex flex-column align-items-center justify-content-center">
-                        <h4 style="text-height: right">Usuario:    <%=nombre%></h4>
+                        <h2 style="text-height: right">Usuario:    <%=nombre%></h2>
                         <a href="index.jsp">Cerrar sesión</a>
                         <div class="search_button d-flex flex-column align-items-center justify-content-center">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -205,10 +205,8 @@
 
 
             </div>
-
-
-
-            <div class="row contact_row">
+                    <br>
+                    <br>
 
 
                 <div class="content-box-gray">
@@ -237,13 +235,13 @@
                                                 <%while (tdocu.next()) {%>
                                                 <option value="<%= tdocu.getString(1)%>"><%=tdocu.getString(2)%></option>      
                                                 <% }%></select>
-                                            <input id="nroDocument" name="txtnumdocumento" value="<%=NroDocumento != null ? NroDocumento : ""%>" class="input_field reply_form_name" type="text" placeholder="Número de Documento *"   maxlength="15" minlength="3" required="required" title="Ingrese el número de documento">
+                                            <input id="nroDocument" name="txtnumdocumento" value="<%=NroDocumento != null ? NroDocumento : ""%>" class="input_field reply_form_name" type="text" placeholder="Número de Documento *"   maxlength="15" minlength="3"  title="Ingrese el número de documento">
                                             <br>
-                                            <input id="firstName"  name="txtprimernombre" value="<%=PrimerNombre != null ? PrimerNombre : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Primer Nombre *"  required="required" title="Valid Primer Nombre is required." onkeypress="return soloLetras()(event)" maxlength="20" minlength="3">
+                                            <input id="firstName"  name="txtprimernombre" value="<%=PrimerNombre != null ? PrimerNombre : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Primer Nombre *"   title="Valid Primer Nombre is required." onkeypress="return soloLetras()(event)" maxlength="20" minlength="3">
                                             <input id="secondName" name="txtsegundonombre" value="<%=SegundoNombre != null ? SegundoNombre : ""%>"onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_name"  maxlength="20" minlength="3" type="text" placeholder="Segundo Nombre" onkeypress="return soloLetras(event)"><br>
-                                            <input id="firstLastname" name="txtprimerapellido" value="<%=PrimerApellido != null ? PrimerApellido : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" onkeypress="return soloLetras(event)" maxlength="20" minlength="3" type="text" placeholder="Primer Apellido *" required="required" title="Valid Primer Apellido is required.">
+                                            <input id="firstLastname" name="txtprimerapellido" value="<%=PrimerApellido != null ? PrimerApellido : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" onkeypress="return soloLetras(event)" maxlength="20" minlength="3" type="text" placeholder="Primer Apellido *"  title="Valid Primer Apellido is required.">
                                             <input id="secondLastname" name="txtsegundopellido" value="<%=SegundoApellido != null ? SegundoApellido : ""%>" onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_name" onkeypress="return soloLetras(event)" maxlength="20" minlength="3" type="text" placeholder="Segundo Apellido" title="Name is required."><br>
-                                            <input id="stageName" name="txtnombreartistico" value="<%=NombreArtistico != null ? NombreArtistico : ""%>" onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_email" type="text" placeholder="Nombre Artistico *" required="required" title="Valid Nombre Artistico is required." maxlength="20" minlength="3">
+                                            <input id="stageName" name="txtnombreartistico" value="<%=NombreArtistico != null ? NombreArtistico : ""%>" onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_email" type="text" placeholder="Nombre Artistico *"  title="Valid Nombre Artistico is required." maxlength="20" minlength="3">
                                             <select id="company " name="cboempresa" value="<%=Empresa != null ? Empresa : ""%>"class="input_field reply_form_name" type="select" placeholder="Empresa *" 
                                                     title="Seleccione el tipo de documento">
                                                 <option value="0" disabled selected="true">Seleccione</option>
@@ -251,12 +249,18 @@
                                                 <option value="<%= empre.getString(1)%>"><%=empre.getString(2)%></option>      
                                                 <% }%></select>
                                         </center>
+                                        <br>
                                         <div class="reply_form_email" value="<%=Estado != null ? Estado : ""%>" name="optestado" aria-hidden="true">Activo</div>
+                                        <br>
+                                        <br>
                                         <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="S">Si</label>
+                                        <br>
                                         <br>
                                         <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="N">No</label>
 
                                     </div>
+                                    <br>
+                                    <br>
 
                                     <div class="Reply">
                                         <button id="save" type="submit" class="btn bg-info" name="action" value="Guardar">Guardar</button>
@@ -276,7 +280,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+          
             <br>
             <br>
 

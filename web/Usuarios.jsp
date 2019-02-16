@@ -74,12 +74,16 @@
                 <!-- Navigation -->
                <%if (perfil.equals("Administrador")) {%> 
                 <jsp:include page="Smenu.jsp" flush="false"></jsp:include>
+                <%} else {%>
+                <jsp:include page="Smenu_1.jsp" flush="false"></jsp:include>
                 <%}%>
-                <h4 style="text-align: right">Usuario:    <%=nombre%></h4>
-                        <a href="index.jsp">Cerrar sesión</a>
+                
+               
                     <!-- Search -->
                     <div class="search">
                         <div class="search_content d-flex flex-column align-items-center justify-content-center">
+                            <h2 style="text-height: right">Usuario:    <%=nombre%></h2>
+                        <a href="index.jsp">Cerrar sesión</a>
                             <div class="search_button d-flex flex-column align-items-center justify-content-center">
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                      width="18px" height="18px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
@@ -155,14 +159,9 @@
                 </div>
 
                 <div class="home_title">
-                    <h2>Usuarios</h2>
+                    <h4>Usuarios</h4>
                     <center>  <h2><%=mensaje != null ? mensaje : ""%></h2><br> </center>
-                    <div class="next_section_scroll">
-                        <div class="next_section nav_links" data-scroll-to=".contact">
-                            <i class="fas fa-chevron-down trans_200"></i>
-                            <i class="fas fa-chevron-down trans_200"></i>
-                        </div>
-                    </div>
+                    
                 </div>
 
             </div>
@@ -183,22 +182,25 @@
                                       action="./MaestroUsuario" autocomplete="off" class="bod">
 
                                     <div>
-                                        <center>
+                                        
 
                                             <input id="nombre" name="txtnombre" value="<%=Nombre != null ? Nombre : ""%>"  class="input_field reply_form_name" type="text" placeholder="Nombre Usuario *"   maxlength="8" minlength="3" required="required" data-error="Name is required.">
                                             <input id="clave"  name="txtclave" value="<%=Clave != null ? Clave : ""%>"  class="input_field reply_form_label" type="password" placeholder="Clave *"  required="required" data-error="Valid clave is required."  maxlength="10" minlength="3">
+                                            
                                             <select id="cboDocument" name="cboperfil" value="<%=Perfil != null ? Perfil : ""%>" class="input_field reply_form_name" type="select"  required="required" 
                                                     title="Seleccione el tipo de documento">
                                                 <option value="0" disabled selected="true">Seleccione</option>
                                                 <%while (per.next()) {%>
                                                 <option value="<%= per.getString(1)%>"><%=per.getString(2)%></option>      
                                                 <% }%></select>
+                                            
 
                                             <div class="reply_form_name" value="<%=Estadoo != null ? Estadoo : ""%>" name="optestado" aria-hidden="true">Activo</div>
-                                            <label class="reply_form_name radio-inline"><input type="radio" name="optionStateS" value="S">Si</label>
+                                            <label class="reply_form_name "><input type="radio" name="optionStateS" value="S">Si</label>
                                             <br>
-                                            <label class="reply_form_name radio-inline"><input type="radio" name="optionStateS" value="N">No</label>
-                                        </center>
+                                            <br>
+                                            <label class="reply_form_name "><input type="radio" name="optionStateS" value="N">No</label>
+                                        
 
                                     </div>
                                     <br>

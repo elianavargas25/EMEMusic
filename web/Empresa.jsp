@@ -128,7 +128,7 @@
                 <!-- Search -->
                 <div class="search">
                     <div class="search_content d-flex flex-column align-items-center justify-content-center">
-                        <h4 style="text-height: right">Usuario:    <%=nombre%></h4>
+                        <h3 style="text-height: right">Usuario:    <%=nombre%></h3>
                         <a href="index.jsp">Cerrar sesión</a>
                         <div class="search_button d-flex flex-column align-items-center justify-content-center">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -210,14 +210,14 @@
 
                         <h1>Registro de Empresa </h1>
                     </div>
-                    <div><center>  <h3><%=mensaje != null ? mensaje : ""%></h3></center></div>
+                    <div><center>  <h2><%=mensaje != null ? mensaje : ""%></h2></center></div>
 
                 </div>
-
-
             </div>
+                    <br>
+                    <br>
 
-            <div class="row contact_row">
+            
                 <div  class="content-box-gray">
                     <div class="col-lg-8">
 
@@ -228,20 +228,28 @@
                                 <form name="Empresa" method="Post" id="Empresa"
                                       action="./MaestroEmpresa" autocomplete="off" class="bod"> 
                                     <div>
-                                        <select id="cboDocument" name="cbotipodocumento" value="<%=TipoDocumento != null ? TipoDocumento : ""%>" class="input_field reply_form_email" type="select" placeholder="Tipo de Documento *" required="required" data-error="Valid Tipo de Documento is required." >
-                                            <option>Seleccione su tipo de documento</option>
+                                        <select id="cboDocument" name="cbotipodocumento" value="<%=TipoDocumento != null ? TipoDocumento : ""%>" class="input_field reply_form_email" type="select" placeholder="Tipo de Documento *" data-error="Valid Tipo de Documento is required." >
+                                            <option>Seleccione documento</option>
                                             <%while (tdocu.next()) {%>
                                             <option value="<%= tdocu.getString(1)%>"><%=tdocu.getString(2)%></option>      
                                             <% }%></select>
-                                        <input id="Document" name="txtnrodocumento" value="<%=NroDocumento != null ? NroDocumento : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Número de Documento *" maxlength="15" min="3" onkeypress="return soloNumeros(event)" required="required" data-error="Name is required.">
+                                        <input id="Document" name="txtnrodocumento" value="<%=NroDocumento != null ? NroDocumento : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Número de Documento *" maxlength="15" min="3" onkeypress="return soloNumeros(event)" data-error="Name is required.">
                                     </div>
                                     <div>
-                                        <input id="Name" name="txtnombre" maxlength="50" min="3" onkeypress="return soloLetras(event)" value="<%=nombreEmpresa != null ? nombreEmpresa : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Nombre *" required="required" data-error="Valid Primer Nombre is required.">
-                                        <input id="PagoPorOperacion" name="txtpagooperacion" value="<%=pagoOperacion != null ? pagoOperacion : ""%>" maxlength="15" min="3" onkeypress="return soloNumeros(event)" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Pago por Operación *" required="required" data-error="Name is required."><br>
+                                        <input id="Name" name="txtnombre" maxlength="50" min="3" onkeypress="return soloLetras(event)" value="<%=nombreEmpresa != null ? nombreEmpresa : ""%>" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_email" type="text" placeholder="Nombre *" data-error="Valid Primer Nombre is required.">
+                                        <input id="PagoPorOperacion" name="txtpagooperacion" value="<%=pagoOperacion != null ? pagoOperacion : ""%>" maxlength="15" min="3" onkeypress="return soloNumeros(event)" onkeyup = "this.value = this.value.toUpperCase()" class="input_field reply_form_name" type="text" placeholder="Pago por Operación *"  data-error="Name is required.">
+                                        <br>
+                                        <br>
                                         <div class="reply_form_email" name="txtestadoS" value="<%=Estado != null ? Estado : ""%>"  aria-hidden="true">Activo</div>
+                                        <br>
+                                        <br>
                                         <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="S" value="<%=Estado != null ? Estado : ""%>">Si</label>
+                                        <br>
+                                        <br>
                                         <label class="reply_form_email radio-inline"><input type="radio" name="optionStateS" value="N" value="<%=Estado != null ? Estado : ""%>">No</label>
                                     </div>
+                                    <br>
+                                    <br>
                                     <div class="Reply">
                                         <button id="save" type="submit" class="btn bg-info" name="action" value="Guardar">Guardar</button>
                                         <%if (perfil.equals("Administrador")) {%> 
@@ -259,9 +267,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <br>
-            <br>
+            
+            
 
             <script src="js/jquery-3.2.1.min.js"></script>
             <script src="styles/bootstrap4/popper.js"></script>
