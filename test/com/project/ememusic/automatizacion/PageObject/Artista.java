@@ -10,24 +10,36 @@ import org.openqa.selenium.WebDriver;
  */
 public class Artista {
 
-    WebDriver driver;
+        WebDriver driver;
+    By Link = By.xpath("/html/body/div/header/div[2]/nav/ul/li[1]/a");
     By selectipo = By.name("cbotipodocumento");
-    By NroDocArt = By.name("txtnumdocumento");
-    By PrimerNombre = By.name("txtprimernombre");
-    By SegundoNombre = By.name("txtsegundonombre");
-    By PrimerApellido = By.name("txtprimerapellido");
-    By SegundoApellido = By.name("txtsegundopellido");
-    By NombreArtistico = By.name("txtnombreartistico");
+    By NroDocArt = By.id("nroDocument");
+    By PrimerNombre = By.id("firstName");
+    By SegundoNombre = By.id("secondName");
+    By PrimerApellido = By.id("firstLastname");
+    By SegundoApellido = By.id("secondLastname");
+    By NombreArtistico = By.id("stageName");
     By SelectEmpresa = By.name("cboempresa");
     By EstadoArt = By.name("optionStateS");
     By Guardar = By.id("save");
+    By mensaje = By.xpath("/html/body/div/div[2]/div[2]/div[2]/center/h3");
 
     public Artista(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void setSelectipo(String SelectArt) {
-        driver.findElement(selectipo).sendKeys(SelectArt);
+    public String GetMensaje() {
+        return driver.findElement(mensaje).getText();
+    }
+
+    public void setSelectipo() {
+        driver.findElement(selectipo).sendKeys(Keys.DOWN);
+        driver.findElement(selectipo).sendKeys(Keys.RETURN);
+        driver.findElement(selectipo).click();
+    }
+
+    public void Link() {
+        driver.findElement(Link).click();
     }
 
     public void setNroDocArt(String NroArt) {
@@ -54,30 +66,31 @@ public class Artista {
         driver.findElement(NombreArtistico).sendKeys(NArtistico);
     }
 
-    public void setSelectEmpresa(String SEmpresa) {
-        driver.findElement(SelectEmpresa).sendKeys(SEmpresa);
+    public void setSelectEmpresa() {
+        driver.findElement(SelectEmpresa).sendKeys(Keys.DOWN);
+        driver.findElement(SelectEmpresa).sendKeys(Keys.RETURN);
+        driver.findElement(SelectEmpresa).click();
     }
 
-    public void setEstadoArt(String EstArt) {
-        driver.findElement(EstadoArt).sendKeys(EstArt);
+    public void setEstadoArt() {
+        driver.findElement(EstadoArt).click();
     }
 
     public void ClicGuardarArt() {
         driver.findElement(Guardar).click();
     }
 
-    public void ArtistaAplication(String selectipo, String NroDocArt, String PrimerNombre, String SegundoNombre, String PrimerApellido, String SegundoApellido, String NombreArtistico, String SelectEmpresa, String EstadoArt, String Guardar) {
-    this.setSelectipo(selectipo);
-    this.setNroDocArt(NroDocArt);
-    this.setPrimerNombre(PrimerNombre);
-    this.setSegundoNombre(SegundoNombre);
-    this.setPrimerApellido(PrimerApellido);
-    this.setSegundoApellido(SegundoApellido);
-    this.setNombreArtistico(NombreArtistico);
-    this.setSelectEmpresa(SelectEmpresa);
-    this.setEstadoArt(EstadoArt);
-    this.ClicGuardarArt();
-    
+    public void ArtistaAplication(String NroDocArt, String PrimerNombre, String SegundoNombre, String PrimerApellido, String SegundoApellido, String NombreArtistico) {
+
+        this.setNroDocArt(NroDocArt);
+        this.setPrimerNombre(PrimerNombre);
+        this.setSegundoNombre(SegundoNombre);
+        this.setPrimerApellido(PrimerApellido);
+        this.setSegundoApellido(SegundoApellido);
+        this.setNombreArtistico(NombreArtistico);
+        this.setEstadoArt();
+        this.ClicGuardarArt();
+
     }
-    
+
 }

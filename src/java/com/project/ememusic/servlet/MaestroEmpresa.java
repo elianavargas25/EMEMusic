@@ -56,36 +56,38 @@ public class MaestroEmpresa extends HttpServlet {
             try {
                 //verifica si existe el dato
                 empresa = negocio.buscarEmpresas(NroDocumento, TipoDocumento);
-                // if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento) || empresa.getNombre().equals(Nombre)) {
                 if (empresa != null) {
-                    mensaje = "La empresa que desea registrar, ya se encuentra en sistema ";
-                } else {
-                    try {
-                        empresa = new Empresa();
-                        empresa.setTipoDocumento(TipoDocumento);
-                        empresa.setNroDcumento(NroDocumento);
-                        empresa.setNombre(Nombre);
-                        empresa.setPago_operacion(PagoOperacion);
-                        empresa.setEstado(Estado);
+                    if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento) || empresa.getNombre().equals(Nombre)) {
+                        mensaje = "La empresa que desea registrar, ya se encuentra en sistema ";
+                        limpiar();
+                    } else {
+                        try {
+                            empresa = new Empresa();
+                            empresa.setTipoDocumento(TipoDocumento);
+                            empresa.setNroDcumento(NroDocumento);
+                            empresa.setNombre(Nombre);
+                            empresa.setPago_operacion(PagoOperacion);
+                            empresa.setEstado(Estado);
+                            //se guarda los datos en la tabla
+                            negocio.guardarEmpresa(empresa);
+                            mensaje = "Registro guardado correctamente";
+                            limpiar();
 
-                        //se guarda los datos en la tabla
-                        negocio.guardarEmpresa(empresa);
-                        mensaje = "Registro guardado correctamente";
-
-                    } catch (Exception e2) {
-                        mensaje = "Error en el registro , favor verificar";
-
+                        } catch (Exception e2) {
+                            mensaje = "Error en el registro , favor verificar";
+                        }
                     }
+                } else {
+                    mensaje = "El Artista no se  encuentra registrado";
                 }
             } catch (Exception e1) {
                 mensaje = "La empresa ya se encuentra registrado en la base de datos";
                 limpiar();
                 request.setAttribute("datos", empresa);
-
             }
         }//fin guardar
 
-        //modificar
+//modificar
         if ("Modificar".equals(request.getParameter("action"))) {
             try {
                 //vereficamos que el registró no exista en la tabla 
@@ -111,6 +113,7 @@ public class MaestroEmpresa extends HttpServlet {
                 limpiar();
             }
         }//fin modificar
+
         if ("Cancelar".equals(request.getParameter("action"))) {
             limpiar();
             request.setAttribute("datos", empresa);
@@ -119,13 +122,13 @@ public class MaestroEmpresa extends HttpServlet {
         if ("Buscar".equals(request.getParameter("action"))) {
             try {
                 empresa = negocio.buscarEmpresas(NroDocumento, TipoDocumento);
-                if (empresa!=null) {
+                if (empresa != null) {
                     if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento)) {
                         //si encuentra el dato cargamos los datos en el setAttribute
                         request.setAttribute("datos", empresa);
-                    }else {
-                    mensaje = "La empresa: " + empresa.getTipoDocumento() + " " + NroDocumento + " no se encuentra registrado ";
-                    request.setAttribute("datos", null);
+                    } else {
+                        mensaje = "La empresa: " + empresa.getTipoDocumento() + " " + NroDocumento + " no se encuentra registrado ";
+                        request.setAttribute("datos", null);
                     }
                 } else {
                     mensaje = "La empresa no se encuentra registrado ";
@@ -135,8 +138,11 @@ public class MaestroEmpresa extends HttpServlet {
                 e.printStackTrace();
             }
         } //cierra buscar
-        request.setAttribute("mensaje", mensaje);
-        request.getRequestDispatcher(modulo).forward(request, response);
+
+        request.setAttribute(
+                "mensaje", mensaje);
+        request.getRequestDispatcher(modulo)
+                .forward(request, response);
 
     }
 

@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 public class Empresa {
 
     WebDriver driver;
-    By selectipo = By.name("cbotipodocumento");
+    By selectipo = By.id("cboDocument");
     By NroDocEmp = By.name("txtnrodocumento");
     By NombreEmp = By.name("txtnombre");
     By PagoOpeacion = By.name("txtpagooperacion");
@@ -82,4 +82,12 @@ public class Empresa {
 
     }
 
+    public void EmpresaAplication3(String NroDocEmp, String NombreEmp) {
+        SetTipodo();
+        SetNombre(NombreEmp);
+        SetNroDo(NroDocEmp);
+        SetEstado();
+        ClicGuardar();
+
+    }
 }
