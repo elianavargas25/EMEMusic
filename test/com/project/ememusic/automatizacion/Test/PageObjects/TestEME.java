@@ -75,7 +75,7 @@ public class TestEME {
         System.out.println("el usuario es:" + Usuario);
         String actual = "Usuario: admin";
         assertEquals(Usuario, actual);
-        // driver.findElement(By.linkText("Cerrar sesión")).click();
+        driver.findElement(By.linkText("Cerrar sesión")).click();
 
     }
 
