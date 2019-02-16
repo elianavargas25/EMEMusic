@@ -5,11 +5,13 @@
  */
 package com.project.ememusic.automatizacion.Test.PageObjects;
 
+import com.project.ememusic.automatizacion.PageObject.Artista;
 import com.project.ememusic.automatizacion.PageObject.Empresa;
 import com.project.ememusic.automatizacion.PageObject.Login;
 import com.project.ememusic.entidad.Artistas;
 import com.project.ememusic.negocio.NArtista;
 import com.project.ememusic.persistencia.DaoArtista;
+import com.project.ememusic.persistencia.Datos;
 import java.sql.ResultSet;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -34,6 +36,7 @@ public class TestEME {
     private static WebDriver driver = null;
     Login log;
     Empresa Emp;
+    Artista Art;
 
     public TestEME() {
     }
@@ -119,9 +122,9 @@ public class TestEME {
     @Test
     public void CTestCreateEmpresaAplication() throws Exception {
         driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[2]/a")).click();
-        String NroDocEmp = ("123809991");
-        String NombreEmp = "yeyo";
-        String PagoOpeacion = "10000";
+        String NroDocEmp = Datos.setIdentificacion();
+        String NombreEmp = Datos.setNombreEmpresa();
+        String PagoOpeacion = "100";
         Emp = new Empresa(driver);
         Emp.EmpresaAplication(NroDocEmp, NombreEmp, PagoOpeacion);
         Thread.sleep(2000);
@@ -157,24 +160,43 @@ public class TestEME {
         Emp.EmpresaAplication2(NroDocEmp, PagoOpeacion);
         Thread.sleep(2000);
         String Mensaje = Emp.GetMensaje();
-        System.out.println("No se realizó el registro:" + Mensaje);
+        System.out.println("No se realizó el registro" + Mensaje);
         String MensajeEsperado = "";
         assertEquals(Mensaje, MensajeEsperado);
     }
 
     //Probamos que no deje guardar debido el Campo Primer nombre es obligatorio obligatorio.
     @Test
-    public void FtestObligatoriedadPrimerNombre() throws Exception {
+    public void FtestObligatoriedadPagoPorOperacion() throws Exception {
         driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[2]/a")).click();
-        driver.findElement(By.linkText("Registro de Empresas")).click();
         String NroDocEmp = ("1234567800");
-        String PagoOpeacion = "10000";
+        String NombreEmp = "Ruben Pte";
         Emp = new Empresa(driver);
-        Emp.EmpresaAplication2(NroDocEmp, PagoOpeacion);
+        Emp.EmpresaAplication3(NroDocEmp, NombreEmp);
         Thread.sleep(2000);
         String Mensaje = Emp.GetMensaje();
-        System.out.println("No se realizó el registro:" + Mensaje);
+        System.out.println("No se realizó el registro" + Mensaje);
         String MensajeEsperado = "";
         assertEquals(Mensaje, MensajeEsperado);
     }
+
+    @Test
+    public void GArtsitaAplcationCreate() throws Exception {
+        driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[1]/a")).click();
+        Thread.sleep(2000);
+        String NroDocArt = ("1234567800");
+        String PrimerNombre = "Ruben Pte";
+        String SegundoNombre = ("djfknfjd");
+        String PrimerApellido = "Ruben Pte";
+        String SegundoApellido = ("fdgsdfg");
+        String NombreArtistico = "Ruben Pte";
+        Art = new Artista(driver);
+        Art.ArtistaAplication(NroDocArt, PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, NombreArtistico);
+        Thread.sleep(2000);
+        String Mensaje = Art.GetMensaje();
+        System.out.println("El mensaje es" + Mensaje);
+        String MensajeEsperado = "El artista se registró correctamente";
+        assertEquals(Mensaje, MensajeEsperado);
+    }
+
 }

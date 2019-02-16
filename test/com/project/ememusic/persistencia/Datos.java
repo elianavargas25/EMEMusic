@@ -25,6 +25,11 @@ public class Datos {
         int numRandom = (int) Math.round(Math.random() * 3);
         return nombres[numRandom];
     }
+    public static String setIdentificacion(){
+        String[] identificacion = {"11112321","1231232","312321312","32324","342432432","34324324","32432432","3243243","324324324","32432322","4534543","45435345","4354354","3432445","5657567","7676575","657657","54456","676878","89879"};
+        int index = (int) Math.round(Math.random()*2);
+    return identificacion[index];
+    }
     
     
 }
