@@ -12,9 +12,9 @@ public class Login {
     WebDriver driver;
     By User = By.id("Username");
     By Password = By.id("Password");
-    By Button = By.xpath("//*[@id=\"login\"]");
-    By UserAdmin = By.xpath("/html/body/div/header/nav/ul/h4");
-    By UserOperario = By.xpath("/html/body/div/header/nav/ul/h4");
+    By Button = By.id("login");
+    By UserAdmin = By.xpath("/html/body/div/header/div[4]/div/h4");
+    By UserOperario = By.xpath("/html/body/div/header/div[4]/div/h4");
     By Mensaje = By.xpath("/html/body/form/h1[1]");
 
     public Login(WebDriver driver) {
@@ -49,6 +49,8 @@ public class Login {
         this.setUserName(User);
         this.setPass(Password);
         this.ClicLogin();
+        this.UserOperario();
+        this.USerAdmin();
 
     }
 }

@@ -16,7 +16,7 @@ public class DaoUsuarios {
     Usuarios miusuario = new Usuarios(); //instancia de la clase Entidad (usuario).
 
     // Método para validar el ingreso al sistema.
-    public Usuarios validarIngreso(String usuario, String clave) {
+    public Usuarios validarIngreso(Connection con, String usuario, String clave) {
         try {
             PreparedStatement stm = con.prepareStatement(SQLUsuarios.validarIngreso(usuario, clave));
             stm.setString(1, usuario);
