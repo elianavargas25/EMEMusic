@@ -12,7 +12,7 @@ package com.project.ememusic.persistencia;
 public class SqlEmpresa {
  public static String getEmpresa() {
         return "SELECT ID_EMPRESA,ID_TIPO_DOCUMENTO,NRO_DOCUMENTO,"
-               + "NOMBRE,PAGO_OPERACION,ID_ESTADO";
+               + "NOMBRE,PAGO_OPERACION,ID_ESTADO from music.empresa ";
     }
     //BUSCA REGISTRO EN LA TABLA
      public static String getEmpresa(String Documento) {
@@ -25,19 +25,19 @@ public class SqlEmpresa {
 "                   emp.PAGO_OPERACION,\n" +
 "                   emp.ID_ESTADO\n" +
 "                   FROM\n" +
-"                   empresa emp\n" +
-"                   inner join tipo_documento td on td.id_tipo_documento = emp.id_tipo_documento\n" +
+"                   music.empresa emp\n" +
+"                   inner join music.tipo_documento td on td.id_tipo_documento = emp.id_tipo_documento\n" +
 "                   WHERE emp.nro_documento =? and emp.id_tipo_documento =?";
     }
 //INSERTAR (GUARDAR) UN REGISTRO EN LA TABLA
     public static String insertarEmpresa() {
-        return "INSERT INTO empresa (`ID_TIPO_DOCUMENTO`, `NRO_DOCUMENTO`, `NOMBRE`, `PAGO_OPERACION`, `ID_ESTADO`) "
+        return "INSERT INTO music.empresa (`ID_TIPO_DOCUMENTO`, `NRO_DOCUMENTO`, `NOMBRE`, `PAGO_OPERACION`, `ID_ESTADO`) "
                 + "VALUES (?,?,?,?,?)";
     }
 
     //ACTUALIZAR UN REGISTRO EN LA TABLA
     public static String actualizarEmpresa() {
-        return "UPDATE EMPRESA emp SET"
+        return "UPDATE music.EMPRESA emp SET"
               + "   emp.id_emoresa,\n"
                 + "   emp.id_tipo_documento,\n"
                 + "   emp.nro_documento,\n"

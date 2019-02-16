@@ -10,8 +10,8 @@ public class SQLUsuarios {
                 + "     us.CLAVE,\n"
                 + "     perf.NOMBRE_PERFIL,\n"
                 + "     us.ACTIVO \n"
-                + "    from usuario us inner join\n"
-                + "   perfil perf on us.ID_TIPO_PERFIL= perf.ID_PERFIL\n"
+                + "    from music.usuario us inner join\n"
+                + "   music.perfil perf on us.ID_TIPO_PERFIL= perf.ID_PERFIL\n"
                 + "    where UPPER(us.NOMBRE_USUARIO) = UPPER(?) and "
                 + "UPPER(us.CLAVE) = UPPER(?) and us.ACTIVO = 'S'";
     }// Regresamos al Daos.java

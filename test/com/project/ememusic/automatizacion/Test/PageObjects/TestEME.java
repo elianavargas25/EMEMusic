@@ -63,9 +63,9 @@ public class TestEME {
 
     //Probamos el correcto inicio de sesión con el usuario Admin
     @Test
-    public void CtestLoginApplicationAdmin() throws InterruptedException {
+    public void BtestLoginApplicationAdmin() throws InterruptedException {
         System.out.println("Test Login Admin");
-        // driver.findElement(By.linkText("Ingresar")).click();
+        driver.findElement(By.linkText("Ingresar")).click();
         String User = "admin";
         String Password = "admin";
         log = new Login(driver);
@@ -75,37 +75,38 @@ public class TestEME {
         System.out.println("el usuario es:" + Usuario);
         String actual = "Usuario: admin";
         assertEquals(Usuario, actual);
-        driver.findElement(By.linkText("Cerrar sesión")).click();
+//        driver.findElement(By.linkText("Cerrar sesión")).click();
 
     }
 
     //Probamos que no deje ingresar y que muestre mensaje de validación debido a que los datos son incorrectos
-    @Test
-    public void BtestUsuarioContraseñaIncorrectos() throws Exception {
-        System.out.println("Test Mensaje de validación");
-        driver.findElement(By.linkText("Ingresar")).click();
-        String User = "Admin";
-        String Password = "Admin45";
-        log = new Login(driver);
-        log.LoginAplication(User, Password);
-        Thread.sleep(2000);
-        String Mensaje = log.Mensaje();
-        System.out.println("el mensaje es:" + Mensaje);
-        String Mensajeactual = "Usuario y/o Contraseña incorrectos";
-        assertEquals(Mensaje, Mensajeactual);
-
-    }
-
+//    @Test
+//    public void BtestUsuarioContraseñaIncorrectos() throws Exception {
+//        System.out.println("Test Mensaje de validación");
+//        driver.findElement(By.linkText("Ingresar")).click();
+//        String User = "Admin";
+//        String Password = "Admin45";
+//        log = new Login(driver);
+//        log.LoginAplication(User, Password);
+//        Thread.sleep(2000);
+//        String Mensaje = log.Mensaje();
+//        System.out.println("el mensaje es:" + Mensaje);
+//        String Mensajeactual = "Usuario y/o Contraseña incorrectos";
+//        assertEquals(Mensaje, Mensajeactual);
+//
+//    }
     //Probamos que no el sistema permita ingresar con el usuario operario
     @Test
     public void AtestLoginApplicationoperario() throws Exception {
         System.out.println("Test Login Operario");
         driver.findElement(By.linkText("Ingresar")).click();
+        Thread.sleep(3000);
         String User = "operario";
         String Password = "operario";
+        Thread.sleep(4000);
         log = new Login(driver);
         log.LoginAplication(User, Password);
-        Thread.sleep(2000);
+        Thread.sleep(4000);
         String Usuario = log.UserOperario();
         System.out.println("el usuario es:" + Usuario);
         String actual = "Usuario: operario";
@@ -116,10 +117,10 @@ public class TestEME {
 
 //    Probamos que la permita guardar una 
     @Test
-    public void DTestCreateEmpresaAplication() throws Exception {
-        driver.findElement(By.linkText("Registro de Empresas")).click();
-        String NroDocEmp = ("1234567891");
-        String NombreEmp = "Otra ";
+    public void CTestCreateEmpresaAplication() throws Exception {
+        driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[2]/a")).click();
+        String NroDocEmp = ("123809991");
+        String NombreEmp = "yeyo";
         String PagoOpeacion = "10000";
         Emp = new Empresa(driver);
         Emp.EmpresaAplication(NroDocEmp, NombreEmp, PagoOpeacion);
@@ -132,9 +133,10 @@ public class TestEME {
 
     //Probamos que no deje guardar una empresa debido a que el Campo Número de documento es obligatorio.
     @Test
-    public void testObligatoriedadNroDocEmpresa() throws Exception {
-        driver.findElement(By.linkText("Registro de Empresas")).click();
+    public void DtestObligatoriedadNroDocEmpresa() throws Exception {
+        driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[2]/a")).click();
         String NombreEmp = "Ruben Pte";
+        Thread.sleep(2000);
         String PagoOpeacion = "10000";
         Emp = new Empresa(driver);
         Emp.EmpresaAplication1(NombreEmp, PagoOpeacion);
@@ -144,10 +146,11 @@ public class TestEME {
         String MensajeEsperado = "";
         assertEquals(Mensaje, MensajeEsperado);
     }
-  //Probamos que no deje guardar una empresa debido a que el Campo Nombre es obligatorio.
+    //Probamos que no deje guardar una empresa debido a que el Campo Nombre es obligatorio.
+
     @Test
-    public void testObligatoriedadNombreEmpresa() throws Exception {
-        driver.findElement(By.linkText("Registro de Empresas")).click();
+    public void EtestObligatoriedadNombreEmpresa() throws Exception {
+        driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[2]/a")).click();
         String NroDocEmp = ("1234567800");
         String PagoOpeacion = "10000";
         Emp = new Empresa(driver);
@@ -158,9 +161,11 @@ public class TestEME {
         String MensajeEsperado = "";
         assertEquals(Mensaje, MensajeEsperado);
     }
+
     //Probamos que no deje guardar debido el Campo Primer nombre es obligatorio obligatorio.
-     @Test
-    public void testObligatoriedadPrimerNombre() throws Exception {
+    @Test
+    public void FtestObligatoriedadPrimerNombre() throws Exception {
+        driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[2]/a")).click();
         driver.findElement(By.linkText("Registro de Empresas")).click();
         String NroDocEmp = ("1234567800");
         String PagoOpeacion = "10000";
@@ -173,7 +178,3 @@ public class TestEME {
         assertEquals(Mensaje, MensajeEsperado);
     }
 }
-
-
-
-

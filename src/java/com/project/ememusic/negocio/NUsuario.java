@@ -17,9 +17,11 @@ import java.sql.Connection;
 public class NUsuario {
 
     DaoUsuarios dao = new DaoUsuarios();
+    Connection con;
 
     public Usuarios validarIngreso(String usuario, String clave) {
-        return dao.validarIngreso(usuario, clave);
+        con = new Conexion().getCon();
+        return dao.validarIngreso(con, usuario, clave);
     }
     
     
