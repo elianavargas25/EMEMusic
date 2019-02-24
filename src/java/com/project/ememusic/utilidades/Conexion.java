@@ -20,7 +20,7 @@ public class Conexion {
 
  //Configuracion de los datos de la BD
     private final String usuario = "root";
-    private final String pass = "123456789";
+    private final String pass = "";
     private final String host = "127.0.0.1";
     private final String puerto= "3306";
     private final String nombre_BD = "music";
@@ -47,7 +47,7 @@ public class Conexion {
             try { 
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 String servidor = "jdbc:mysql://" + "127.0.0.1" + ":"+ "3306" + "/" + "music";
-                conn = DriverManager.getConnection(servidor, "root", "123456789");
+                conn = DriverManager.getConnection(servidor, "root", "");
             } catch (SQLException ex) {
                 Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {

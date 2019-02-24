@@ -254,15 +254,12 @@
                                                 <th>Nombre Artistico</th>
                                                 <th>Nombre Empresa</th>
                                                 <th>Cantidad Reproducciones</th>
-                                                <th>total ganado</th>
                                             </tr> 
                                             <%for (Ventas infor : listaVentas) {%>
                                             <tr>
                                                 <td><%=infor.getIdArtista()%></td>
                                                 <td><%=infor.getIdEmpresa()%></td>
                                                 <td><%=infor.getReproduccion()%></td>
-                                                <td><%=infor.getTotalGanado()%></td>
-
                                             </tr>
                                             <%}%>
                                         </tbody>
@@ -275,7 +272,8 @@
                     </div>
                 </div>
                 <%}%>
-                                               
+                 <br>
+                <br>
             </form>
             
             <script src="js/jquery-3.2.1.min.js"></script>

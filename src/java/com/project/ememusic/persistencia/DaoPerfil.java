@@ -24,7 +24,7 @@ public class DaoPerfil {
     public ResultSet PERFIL() {
         PreparedStatement stTD;
         try {
-            stTD = con.prepareStatement("SELECT  ID_PERFIL,NOMBRE_PERFIL FROM PERFIL");
+            stTD = con.prepareStatement("SELECT  ID_PERFIL,NOMBRE_PERFIL FROM music.PERFIL");
             ResultSet result = stTD.executeQuery();
             return result;
         } catch (SQLException ex) {
@@ -38,9 +38,8 @@ public class DaoPerfil {
         Conexion db = new Conexion();
         PreparedStatement stTD;
         try {
-            stTD = db.getConexion().prepareStatement("SELECT ID_PERFIL FROM PERFIL where NOMBRE_PERFIL = '" + PERFIL + "'");
+            stTD = db.getConexion().prepareStatement("SELECT ID_PERFIL FROM music.PERFIL where NOMBRE_PERFIL = '" + PERFIL + "'");
             ResultSet result = stTD.executeQuery();
-
             if (result.next()) {
                 PER = result.getInt("ID_PERFIL");
             }
