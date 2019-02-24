@@ -12,6 +12,7 @@ import java.sql.Connection;
 import com.project.ememusic.persistencia.DaoVenta;
 import com.project.ememusic.utilidades.Conexion;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -49,6 +50,9 @@ public class NVenta {
         venta = dao.guardarVenta(venta);//revisar
         return venta;//revisar
     }//fin guardar
+     public List<Ventas> listarVenta() {
+        return dao.listarVentas();
+    }//fin public list
 
     //Actualizar
 }

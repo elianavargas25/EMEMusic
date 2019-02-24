@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -47,5 +49,29 @@ public class DaoVenta {
         }//cierra finally
         return venta;
     }//cierra guardar
+    public List<Ventas> listarVentas() {
+        List<Ventas> result = new ArrayList<>();
+        try {
+            PreparedStatement lista = con.prepareStatement(SqlVenta.listVenta());
+            ResultSet respuesta = lista.executeQuery();
+            while (respuesta.next()) {
+                Ventas ventas = new Ventas();
+                ventas.setIdArtista(respuesta.getString("artista"));
+                ventas.setIdEmpresa(respuesta.getString("empresa"));
+                ventas.setReproduccion(respuesta.getDouble("reproduccion"));
+                ventas.setFecha(respuesta.getDate("fecha"));
+                result.add(ventas);
+            }//fin while
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+//                con.close();//cierra la conexion de la bd
+            } catch (Exception e) {
+            }//fin try/catch
+        }//fin try/catch/finally
+
+        return result;
+    }
 
 }

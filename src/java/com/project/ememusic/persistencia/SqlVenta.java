@@ -21,6 +21,14 @@ public class SqlVenta {
                  +"(`ID_ARTISTAS`, `REPRODUCCION`, `FECHA_REGISTRO`)"
                 + " values (?,?,?)" ;
     }
+    public static String listVenta() {
+        return "SELECT emp.NOMBRE as empresa, \n"
+                + "art.NOMBRE_ARTISTICO as artista,\n"
+                + "ven.REPRODUCCION as reproduccion,\n"
+                + "ven.FECHA_REGISTRO as fecha\n"
+                + "FROM music.ventas ven INNER JOIN music.artistas art on art.ID_ARTISTAS = ven.ID_ARTISTAS "
+                + "INNER JOIN music.empresa emp on emp.ID_EMPRESA = art.ID_EMPRESA";
+    }
     
 
 }
