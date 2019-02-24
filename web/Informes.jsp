@@ -226,7 +226,6 @@
                                                 <th>Nombre Artistico</th>
                                                 <th>Nombre Empresa</th>
                                                 <th>Cantidad Reproducciones</th>
-                                                <th>total ganado</th>
                                             </tr> 
                                             <%for (InfoInformes infor : listaInforme) {%>
                                             <tr>
@@ -234,7 +233,6 @@
                                                 <td><%=infor.getEmpresa().getNombre()%></td>
                                                 <td><%=infor.getVenta().getReproduccion()%></td>
                                                 <td><%=infor.getVenta().getTotalGanado()%></td>
-
                                             </tr>
                                             <%}%>
                                         </tbody>

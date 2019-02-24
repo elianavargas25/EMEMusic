@@ -1,3 +1,4 @@
+<%@page import="com.project.ememusic.entidad.Ventas"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.project.ememusic.persistencia.DaoArtista"%>
 <%@page import="com.project.ememusic.entidad.Usuarios"%>
@@ -6,6 +7,9 @@
 <%@page import= "java.util.*" session="true"%>
 
 <!DOCTYPE html>
+<%  List<Ventas> listaVentas = request.getAttribute("lista")
+            != null ? (List<Ventas>) request.getAttribute("lista") : null;%>
+
 <%
     String id_usu = "";
     String perfil = "";
@@ -182,6 +186,8 @@
                     <br>
                     <br>
                     
+               <form name="Ventas" method="Post" id="Ventas"
+                  action="./MaestroVentas" autocomplete="off" class="bod">    
                 <div class="content-box-gray">
                     <div class="col-lg-8">
 
@@ -193,48 +199,82 @@
                             <div class="reply_form">
 
                                 <!-- Reply Form -->
-                                <form name="Ventas" method="Post" id="Ventas"
-                                      action="./MaestroVentas" autocomplete="off" class="bod">
-
-                                    <div>
-                                        <center>
-                                            <select id="company " name="cboempresa" class="input_field reply_form_name" type="select" placeholder="Empresa *" 
-                                                    title="Seleccione la empresa" >
-                                                <option value="0" disabled selected="true">Seleccione la empresa</option>
-                                                <%while (empre.next()) {%>
-                                                <option value="<%= empre.getString(1)%>"><%=empre.getString(2)%></option>      
-                                                <% }%></select>
-
-                                            <select id="company " name="cboartista" class="input_field reply_form_label" type="select" placeholder="Artista *" 
-                                                    title="Seleccione el Artista" >
-                                                <option value="0" disabled selected="true">Seleccione</option>
-                                                <%while (artis.next()) {%>
-                                                <option value="<%= artis.getString(1)%>"><%=artis.getString(2)%></option>      
-                                                <% }%></select>
-
-                                           <input id="stageName" name="txtreproduccion" value="" onkeyup = "this.value = this.value.toUpperCase() 
-                                                  "class="input_field reply_form_name"  onkeypress="return soloNumeros(event)" type="text" placeholder="Cantidad de reproducciones *"  data-error="">
-                                            
-                                            <input name="txtfecharegistro" type="text" readonly="readonly" class="input_field reply_form_label" 
-                                                   value="<%=fechaActual%>"
-                                                   maxlength="15" tabindex="2">
-
-                                        </center> 
-                                    </div>
-                                                   <br>
-                                  
-                                    <div class="Reply">
-                                        <button id="save" type="submit" class="btn bg-info" name="action" value="Guardar">Guardar</button>
-
-                                    </div>
-
-                                </form>
 
 
+                                <div>
+                                    <center>
+                                        <select id="company " name="cboempresa" class="input_field reply_form_name" type="select" placeholder="Empresa *" 
+                                                title="Seleccione la empresa" >
+                                            <option value="0" disabled selected="true">Seleccione la empresa</option>
+                                            <%while (empre.next()) {%>
+                                            <option value="<%= empre.getString(1)%>"><%=empre.getString(2)%></option>      
+                                            <% }%></select>
+
+                                        <select id="company " name="cboartista" class="input_field reply_form_label" type="select" placeholder="Artista *" 
+                                                title="Seleccione el Artista" >
+                                            <option value="0" disabled selected="true">Seleccione</option>
+                                            <%while (artis.next()) {%>
+                                            <option value="<%= artis.getString(1)%>"><%=artis.getString(2)%></option>      
+                                            <% }%></select>
+
+                                        <input id="stageName" name="txtreproduccion" value="" onkeyup = "this.value = this.value.toUpperCase()
+                                               "class="input_field reply_form_name"  onkeypress="return soloNumeros(event)" type="text" placeholder="Cantidad de reproducciones *"  data-error="">
+
+                                        <input name="txtfecharegistro" type="text" readonly="readonly" class="input_field reply_form_label" 
+                                               value="<%=fechaActual%>"
+                                               maxlength="15" tabindex="2">
+
+                                    </center> 
+                                </div>
+                                <br>
+
+                                <div class="Reply">
+                                    <button id="save" type="submit" class="btn bg-info" name="action" value="Guardar">Guardar</button>
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+               <br>
+               <br>
+                 
+               <%if (listaVentas != null) {%>
+                <div class="content-box-purple">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-lg-8">
+                                <div class="table container">
+                                    
+                                    <%if (listaVentas != null) {%>
+                                    <table border="0" id="tabla" class="table">
+                                        <tbody class="table-responsive">
+                                            <tr class="active" >
+                                                <th>Nombre Artistico</th>
+                                                <th>Nombre Empresa</th>
+                                                <th>Cantidad Reproducciones</th>
+                                            </tr> 
+                                            <%for (Ventas infor : listaVentas) {%>
+                                            <tr>
+                                                <td><%=infor.getIdArtista()%></td>
+                                                <td><%=infor.getIdEmpresa()%></td>
+                                                <td><%=infor.getReproduccion()%></td>
+                                            </tr>
+                                            <%}%>
+                                        </tbody>
+                                    </table>
+                                    <%}%>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+                 <br>
+                <br>
+            </form>
             
             <script src="js/jquery-3.2.1.min.js"></script>
             <script src="styles/bootstrap4/popper.js"></script>

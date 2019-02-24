@@ -9,6 +9,9 @@ import com.project.ememusic.entidad.Ventas;
 import com.project.ememusic.negocio.NVenta;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -65,12 +68,23 @@ public class MaestroVentas extends HttpServlet {
                         //se guarda los datos en la tabla
                         negocio.guardarVenta(venta);
                         mensaje = "El informe de las ventas se registró correctamente";
+                        List<Ventas> lista = negocio.listarVenta();
+                request.setAttribute("lista", lista);
                         limpiar();
                     } catch (Exception e2) {
                         mensaje = "Error en el registro de informe de ventas, favor verificar";
                         limpiar();
                     }
                 }//fin guardar
+        //lista
+        try {
+            List<Ventas> lista = negocio.listarVenta();
+            request.setAttribute("lista", lista);
+        } catch (Exception e) {
+            Logger.getLogger(MaestroVentas.class.getName())
+                    .log(Level.SEVERE, null, e);
+            mensaje += "" + e.getMessage();
+        }
         request.setAttribute("mensaje", mensaje);
         request.getRequestDispatcher(modulo).forward(request, response);
             
