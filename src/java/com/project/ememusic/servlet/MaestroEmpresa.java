@@ -53,13 +53,17 @@ public class MaestroEmpresa extends HttpServlet {
         request.setAttribute("datos", null);
 
         if ("Guardar".equals(request.getParameter("action"))) {
-            try {
-                //verifica si existe el dato
-                empresa = negocio.buscarEmpresas(NroDocumento, TipoDocumento);
-                if (empresa != null) {
-                    if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento) || empresa.getNombre().equals(Nombre)) {
-                        mensaje = "La empresa que desea registrar, ya se encuentra en sistema ";
-                        limpiar();
+            if (TipoDocumento.equals("0") || NroDocumento.equals("") || Nombre.equals("") || PagoOperacion.equals("")) {
+                mensaje = "Debe llenar todos los campos";
+            } else {
+                try {
+                    //verifica si existe el dato
+                    empresa = negocio.buscarEmpresas(NroDocumento, TipoDocumento);
+                    if (empresa != null) {
+                        if (empresa.getNroDocumento().equals(NroDocumento) && empresa.getTipoDocumento().equals(TipoDocumento) || empresa.getNombre().equals(Nombre)) {
+                            mensaje = "La empresa que desea registrar, ya se encuentra en el sistema ";
+                            limpiar();
+                        }
                     } else {
                         try {
                             empresa = new Empresa();
@@ -75,15 +79,14 @@ public class MaestroEmpresa extends HttpServlet {
 
                         } catch (Exception e2) {
                             mensaje = "Error en el registro , favor verificar";
+                             limpiar();
                         }
                     }
-                } else {
-                    mensaje = "El Artista no se  encuentra registrado";
+                } catch (Exception e1) {
+                    mensaje = "La empresa ya se encuentra registrado en la base de datos";
+                    limpiar();
+                    request.setAttribute("datos", empresa);
                 }
-            } catch (Exception e1) {
-                mensaje = "La empresa ya se encuentra registrado en la base de datos";
-                limpiar();
-                request.setAttribute("datos", empresa);
             }
         }//fin guardar
 

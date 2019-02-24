@@ -231,7 +231,7 @@
                                         <center>
                                             <select id="cboDocument" name="cbotipodocumento" value="<%=TipoDocumento != null ? TipoDocumento : ""%>" class="input_field reply_form_email" type="select"
                                                     title="Seleccione el tipo de documento">
-                                                <option value="0" disabled selected="true">Seleccione</option>
+                                                <option value="0" disabled selected="true">Seleccione el tipo de documento</option>
                                                 <%while (tdocu.next()) {%>
                                                 <option value="<%= tdocu.getString(1)%>"><%=tdocu.getString(2)%></option>      
                                                 <% }%></select>
@@ -243,8 +243,8 @@
                                             <input id="secondLastname" name="txtsegundopellido" value="<%=SegundoApellido != null ? SegundoApellido : ""%>" onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_name" onkeypress="return soloLetras(event)" maxlength="20" minlength="3" type="text" placeholder="Segundo Apellido" title="Name is required."><br>
                                             <input id="stageName" name="txtnombreartistico" value="<%=NombreArtistico != null ? NombreArtistico : ""%>" onkeyup = "this.value = this.value.toUpperCase()"class="input_field reply_form_email" type="text" placeholder="Nombre Artistico *"  title="Valid Nombre Artistico is required." maxlength="20" minlength="3">
                                             <select id="company " name="cboempresa" value="<%=Empresa != null ? Empresa : ""%>"class="input_field reply_form_name" type="select" placeholder="Empresa *" 
-                                                    title="Seleccione el tipo de documento">
-                                                <option value="0" disabled selected="true">Seleccione</option>
+                                                    title="Seleccione la empresa">
+                                                <option value="0" disabled selected="true">Seleccione la empresa</option>
                                                 <%while (empre.next()) {%>
                                                 <option value="<%= empre.getString(1)%>"><%=empre.getString(2)%></option>      
                                                 <% }%></select>

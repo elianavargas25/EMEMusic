@@ -37,6 +37,7 @@ public class TestEME {
     Login log;
     Empresa Emp;
     Artista Art;
+    static String nroDoc;
 
     public TestEME() {
     }
@@ -82,7 +83,7 @@ public class TestEME {
 
     }
 
-    //Probamos que no deje ingresar y que muestre mensaje de validación debido a que los datos son incorrectos
+//    Probamos que no deje ingresar y que muestre mensaje de validación debido a que los datos son incorrectos
 //    @Test
 //    public void BtestUsuarioContraseñaIncorrectos() throws Exception {
 //        System.out.println("Test Mensaje de validación");
@@ -128,10 +129,14 @@ public class TestEME {
         Emp = new Empresa(driver);
         Emp.EmpresaAplication(NroDocEmp, NombreEmp, PagoOpeacion);
         Thread.sleep(2000);
-        String Mensaje = Emp.GetMensaje();
-        System.out.println("el mensaje es:" + Mensaje);
-        String MensajeEsperado = "Registro guardado correctamente";
-        assertEquals(Mensaje, MensajeEsperado);
+        nroDoc = Emp.GetNroDoc();
+        Emp.buscarEmpresa(NroDocEmp);
+        assertEquals(nroDoc, NroDocEmp);
+        String Mensaje = "Registro guardado correctamente";
+
+//        System.out.println("el mensaje es:" + Mensaje);
+//        String MensajeEsperado = "Registro guardado correctamente";
+//        assertEquals(Mensaje, MensajeEsperado);
     }
 
     //Probamos que no deje guardar una empresa debido a que el Campo Número de documento es obligatorio.
@@ -145,8 +150,8 @@ public class TestEME {
         Emp.EmpresaAplication1(NombreEmp, PagoOpeacion);
         Thread.sleep(2000);
         String Mensaje = Emp.GetMensaje();
-        System.out.println("No se realizó el registro:" + Mensaje);
-        String MensajeEsperado = "";
+        System.out.println("El mensaje es :" + Mensaje);
+        String MensajeEsperado = "Debe llenar todos los campos";
         assertEquals(Mensaje, MensajeEsperado);
     }
     //Probamos que no deje guardar una empresa debido a que el Campo Nombre es obligatorio.
@@ -160,8 +165,8 @@ public class TestEME {
         Emp.EmpresaAplication2(NroDocEmp, PagoOpeacion);
         Thread.sleep(2000);
         String Mensaje = Emp.GetMensaje();
-        System.out.println("No se realizó el registro" + Mensaje);
-        String MensajeEsperado = "";
+        System.out.println("El mensaje es: " + Mensaje);
+        String MensajeEsperado = "Debe llenar todos los campos";
         assertEquals(Mensaje, MensajeEsperado);
     }
 
@@ -175,8 +180,8 @@ public class TestEME {
         Emp.EmpresaAplication3(NroDocEmp, NombreEmp);
         Thread.sleep(2000);
         String Mensaje = Emp.GetMensaje();
-        System.out.println("No se realizó el registro" + Mensaje);
-        String MensajeEsperado = "";
+        System.out.println("El mensaje es: " + Mensaje);
+        String MensajeEsperado = "Debe llenar todos los campos";
         assertEquals(Mensaje, MensajeEsperado);
     }
 
@@ -184,19 +189,90 @@ public class TestEME {
     public void GArtsitaAplcationCreate() throws Exception {
         driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[1]/a")).click();
         Thread.sleep(2000);
-        String NroDocArt = ("1234567800");
-        String PrimerNombre = "Ruben Pte";
+        String NroDocArt = ("1000345678");
+        String PrimerNombre = "Estefania";
         String SegundoNombre = ("djfknfjd");
         String PrimerApellido = "Ruben Pte";
         String SegundoApellido = ("fdgsdfg");
-        String NombreArtistico = "Ruben Pte";
+        String NombreArtistico = "estefanía shakira";
         Art = new Artista(driver);
         Art.ArtistaAplication(NroDocArt, PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, NombreArtistico);
         Thread.sleep(2000);
         String Mensaje = Art.GetMensaje();
-        System.out.println("El mensaje es" + Mensaje);
+        System.out.println("El mensaje es: " + Mensaje);
         String MensajeEsperado = "El artista se registró correctamente";
         assertEquals(Mensaje, MensajeEsperado);
     }
+
+    @Test
+    public void HTestObligatoriedadPrimerNombre() throws Exception {
+        driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[1]/a")).click();
+        Thread.sleep(2000);
+        String NroDocArt = ("1000345678");
+        String SegundoNombre = ("djfknfjd");
+        String PrimerApellido = "Ruben Pte";
+        String SegundoApellido = ("fdgsdfg");
+        String NombreArtistico = "estefanía shakira";
+        Art = new Artista(driver);
+        Art.ArtistaTestPNombre(NroDocArt, SegundoNombre, PrimerApellido, SegundoApellido, NombreArtistico);
+        Thread.sleep(2000);
+        String Mensaje = Art.GetMensaje();
+        System.out.println("El mensaje es: " + Mensaje);
+        String MensajeEsperado = "Debe llenar todos los campos";
+        assertEquals(Mensaje, MensajeEsperado);
+    }
+     @Test
+    public void ITestObligatoriedadPrimerApellido() throws Exception {
+        driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[1]/a")).click();
+        Thread.sleep(2000);
+        String NroDocArt = ("1000345678");
+        String PrimerNombre = "Estefania";
+        String SegundoNombre = "Maria";
+        String SegundoApellido = ("fdgsdfg");
+        String NombreArtistico = "estefanía shakira";
+        Art = new Artista(driver);
+        Art.ArtistaTestPApellido(NroDocArt, PrimerNombre, SegundoNombre, SegundoApellido, NombreArtistico);
+        Thread.sleep(2000);
+        String Mensaje = Art.GetMensaje();
+        System.out.println("El mensaje es: " + Mensaje);
+        String MensajeEsperado = "Debe llenar todos los campos";
+        assertEquals(Mensaje, MensajeEsperado);
+    }
+    
+    @Test
+    public void JTestObligatoriedadNombreArtistico() throws Exception {
+        driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[1]/a")).click();
+        Thread.sleep(2000);
+        String NroDocArt = ("1000345678");
+        String PrimerNombre = "Estefania";
+        String SegundoNombre = "Maria";
+        String PrimerApellido = "Ruben Pte";
+        String SegundoApellido = ("fdgsdfg");
+        Art = new Artista(driver);
+        Art.ArtistaTestNombreArt(NroDocArt, PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido);
+        Thread.sleep(2000);
+        String Mensaje = Art.GetMensaje();
+        System.out.println("El mensaje es: " + Mensaje);
+        String MensajeEsperado = "Debe llenar todos los campos";
+        assertEquals(Mensaje, MensajeEsperado);
+    }
+     @Test
+    public void KTestUsuarioCreated() throws Exception {
+        driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[1]/a")).click();
+        Thread.sleep(2000);
+        String NroDocArt = ("1000345678");
+        String PrimerNombre = "Estefania";
+        String SegundoNombre = "Maria";
+        String PrimerApellido = "Ruben Pte";
+        String SegundoApellido = ("fdgsdfg");
+        Art = new Artista(driver);
+        Art.ArtistaTestNombreArt(NroDocArt, PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido);
+        Thread.sleep(2000);
+        String Mensaje = Art.GetMensaje();
+        System.out.println("El mensaje es: " + Mensaje);
+        String MensajeEsperado = "Debe llenar todos los campos";
+        assertEquals(Mensaje, MensajeEsperado);
+    }
+    
 
 }

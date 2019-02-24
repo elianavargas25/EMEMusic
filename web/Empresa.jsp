@@ -229,7 +229,7 @@
                                       action="./MaestroEmpresa" autocomplete="off" class="bod"> 
                                     <div>
                                         <select id="cboDocument" name="cbotipodocumento" value="<%=TipoDocumento != null ? TipoDocumento : ""%>" class="input_field reply_form_email" type="select" placeholder="Tipo de Documento *" data-error="Valid Tipo de Documento is required." >
-                                            <option>Seleccione documento</option>
+                                            <option value="0">Seleccione documento</option>
                                             <%while (tdocu.next()) {%>
                                             <option value="<%= tdocu.getString(1)%>"><%=tdocu.getString(2)%></option>      
                                             <% }%></select>

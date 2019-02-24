@@ -10,7 +10,7 @@ import org.openqa.selenium.WebDriver;
  */
 public class Artista {
 
-        WebDriver driver;
+    WebDriver driver;
     By Link = By.xpath("/html/body/div/header/div[2]/nav/ul/li[1]/a");
     By selectipo = By.name("cbotipodocumento");
     By NroDocArt = By.id("nroDocument");
@@ -23,6 +23,7 @@ public class Artista {
     By EstadoArt = By.name("optionStateS");
     By Guardar = By.id("save");
     By mensaje = By.xpath("/html/body/div/div[2]/div[2]/div[2]/center/h3");
+    By Buscar = By.id("search");
 
     public Artista(WebDriver driver) {
         this.driver = driver;
@@ -81,7 +82,9 @@ public class Artista {
     }
 
     public void ArtistaAplication(String NroDocArt, String PrimerNombre, String SegundoNombre, String PrimerApellido, String SegundoApellido, String NombreArtistico) {
-
+        setSelectEmpresa();
+        setEstadoArt();
+        setSelectipo();
         this.setNroDocArt(NroDocArt);
         this.setPrimerNombre(PrimerNombre);
         this.setSegundoNombre(SegundoNombre);
@@ -93,4 +96,54 @@ public class Artista {
 
     }
 
+    public void ArtistaTestDoc(String PrimerNombre, String SegundoNombre, String PrimerApellido, String SegundoApellido, String NombreArtistico) {
+        setSelectEmpresa();
+        setEstadoArt();
+        setSelectipo();
+        this.setPrimerNombre(PrimerNombre);
+        this.setSegundoNombre(SegundoNombre);
+        this.setPrimerApellido(PrimerApellido);
+        this.setSegundoApellido(SegundoApellido);
+        this.setNombreArtistico(NombreArtistico);
+        this.setEstadoArt();
+        this.ClicGuardarArt();
+
+    }
+
+    public void ArtistaTestPNombre(String NroDocArt, String SegundoNombre, String PrimerApellido, String SegundoApellido, String NombreArtistico) {
+        setSelectEmpresa();
+        setEstadoArt();
+        setSelectipo();
+        setNroDocArt(NroDocArt);
+        this.setSegundoNombre(SegundoNombre);
+        this.setPrimerApellido(PrimerApellido);
+        this.setSegundoApellido(SegundoApellido);
+        this.setNombreArtistico(NombreArtistico);
+        this.setEstadoArt();
+        this.ClicGuardarArt();
+    }
+
+    public void ArtistaTestNombreArt(String NroDocArt, String PrimerNombre,String SegundoNombre, String PrimerApellido, String SegundoApellido) {
+        setSelectEmpresa();
+        setEstadoArt();
+        setSelectipo();
+        this.setNroDocArt(NroDocArt);
+        setSegundoNombre(SegundoNombre);
+        setPrimerNombre(PrimerNombre);
+        this.setPrimerApellido(PrimerApellido);
+        this.setSegundoApellido(SegundoApellido);
+        this.setEstadoArt();
+        this.ClicGuardarArt();
+    }
+    
+    public void ArtistaTestPApellido(String NroDocArt, String PrimerNombre,String SegundoNombre, String SegundoApellido, String NombreArtistico) {
+        setSelectEmpresa();
+        setEstadoArt();
+        setSelectipo();
+        setSegundoNombre(SegundoNombre);
+        this.setSegundoApellido(SegundoApellido);
+        this.setNombreArtistico(NombreArtistico);
+        this.setEstadoArt();
+        this.ClicGuardarArt();
+    }
 }

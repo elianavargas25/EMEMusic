@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @WebServlet(name = "MaestroArtista", urlPatterns = {"/MaestroArtista"})
 public class MaestroArtista extends HttpServlet {
 
@@ -64,38 +63,43 @@ public class MaestroArtista extends HttpServlet {
         request.setAttribute("datos", null);
 
         if ("Guardar".equals(request.getParameter("action"))) {
-            try {
-                //verifica si existe el dato
-                artista = negocio.buscarArtistas(NroDocumento, TipoDocumento);
-                //if (artista.getNroDocumento().equals(NroDocumento) && artista.getTipoDocumento().equals(TipoDocumento) || artista.getNombreArtistico().equals(NombreArtistico)) {
-                if (artista != null) {
-                    mensaje = "El Artista que desea registrar, ya se encuentra en sistema";
-                } else {
-                    try {
-                        artista = new Artistas();
-                        artista.setTipoDocumento(TipoDocumento);
-                        artista.setNroDocumento(NroDocumento);
-                        artista.setPrimerNombre(PrimerNombre);
-                        artista.setSegundoNombre(SegundoNombre);
-                        artista.setPrimerApellido(PrimerApellido);
-                        artista.setSegundoApellido(SegundoApellido);
-                        artista.setNombreArtistico(NombreArtistico);
-                        artista.setEmpresa(Empresa);
-                        artista.setEstado(Estado);
+            if (TipoDocumento.equals("0") || NroDocumento.equals("") || PrimerNombre.equals("") || PrimerApellido.equals("") || NombreArtistico.equals("")|| Empresa.equals("0")||Estado.equals("")) {
+                mensaje = "Debe llenar todos los campos";
+            } else {
+                try {
+                    //verifica si existe el dato
+                    artista = negocio.buscarArtistas(NroDocumento, TipoDocumento);
+                    if (artista != null) {
+                        if (artista.getNroDocumento().equals(NroDocumento) && artista.getTipoDocumento().equals(TipoDocumento) || artista.getNombreArtistico().equals(NombreArtistico)) {
+                            mensaje = "El Artista que desea registrar, ya se encuentra en sistema";
+                            limpiar();
+                        }
+                    } else {
+                        try {
+                            artista = new Artistas();
+                            artista.setTipoDocumento(TipoDocumento);
+                            artista.setNroDocumento(NroDocumento);
+                            artista.setPrimerNombre(PrimerNombre);
+                            artista.setSegundoNombre(SegundoNombre);
+                            artista.setPrimerApellido(PrimerApellido);
+                            artista.setSegundoApellido(SegundoApellido);
+                            artista.setNombreArtistico(NombreArtistico);
+                            artista.setEmpresa(Empresa);
+                            artista.setEstado(Estado);
 
-                        //se guarda los datos en la tabla
-                        negocio.guardarArtista(artista);
-                        mensaje = "El artista se registró correctamente";
-                        limpiar();
-                    } catch (Exception e2) {
-                        mensaje = "Error en el registro de artista, favor verificar";
-                        limpiar();
+                            //se guarda los datos en la tabla
+                            negocio.guardarArtista(artista);
+                            mensaje = "El artista se registró correctamente";
+                            limpiar();
+                        } catch (Exception e2) {
+                            mensaje = "Error en el registro de artista, favor verificar";
+                            limpiar();
+                        }
                     }
+                } catch (Exception e1) {
+                    mensaje = "El artista ya se encuentra registrado en la base de datos";
+                    limpiar();
                 }
-            } catch (Exception e1) {
-                mensaje = "El artista ya se encuentra registrado en la base de datos";
-                limpiar();
-
             }
         }//fin guardar
 
