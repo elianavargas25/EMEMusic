@@ -5,7 +5,9 @@
  */
 package com.project.ememusic.servlet;
 
+import com.project.ememusic.entidad.Artistas;
 import com.project.ememusic.entidad.Ventas;
+import com.project.ememusic.negocio.NArtista;
 import com.project.ememusic.negocio.NVenta;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,15 +26,17 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "MaestroVentas", urlPatterns = {"/MaestroVentas"})
 public class MaestroVentas extends HttpServlet {
-    
-     Ventas venta = new Ventas();
+
+    Ventas venta = new Ventas();
     NVenta negocio = new NVenta();
+    Artistas artista = new Artistas();
+    NArtista negoci = new NArtista();
 
     public void limpiar() {
         venta.setIdArtista("");
         venta.setIdEmpresa("");
         venta.setReproduccion(0.0);
-        
+
     }//limpiar
 
     /**
@@ -47,8 +51,8 @@ public class MaestroVentas extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String idArtista = request.getParameter("cboartista");
-        String idEmpresa = request.getParameter("cboempresa");
+        String idArtista = request.getParameter("txtartista");
+        String idEmpresa = request.getParameter("txtempresa");
         String reproduccion = request.getParameter("txtreproduccion");
         double reprod = Double.parseDouble(reproduccion);
         String mensaje = "";
@@ -57,25 +61,31 @@ public class MaestroVentas extends HttpServlet {
         //request.setAttribute("mensaje", null);
         request.setAttribute("modulo", null);
         request.setAttribute("datos", null);
-        
+
         if ("Guardar".equals(request.getParameter("action"))) {
-           
-                    try {
-                        venta.setIdArtista(idArtista);
-                        venta.setIdEmpresa(idEmpresa);
-                        venta.setReproduccion(reprod);
-                        
-                        //se guarda los datos en la tabla
-                        negocio.guardarVenta(venta);
-                        mensaje = "El informe de las ventas se registró correctamente";
-                        List<Ventas> lista = negocio.listarVenta();
+              artista = negoci.buscarArtista(idArtista, idEmpresa);
+              if (artista!=null) {
+                try {
+                venta.setIdArtista(artista.getIdArtista());
+                venta.setIdEmpresa(idEmpresa);
+                venta.setReproduccion(reprod);
+
+                //se guarda los datos en la tabla
+                negocio.guardarVenta(venta);
+                mensaje = "El informe de las ventas se registró correctamente";
+                List<Ventas> lista = negocio.listarVenta();
                 request.setAttribute("lista", lista);
-                        limpiar();
-                    } catch (Exception e2) {
-                        mensaje = "Error en el registro de informe de ventas, favor verificar";
-                        limpiar();
-                    }
-                }//fin guardar
+                limpiar();
+            } catch (Exception e2) {
+                mensaje = "Error en el registro de informe de ventas, favor verificar";
+                limpiar();
+            }
+            }else{
+              mensaje="No se encontro información asociada a su busqueda";
+             }
+            
+        }//fin guardar
+        
         //lista
         try {
             List<Ventas> lista = negocio.listarVenta();
@@ -87,8 +97,8 @@ public class MaestroVentas extends HttpServlet {
         }
         request.setAttribute("mensaje", mensaje);
         request.getRequestDispatcher(modulo).forward(request, response);
-            
-        }
+
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -130,4 +140,3 @@ public class MaestroVentas extends HttpServlet {
     }// </editor-fold>
 
 }
-

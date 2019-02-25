@@ -82,7 +82,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="RanGO Project">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-       <link rel="stylesheet" type="text/css" href="styles/Caja.css">
+        <link rel="stylesheet" type="text/css" href="styles/Caja.css">
         <link rel="stylesheet" type="text/css" href="styles/btn.css">
         <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
         <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
@@ -98,7 +98,6 @@
         <link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
         <link rel="stylesheet" type="text/css" href="styles/about_styles.css">
         <link rel="stylesheet" type="text/css" href="styles/about_responsive.css">
-        <link rel="stylesheet" type="text/css" href="styles/EstilosNav.css">
         <link href="css/EstiloNav.css"  media="screen" rel="stylesheet" type="text/css">
     </head>
 
@@ -115,11 +114,11 @@
                     <a href="#">EME<spa>MUSIC</spa></a>
                 </div>
 
-               <%if (perfil.equals("Administrador")) {%> 
+                <%if (perfil.equals("Administrador")) {%> 
                 <jsp:include page="Smenu.jsp" flush="false"></jsp:include>
                 <%} else {%>
                 <jsp:include page="Smenu_1.jsp" flush="false"></jsp:include>
-                
+
                 <%}%>
                 <!-- Search -->
                 <div class="search">
@@ -129,28 +128,20 @@
                         <div class="search_button d-flex flex-column align-items-center justify-content-center">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  width="18px" height="18px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-
-
                             </svg>
                         </div>
-
                         <form id="search_form" class="search_form bez_1">
                             <input type="search" class="search_input bez_1">
                         </form>
-
                     </div>
                 </div>
                 </nav>
-
                 <!-- Hamburger -->
                 <div class="hamburger_container bez_1">
                     <i class="fas fa-bars trans_200"></i>
                 </div>
-
             </header>
-
             <!-- Menu -->
-
             <div class="menu_container">
                 <div class="menu menu_mm text-right">
                     <div class="menu_close"><i class="far fa-times-circle trans_200"></i></div>
@@ -164,118 +155,105 @@
                     </ul>
                 </div>
             </div>
-
             <!-- Home -->
             <div class="home">
                 <div class="home_background_container prlx_parent">
                     <div class="home_background prlx" style="background-image:url(images/home_background.jpg)"></div>
                 </div>
-
                 <div class="home_title">
-                  
                     <div class="next_section_scroll">
-                        
                         <h1>Registro de Ventas </h1>
-                      </div>
+                    </div>
                     <div><center>  <h2><%=mensaje != null ? mensaje : ""%></h2></center></div>
-
                 </div>
-
-
             </div>
-                    <br>
-                    <br>
-                    
-               <form name="Ventas" method="Post" id="Ventas"
+            <br>
+            <br>
+            <form name="Ventas" method="Post" id="Ventas"
                   action="./MaestroVentas" autocomplete="off" class="bod">    
                 <div class="content-box-gray">
                     <div class="col-lg-8">
-
                         <!-- Reply -->
-
                         <div class="Reply">
-
-
                             <div class="reply_form">
-
                                 <!-- Reply Form -->
-
-
                                 <div>
                                     <center>
-                                        <select id="company " name="cboempresa" class="input_field reply_form_name" type="select" placeholder="Empresa *" 
-                                                title="Seleccione la empresa" >
-                                            <option value="0" disabled selected="true">Seleccione la empresa</option>
-                                            <%while (empre.next()) {%>
-                                            <option value="<%= empre.getString(1)%>"><%=empre.getString(2)%></option>      
-                                            <% }%></select>
+                                        <!--                                        <select id="company " name="cboempresa" class="input_field reply_form_name" type="select" placeholder="Empresa *" 
+                                                                                        title="Seleccione la empresa" >
+                                                                                    <option value="0" disabled selected="true">Seleccione la empresa</option>
+                                        <--%while (empre.next()) {%>
+                                        <option value="<--%= empre.getString(1)%>"><--%=empre.getString(2)%></option>      
+                                        <--% }%></select>-->
 
-                                        <select id="company " name="cboartista" class="input_field reply_form_label" type="select" placeholder="Artista *" 
-                                                title="Seleccione el Artista" >
-                                            <option value="0" disabled selected="true">Seleccione</option>
-                                            <%while (artis.next()) {%>
-                                            <option value="<%= artis.getString(1)%>"><%=artis.getString(2)%></option>      
-                                            <% }%></select>
+                                        <input id="company" name="txtempresa" value="" onkeyup = "this.value = this.value.toUpperCase()
+                                               "class="input_field reply_form_name"  onkeypress="return soloLetras(event)" type="text" placeholder="Nombre empresa *"  data-error="">
 
+                                        <!--                                        <select id="company " name="cboartista" class="input_field reply_form_label" type="select" placeholder="Artista *" 
+                                                                                        title="Seleccione el Artista" >
+                                                                                    <option value="0" disabled selected="true">Seleccione</option>
+                                                                                    <--%while (artis.next()) {%>
+                                                                                    <option value="<--%= artis.getString(1)%>"><--%=artis.getString(2)%></option>      
+                                                                                    <--% }%></select>-->
+                                        <input id="artista" name="txtartista" value="" onkeyup = "this.value = this.value.toUpperCase()
+                                               "class="input_field reply_form_label"  onkeypress="return soloLetras(event)" type="text" placeholder="Nombre artista *"  data-error="">
                                         <input id="stageName" name="txtreproduccion" value="" onkeyup = "this.value = this.value.toUpperCase()
                                                "class="input_field reply_form_name"  onkeypress="return soloNumeros(event)" type="text" placeholder="Cantidad de reproducciones *"  data-error="">
-
                                         <input name="txtfecharegistro" type="text" readonly="readonly" class="input_field reply_form_label" 
                                                value="<%=fechaActual%>"
                                                maxlength="15" tabindex="2">
-
                                     </center> 
                                 </div>
                                 <br>
-
                                 <div class="Reply">
                                     <button id="save" type="submit" class="btn bg-info" name="action" value="Guardar">Guardar</button>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-               <br>
-               <br>
-                 
-               <%if (listaVentas != null) {%>
+                <br>
+                <br>
+
+                <%if (listaVentas != null) {%>
                 <div class="content-box-purple">
                     <div class="container">
                         <div class="row">
-
                             <div class="col-lg-8">
                                 <div class="table container">
-                                    
+                                    <input id="filter" name="filtro" onkeyup="myFunction()" type="text" class="input_field reply_form_name"  placeholder="Filtro">
+                                    <br>
+                                    <br>
                                     <%if (listaVentas != null) {%>
                                     <table border="0" id="tabla" class="table">
-                                        <tbody class="table-responsive">
+                                        <tbody  class="table-responsive">
                                             <tr class="active" >
                                                 <th>Nombre Artistico</th>
                                                 <th>Nombre Empresa</th>
                                                 <th>Cantidad Reproducciones</th>
+                                                <th>Fecha</th>
                                             </tr> 
                                             <%for (Ventas infor : listaVentas) {%>
                                             <tr>
                                                 <td><%=infor.getIdArtista()%></td>
                                                 <td><%=infor.getIdEmpresa()%></td>
                                                 <td><%=infor.getReproduccion()%></td>
+                                                <td><%=infor.getFecha()%></td>
                                             </tr>
                                             <%}%>
                                         </tbody>
                                     </table>
                                     <%}%>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <%}%>
-                 <br>
+                <br>
                 <br>
             </form>
-            
             <script src="js/jquery-3.2.1.min.js"></script>
             <script src="styles/bootstrap4/popper.js"></script>
             <script src="styles/bootstrap4/bootstrap.min.js"></script>
@@ -289,6 +267,7 @@
             <script src="plugins/scrollTo/jquery.scrollTo.min.js"></script>
             <script src="plugins/easing/easing.js"></script>
             <script src="js/about_custom.js"></script>
+            <script src="js/filtro.js"></script>
     </body>
 
 </html>

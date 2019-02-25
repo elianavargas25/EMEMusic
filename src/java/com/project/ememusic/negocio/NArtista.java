@@ -26,6 +26,10 @@ public class NArtista {
     public Artistas buscarArtistas(String docu, String tdocu) {
         return dao.buscarArtistas( docu, tdocu);
     }//fin buscar
+    
+    public Artistas buscarArtista(String artista, String empresa){
+    return dao.buscarArtista(artista, empresa);
+    }
 
     public Artistas guardarArtista(Artistas artista) throws Exception {
         String TipoDocumento = artista.getTipoDocumento();

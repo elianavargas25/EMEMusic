@@ -10,9 +10,8 @@ package com.project.ememusic.persistencia;
  * @author Mileidy
  */
 public class SqlArtista {
-    
-//BUSCA REGISTRO EN LA TABLA
 
+//BUSCA REGISTRO EN LA TABLA
     public static String getArtista(String documento) {
         return "SELECT\n"
                 + "                art.ID_ARTISTAS,\n"
@@ -31,20 +30,27 @@ public class SqlArtista {
                 + "                INNER JOIN music.EMPRESA emp ON emp.ID_EMPRESA = art.ID_EMPRESA\n"
                 + "                WHERE art.NRO_DOCUMENTO =? and art.ID_TIPO_DOCUMENTO =?";
     }
+
+    public static String getArtista() {
+        return "SELECT art.ID_ARTISTAS, art.NOMBRE_ARTISTICO, emp.ID_EMPRESA, emp.NOMBRE FROM music.artistas art inner join \n"
+                + "music.empresa emp on art.id_empresa=emp.id_empresa\n"
+                + "where art.nombre_artistico=? and emp.nombre=? and art.estado='S' and emp.id_estado='S'";
+    }
 //INSERTAR (GUARDAR) UN REGISTRO EN LA TABLA
 
     public static String insertarArtista() {
         return "INSERT INTO music.artistas"
                 + " ( `ID_TIPO_DOCUMENTO`, `NRO_DOCUMENTO`, `PRIMER_NOMBRE`, "
                 + "`SEGUNDO_NOMBRE`, `PRIMER_APELLIDO`, `SEGUNDO_APELLIDO`, `NOMBRE_ARTISTICO`, `ID_EMPRESA`, `ESTADO`)"
-                + "values (?,?,?,?,?,?,?,?,?)" ;
+                + "values (?,?,?,?,?,?,?,?,?)";
     }
+
     //Actualizar (GUARDAR) UN REGISTRO EN LA TABLA
     public static String actualizarArtista() {
-         return "UPDATE music.artistas art SET `PRIMER_NOMBRE` = ?, `SEGUNDO_NOMBRE` = ?, "
-                 + "`PRIMER_APELLIDO`=?, `SEGUNDO_APELLIDO`=?, `NOMBRE_ARTISTICO`=?, `ID_EMPRESA`=?, `ESTADO`=? "
-                 + " WHERE `art`.`ID_ARTISTAS` = ?";
-                
+        return "UPDATE music.artistas art SET `PRIMER_NOMBRE` = ?, `SEGUNDO_NOMBRE` = ?, "
+                + "`PRIMER_APELLIDO`=?, `SEGUNDO_APELLIDO`=?, `NOMBRE_ARTISTICO`=?, `ID_EMPRESA`=?, `ESTADO`=? "
+                + " WHERE `art`.`ID_ARTISTAS` = ?";
+
     }
 
 }

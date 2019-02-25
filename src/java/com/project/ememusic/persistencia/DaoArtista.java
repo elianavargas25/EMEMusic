@@ -36,55 +36,37 @@ public class DaoArtista {
         }
     }
 
-    public Artistas buscarArtista(Connection con, String Documento, String tdocu) {//validar conexion
+    public Artistas buscarArtista(String artist, String empresa) {
         try {
-            PreparedStatement ar = conn.prepareStatement(SqlArtista.getArtista(Documento));
-            ar.setString(1, Documento);
-            ar.setString(2, tdocu);
+            PreparedStatement ar = conn.prepareStatement(SqlArtista.getArtista());
+            ar.setString(1, artist);
+            ar.setString(2, empresa);
             ResultSet art = ar.executeQuery();
-            if (art.next()) {
-                while (art.next()) {
-                    //Artistas artista = new Artistas();
+            if (!art.next()) {                            //if rs.next() returns false
+                //then there are no rows.
+                System.out.println("No records found");
+                return null;
+            } else {
+                do {
                     artista.setIdArtista(art.getString("id_artistas"));
-                    artista.setTipoDocumento(art.getString("id_tipo_documento"));
-                    artista.setNroDocumento(art.getString("nro_documento"));
-                    artista.setPrimerNombre(art.getString("primer_nombre"));
-                    artista.setSegundoNombre(art.getString("segundo_nombre"));
-                    artista.setPrimerApellido(art.getString("primer_apellido"));
-                    artista.setSegundoApellido(art.getString("segundo_apellido"));
                     artista.setNombreArtistico(art.getString("nombre_artistico"));
                     artista.setEmpresa(art.getString("id_empresa"));
-                    artista.setEstado(art.getString("estado"));
+                    artista.setEmpresa(art.getString("nombre"));
                     System.out.println("Busqueda exitosa...\n");
-                }//cierra while
-            } else {
-                artista.setIdArtista("");
-                artista.setTipoDocumento("");
-                artista.setNroDocumento("");
-                artista.setPrimerNombre("");
-                artista.setSegundoNombre("");
-                artista.setPrimerApellido("");
-                artista.setSegundoApellido("");
-                artista.setNombreArtistico("");
-                artista.setEmpresa("");
-                artista.setEstado("");
+                    return artista;
+                    // Get data from the current row and use it
+                } while (art.next());
             }
-
         } catch (Exception e) {
-            System.out.println("Error artista no registrado...\n");
+            System.out.println("Error Artista no registrado...\n");
             e.getMessage();
         } finally {
             try {
-                //con.close();
             } catch (Exception e) {
             }
         }//cierra finally
-        if (!artista.getNroDocumento().equals(Documento) || !artista.getTipoDocumento().equals(tdocu)) {
-            System.out.println("El Artista no se encuentra registrado en la base de datos");
-        }
-        return artista;
-
-    }//finaliza buscar
+        return null;
+    }
 
     public Artistas buscarArtistas(String Documento, String tdocu) {
         try {
