@@ -7,6 +7,7 @@ package com.project.ememusic.automatizacion.Test.PageObjects;
 
 import com.project.ememusic.automatizacion.PageObject.Artista;
 import com.project.ememusic.automatizacion.PageObject.Empresa;
+import com.project.ememusic.automatizacion.PageObject.Informe;
 import com.project.ememusic.automatizacion.PageObject.Login;
 import com.project.ememusic.automatizacion.PageObject.Venta;
 import com.project.ememusic.entidad.Artistas;
@@ -41,6 +42,7 @@ public class TestEME {
     static String nroDoc;
     Venta Vent;
     static String Cantidad;
+    Informe inf;
 
     public TestEME() {
     }
@@ -132,14 +134,10 @@ public class TestEME {
         Emp = new Empresa(driver);
         Emp.EmpresaAplication(NroDocEmp, NombreEmp, PagoOpeacion);
         Thread.sleep(2000);
-        nroDoc = Emp.GetNroDoc();
-        Emp.buscarEmpresa(NroDocEmp);
-        assertEquals(nroDoc, NroDocEmp);
-        String Mensaje = "Registro guardado correctamente";
-
-//        System.out.println("el mensaje es:" + Mensaje);
-//        String MensajeEsperado = "Registro guardado correctamente";
-//        assertEquals(Mensaje, MensajeEsperado);
+        String Mensaje = Emp.GetMensaje();
+        System.out.println("el mensaje es:" + Mensaje);
+        String MensajeEsperado = "Registro guardado correctamente";
+        assertEquals(Mensaje, MensajeEsperado);
     }
 
     //Probamos que no deje guardar una empresa debido a que el Campo Número de documento es obligatorio.
@@ -271,9 +269,22 @@ public class TestEME {
         Vent = new Venta(driver);
         Vent.VentasAplication(StrEmp, StrArt, StrCantidad);
         String Cantidad = "200";
-        System.out.println("La cantidad es: " + Vent);
+//        System.out.println("La cantidad es: " + Vent);
         String CantidadEsperada = "200";
         assertEquals(Cantidad, CantidadEsperada);
     }
 
+    @Test
+    public void LTestInformes() throws Exception {
+        driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[4]/a")).click(); // Clic registrar venta
+//        Thread.sleep(2000);
+        String Fecha  = "01/01/2019";
+        String Fecha2  = "02/27/2019";
+        inf = new Informe(driver);
+        inf.InformeAplication(Fecha, Fecha2);
+        
+////        System.out.println("La cantidad es: " + Vent);
+//        String CantidadEsperada = "200";
+//        assertEquals(Cantidad, CantidadEsperada);
+    }
 }
