@@ -42,7 +42,6 @@ public class DaoInforme {
             e.printStackTrace();
         } finally {
             try {
-                con.close();//cierra la conexion de la bd
             } catch (Exception e) {
             }//fin try/catch
         }//fin try/catch/finall
@@ -68,7 +67,6 @@ public class DaoInforme {
             e.printStackTrace();
         } finally {
             try {
-                con.close();//cierra la conexion de la bd
             } catch (Exception e) {
             }//fin try/catch
         }//fin try/catch/finall

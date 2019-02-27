@@ -11,7 +11,6 @@ public class DaoUsuarios {
 
     // Validar el ingreso al sistema
 //Llamamos a las clases que vamos a necesitar
-
     Connection con = Conexion.getInstance();
     Usuarios miusuario = new Usuarios(); //instancia de la clase Entidad (usuario).
 
@@ -41,7 +40,6 @@ public class DaoUsuarios {
             System.out.println("Error al comprobar el ingreso al sistema...");
         } finally {
             try {
-//                con.close();
             } catch (Exception e) {
             }
         }
@@ -70,7 +68,6 @@ public class DaoUsuarios {
             e.printStackTrace();
         } finally {
             try {
-//                con.close();
             } catch (Exception e) {
             }
         }//cierra finally
@@ -97,7 +94,6 @@ public class DaoUsuarios {
             e.getMessage();
         } finally {
             try {
-//                con.close();
             } catch (Exception e) {
             }
         }//cierra finally
