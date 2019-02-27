@@ -1,3 +1,4 @@
+<%@page import="com.project.ememusic.negocio.NVenta"%>
 <%@page import="com.project.ememusic.entidad.Ventas"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.project.ememusic.persistencia.DaoArtista"%>
@@ -8,10 +9,10 @@
 
 <!DOCTYPE html>
 <%  List<Ventas> listaVentas = request.getAttribute("lista")
-            != null ? (List<Ventas>) request.getAttribute("lista") : null;%>
+            != null ? (List<Ventas>) request.getAttribute("lista") : null;
+%>
 
-<%
-    String id_usu = "";
+<%    String id_usu = "";
     String perfil = "";
     String nombre = "";
     Usuarios tec = new Usuarios();
@@ -123,7 +124,7 @@
                 <!-- Search -->
                 <div class="search">
                     <div class="search_content d-flex flex-column align-items-center justify-content-center">
-                        <h4 style="text-height: right">Usuario:    <%=nombre%></h4>
+                        <h2 style="text-height: right">Usuario:    <%=nombre%></h2>
                         <a href="index.jsp">Cerrar sesión</a>
                         <div class="search_button d-flex flex-column align-items-center justify-content-center">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -187,16 +188,9 @@
                                         <--% }%></select>-->
 
                                         <input id="company" name="txtempresa" value="" onkeyup = "this.value = this.value.toUpperCase()
-                                               "class="input_field reply_form_name"  onkeypress="return soloLetras(event)" type="text" placeholder="Nombre empresa *"  data-error="">
-
-                                        <!--                                        <select id="company " name="cboartista" class="input_field reply_form_label" type="select" placeholder="Artista *" 
-                                                                                        title="Seleccione el Artista" >
-                                                                                    <option value="0" disabled selected="true">Seleccione</option>
-                                                                                    <--%while (artis.next()) {%>
-                                                                                    <option value="<--%= artis.getString(1)%>"><--%=artis.getString(2)%></option>      
-                                                                                    <--% }%></select>-->
+                                               "class="input_field reply_form_name"   type="text" placeholder="Nombre empresa *"  data-error="">
                                         <input id="artista" name="txtartista" value="" onkeyup = "this.value = this.value.toUpperCase()
-                                               "class="input_field reply_form_label"  onkeypress="return soloLetras(event)" type="text" placeholder="Nombre artista *"  data-error="">
+                                               "class="input_field reply_form_label" type="text" placeholder="Nombre artista *"  data-error="">
                                         <input id="stageName" name="txtreproduccion" value="" onkeyup = "this.value = this.value.toUpperCase()
                                                "class="input_field reply_form_name"  onkeypress="return soloNumeros(event)" type="text" placeholder="Cantidad de reproducciones *"  data-error="">
                                         <input name="txtfecharegistro" type="text" readonly="readonly" class="input_field reply_form_label" 
@@ -221,7 +215,7 @@
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="table container">
-                                    <input id="filter" name="filtro" onkeyup="myFunction()" type="text" class="input_field reply_form_name"  placeholder="Filtro">
+                                    <input id="filter" name="filtro" onkeyup="myFunction()" type="text" class="input_field reply_form_name"  placeholder="Nombre Artístico">
                                     <br>
                                     <br>
                                     <%if (listaVentas != null) {%>

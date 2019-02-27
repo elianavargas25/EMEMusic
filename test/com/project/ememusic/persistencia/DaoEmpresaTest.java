@@ -61,7 +61,6 @@ public class DaoEmpresaTest {
     /**
      * Test of guardarEmpresa method, of class DaoEmpresa.
      */
-    static int index = 1;
     
 
     @Test
@@ -70,8 +69,7 @@ public class DaoEmpresaTest {
         con = new Conexion().getCon();
         Empresa emp = new Empresa();
         emp.setTipoDocumento("1");
-        index = index + 1;
-        emp.setNroDcumento("45225233" + index);
+        emp.setNroDcumento(Datos.setIdentEmpresa());
         emp.setNombre(Datos.setNombreEmpresa());
         emp.setPago_operacion("300");
         emp.setEstado("S");

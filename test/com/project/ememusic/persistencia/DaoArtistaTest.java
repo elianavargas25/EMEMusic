@@ -21,9 +21,9 @@ import static org.junit.Assert.*;
  */
 public class DaoArtistaTest {
 
-     static Connection con = null;
-     static String nroDocumento;
-     static String tDocu;
+    static Connection con = null;
+    static String nroDocumento;
+    static String tDocu;
 
     public DaoArtistaTest() {
     }
@@ -46,10 +46,11 @@ public class DaoArtistaTest {
 
     /**
      * Test of buscarArtista method, of class DaoArtista.
-     * @return 
+     *
+     * @return
      */
     @Test
-    public static Artistas testBuscarArtista() {
+    public void testBuscarArtista() {
         System.out.println("Prueba Buscar Artista");
         con = new Conexion().getCon();
         String Documento = "7894562";
@@ -59,21 +60,19 @@ public class DaoArtistaTest {
         Artistas expResult = result;
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        return result; 
     }
 
+     static int index = 1;
     /**
      * Test of guardarArtista method, of class DaoArtista.
      */
-    static int index = 1;
-
     @Test
     public void testGuardarArtista() {
+        index++;
         System.out.println("Prueba guardar Artista");
         Artistas artista = new Artistas();
         artista.setTipoDocumento("1");
-        index++;
-        artista.setNroDocumento("789456" + index);
+        artista.setNroDocumento(Datos.setIdentificacion());
         artista.setPrimerNombre(Datos.setNombreArtista());
         artista.setSegundoNombre("");
         artista.setPrimerApellido("PEREZ");
@@ -86,6 +85,7 @@ public class DaoArtistaTest {
         Artistas expResult = artista;
         Artistas result = instance.guardarArtista(artista);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
+        
     }
+    
 }
