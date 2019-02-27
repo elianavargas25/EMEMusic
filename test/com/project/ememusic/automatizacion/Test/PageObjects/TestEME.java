@@ -8,6 +8,7 @@ package com.project.ememusic.automatizacion.Test.PageObjects;
 import com.project.ememusic.automatizacion.PageObject.Artista;
 import com.project.ememusic.automatizacion.PageObject.Empresa;
 import com.project.ememusic.automatizacion.PageObject.Login;
+import com.project.ememusic.automatizacion.PageObject.Venta;
 import com.project.ememusic.entidad.Artistas;
 import com.project.ememusic.negocio.NArtista;
 import com.project.ememusic.persistencia.DaoArtista;
@@ -38,6 +39,8 @@ public class TestEME {
     Empresa Emp;
     Artista Art;
     static String nroDoc;
+    Venta Vent;
+    static String Cantidad;
 
     public TestEME() {
     }
@@ -189,8 +192,8 @@ public class TestEME {
     public void GArtsitaAplcationCreate() throws Exception {
         driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[1]/a")).click();
         Thread.sleep(2000);
-        String NroDocArt = ("1000345678");
-        String PrimerNombre = "Estefania";
+        String NroDocArt = ("56441728290");
+        String PrimerNombre = "Claudia";
         String SegundoNombre = ("djfknfjd");
         String PrimerApellido = "Ruben Pte";
         String SegundoApellido = ("fdgsdfg");
@@ -221,7 +224,8 @@ public class TestEME {
         String MensajeEsperado = "Debe llenar todos los campos";
         assertEquals(Mensaje, MensajeEsperado);
     }
-     @Test
+
+    @Test
     public void ITestObligatoriedadPrimerApellido() throws Exception {
         driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[1]/a")).click();
         Thread.sleep(2000);
@@ -238,7 +242,7 @@ public class TestEME {
         String MensajeEsperado = "Debe llenar todos los campos";
         assertEquals(Mensaje, MensajeEsperado);
     }
-    
+
     @Test
     public void JTestObligatoriedadNombreArtistico() throws Exception {
         driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[1]/a")).click();
@@ -247,7 +251,7 @@ public class TestEME {
         String PrimerNombre = "Estefania";
         String SegundoNombre = "Maria";
         String PrimerApellido = "Ruben Pte";
-        String SegundoApellido = ("fdgsdfg");
+        String SegundoApellido = "fdgsdfg";
         Art = new Artista(driver);
         Art.ArtistaTestNombreArt(NroDocArt, PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido);
         Thread.sleep(2000);
@@ -256,23 +260,20 @@ public class TestEME {
         String MensajeEsperado = "Debe llenar todos los campos";
         assertEquals(Mensaje, MensajeEsperado);
     }
-     @Test
-    public void KTestUsuarioCreated() throws Exception {
-        driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[1]/a")).click();
-        Thread.sleep(2000);
-        String NroDocArt = ("1000345678");
-        String PrimerNombre = "Estefania";
-        String SegundoNombre = "Maria";
-        String PrimerApellido = "Ruben Pte";
-        String SegundoApellido = ("fdgsdfg");
-        Art = new Artista(driver);
-        Art.ArtistaTestNombreArt(NroDocArt, PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido);
-        Thread.sleep(2000);
-        String Mensaje = Art.GetMensaje();
-        System.out.println("El mensaje es: " + Mensaje);
-        String MensajeEsperado = "Debe llenar todos los campos";
-        assertEquals(Mensaje, MensajeEsperado);
+
+    @Test
+    public void KTestregistrarVenta() throws Exception {
+        driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[3]/a")).click(); // Clic registrar venta
+//        Thread.sleep(2000);
+        String StrEmp = "Pragma";
+        String StrArt = "Estefa";
+        String StrCantidad = "200";
+        Vent = new Venta(driver);
+        Vent.VentasAplication(StrEmp, StrArt, StrCantidad);
+        String Cantidad = "200";
+        System.out.println("La cantidad es: " + Vent);
+        String CantidadEsperada = "200";
+        assertEquals(Cantidad, CantidadEsperada);
     }
-    
 
 }
