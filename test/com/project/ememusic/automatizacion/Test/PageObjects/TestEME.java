@@ -190,12 +190,12 @@ public class TestEME {
     public void GArtsitaAplcationCreate() throws Exception {
         driver.findElement(By.xpath("/html/body/div/header/div[2]/nav/ul/li[1]/a")).click();
         Thread.sleep(2000);
-        String NroDocArt = ("56441728290");
-        String PrimerNombre = "Claudia";
+        String NroDocArt = Datos.setIdentificacion();
+        String PrimerNombre = Datos.setNombreArtista();
         String SegundoNombre = ("djfknfjd");
         String PrimerApellido = "Ruben Pte";
         String SegundoApellido = ("fdgsdfg");
-        String NombreArtistico = "estefanía shakira";
+        String NombreArtistico = Datos.setNombreArtista();
         Art = new Artista(driver);
         Art.ArtistaAplication(NroDocArt, PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, NombreArtistico);
         Thread.sleep(2000);
