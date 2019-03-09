@@ -38,9 +38,9 @@ public class DaoArtista {
 
     public Artistas buscarArtista(String artist, String empresa) {
         try {
-            PreparedStatement ar = conn.prepareStatement(SqlArtista.getArtista());
-            ar.setString(1, artist);
-            ar.setString(2, empresa);
+            PreparedStatement ar = conn.prepareStatement(SqlArtista.getArtista(artist, empresa));
+//            ar.setString(1, artist);
+//            ar.setString(2, empresa); 
             ResultSet art = ar.executeQuery();
             if (!art.next()) {                            //if rs.next() returns false
                 //then there are no rows.

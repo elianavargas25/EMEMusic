@@ -31,10 +31,10 @@ public class SqlArtista {
                 + "                WHERE art.NRO_DOCUMENTO =? and art.ID_TIPO_DOCUMENTO =?";
     }
 
-    public static String getArtista() {
+    public static String getArtista(String artis, String empre) {
         return "SELECT art.ID_ARTISTAS, art.NOMBRE_ARTISTICO, emp.ID_EMPRESA, emp.NOMBRE FROM music.artistas art inner join \n"
                 + "music.empresa emp on art.id_empresa=emp.id_empresa\n"
-                + "where art.nombre_artistico=? and emp.nombre=? and art.estado='S' and emp.id_estado='S'";
+                + "where art.nombre_artistico like '%"+artis+"%' and emp.nombre like '%"+empre+"%' and art.estado='S' and emp.id_estado='S'";
     }
 //INSERTAR (GUARDAR) UN REGISTRO EN LA TABLA
 
